@@ -3,42 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Personal</title>
+    <title>Mi Sitio Web - Julianidiego</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>¡Hola! Soy Diego Hernán Juliani</h1>
-        <p>Estudiante de la carrera Analista Programador en la Universidad Nacional de La Plata</p>
+        <nav>
+            <h1>Julianidiego</h1>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
-
     <main>
+        <section id="inicio">
+            <h2>Bienvenido a mi sitio web</h2>
+            <p>Soy Julianidiego, un profesional en desarrollo web.</p>
+        </section>
         <section id="sobre-mi">
             <h2>Sobre mí</h2>
-            <p>Me encanta aprender y compartir mi conocimiento.</p>
+            <p>Tengo experiencia en desarrollo de aplicaciones web modernas y funcionales.</p>
         </section>
-
-        <section id="redes-sociales">
-            <h2>Redes Sociales</h2>
-            <ul>
-                <li><a href="https://github.com/Julianidiego" target="_blank">GitHub</a></li>
-                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-                <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-            </ul>
+        <section id="proyectos">
+            <h2>Proyectos</h2>
+            <div class="proyecto">
+                <h3>Proyecto 1</h3>
+                <p>Descripción breve del proyecto.</p>
+            </div>
+            <div class="proyecto">
+                <h3>Proyecto 2</h3>
+                <p>Descripción breve del proyecto.</p>
+            </div>
         </section>
-
-        <section id="habilidades">
-            <h2>Habilidades</h2>
-            <ul>
-                <li>Python</li>
-                <li>Pascal</li>
-                <li>Delphi</li>
-            </ul>
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
         </section>
     </main>
-
     <footer>
-        <p>Creado por Diego Juliani &copy; 2025</p>
+        <p>&copy; 2025 Julianidiego. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

@@ -1,67 +1,87 @@
-/* Reset básico */
+/* Estilos generales */
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     line-height: 1.6;
-    background-color: #f4f4f9;
+    background-color: #f4f4f4;
     color: #333;
 }
 
+/* Header y navegación */
 header {
-    background-color: #0078d7;
-    color: white;
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
     text-align: center;
-    padding: 1.5rem 0;
 }
 
-header h1 {
+header nav h1 {
     margin: 0;
-    font-size: 2.5rem;
 }
 
-header p {
-    margin: 0.5rem 0 0;
-    font-size: 1.2rem;
-}
-
-main {
-    margin: 2rem auto;
-    max-width: 800px;
-    padding: 0 1rem;
-}
-
-section {
-    margin-bottom: 2rem;
-}
-
-section h2 {
-    color: #0078d7;
-    border-bottom: 2px solid #0078d7;
-    padding-bottom: 0.5rem;
-}
-
-ul {
+header nav ul {
     list-style: none;
     padding: 0;
 }
 
-ul li {
-    margin: 0.5rem 0;
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
 }
 
-ul li a {
+header nav ul li a {
+    color: #fff;
     text-decoration: none;
-    color: #0078d7;
 }
 
-ul li a:hover {
-    text-decoration: underline;
+/* Secciones */
+section {
+    padding: 2rem;
+    margin: 1rem auto;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+section h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 0.5rem 0 0.2rem;
+}
+
+form input, form textarea, form button {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #555;
+}
+
+/* Footer */
 footer {
     text-align: center;
-    background-color: #333;
-    color: white;
     padding: 1rem 0;
-    margin-top: 2rem;
+    background: #333;
+    color: #fff;
 }

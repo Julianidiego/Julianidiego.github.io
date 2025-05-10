@@ -1,19 +1,34 @@
+/* Variables para tema oscuro de GitHub */
+:root {
+    --color-bg-primary: #0d1117;
+    --color-bg-secondary: #161b22;
+    --color-border: #30363d;
+    --color-text-primary: #c9d1d9;
+    --color-text-secondary: #8b949e;
+    --color-accent: #58a6ff;
+    --color-hover: #1f6feb;
+    --color-btn-bg: #21262d;
+    --color-btn-text: #c9d1d9;
+    --color-btn-hover: #30363d;
+}
+
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
 }
 
 /* Header y navegación */
 header {
-    background: #333;
-    color: #fff;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
     padding: 1rem 0;
     text-align: center;
+    border-bottom: 1px solid var(--color-border);
 }
 
 header nav h1 {
@@ -33,6 +48,10 @@ header nav h1 {
     transform: scale(1.2);
 }
 
+.header-github-link svg {
+    fill: var(--color-accent);
+}
+
 header nav ul {
     list-style: none;
     padding: 0;
@@ -44,8 +63,14 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #fff;
+    color: var(--color-text-primary);
     text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+header nav ul li a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
 }
 
 /* Secciones */
@@ -53,14 +78,16 @@ section {
     padding: 2rem;
     margin: 1rem auto;
     max-width: 800px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: var(--color-bg-secondary);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-border);
 }
 
 section h2 {
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: 0.5rem;
+    color: var(--color-text-primary);
 }
 
 /* Formulario */
@@ -71,32 +98,39 @@ form {
 
 form label {
     margin: 0.5rem 0 0.2rem;
+    color: var(--color-text-primary);
 }
 
-form input, form textarea, form button {
+form input, form textarea {
     padding: 0.5rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
 }
 
 form button {
-    background: #333;
-    color: #fff;
-    border: none;
+    padding: 0.5rem;
+    background: var(--color-btn-bg);
+    color: var(--color-btn-text);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 form button:hover {
-    background: #555;
+    background: var(--color-btn-hover);
 }
 
 /* Footer */
 footer {
     text-align: center;
     padding: 1rem 0;
-    background: #333;
-    color: #fff;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    border-top: 1px solid var(--color-border);
 }
 
 /* Estilos para los iconos sociales */
@@ -110,10 +144,25 @@ footer {
     transition: transform 0.3s ease;
 }
 
-social-links a:hover {
+.social-links a:hover {
     transform: scale(1.2);
 }
 
 .github-link svg {
     vertical-align: middle;
+    fill: var(--color-accent);
+}
+
+/* Proyecto cards */
+.proyecto {
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--color-bg-primary);
+}
+
+.proyecto h3 {
+    margin-top: 0;
+    color: var(--color-accent);
 }

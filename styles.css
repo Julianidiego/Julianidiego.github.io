@@ -18,6 +18,19 @@ header {
 
 header nav h1 {
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-github-link {
+    margin-left: 10px;
+    display: inline-flex;
+    transition: transform 0.3s ease;
+}
+
+.header-github-link:hover {
+    transform: scale(1.2);
 }
 
 header nav ul {

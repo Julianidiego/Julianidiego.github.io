@@ -135,16 +135,21 @@ section h2 {
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.lenguaje-logo svg {
+.lenguaje-logo img {
     width: 60px;
     height: 60px;
+    object-fit: contain;
     filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
     transition: all 0.5s ease;
 }
 
-.lenguaje-card:hover .lenguaje-logo svg {
+.lenguaje-card:hover .lenguaje-logo img {
     filter: drop-shadow(0 0 8px var(--color-accent));
     transform: scale(1.1) rotate(5deg);
+}
+
+.lenguaje-logo svg {
+    display: none;
 }
 
 .lenguaje-logo span {

@@ -85,3 +85,22 @@ footer {
     background: #333;
     color: #fff;
 }
+
+/* Estilos para los iconos sociales */
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+social-links a:hover {
+    transform: scale(1.2);
+}
+
+.github-link svg {
+    vertical-align: middle;
+}

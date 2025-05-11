@@ -31,15 +31,17 @@
             </h1>
             <ul>
                 <li><a href="#inicio" class="nav-link"><span>Inicio</span></a></li>
-                <li><a href="#sobre-mi" class="nav-link"><span>Sobre mí</span></a></li>
-                <li><a href="#lenguajes" class="nav-link"><span>Lenguajes</span></a></li>
                 <li><a href="#proyectos" class="nav-link"><span>Proyectos</span></a></li>
+                <li><a href="#lenguajes" class="nav-link"><span>Lenguajes</span></a></li>
+                <li><a href="#sobre-mi" class="nav-link"><span>Sobre mí</span></a></li>
+                <li><a href="#bitacora" class="nav-link"><span>Bitácora</span></a></li>
                 <li><a href="#contacto" class="nav-link"><span>Contacto</span></a></li>
             </ul>
         </nav>
     </header>
     
     <main>
+        <!-- Sección Hero/Inicio -->
         <section id="inicio" class="hero-section">
             <div class="hero-content">
                 <h2 class="glitch-text" data-text="Bienvenido a mi sitio web">Bienvenido a mi sitio web</h2>
@@ -57,56 +59,65 @@
             </div>
         </section>
         
-        <section id="sobre-mi">
-            <h2 data-aos="fade-up">Sobre mí</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="highlight-text">No tengo nada que decir, esto es un pequeño repaso por HTML, CSS y un primer acercamiento a Javascript.</p>
-                    <p>Estudiante apasionado por el desarrollo de software y la creación de soluciones tecnológicas. Constantemente explorando nuevas tecnologías y metodologías para mejorar mis habilidades.</p>
-                    
-                    <div class="skill-bars">
-                        <div class="skill-bar">
-                            <div class="skill-name">Frontend</div>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-percent="85"></div>
+        <!-- Proyectos (Ahora justo después del inicio) -->
+        <section id="proyectos">
+            <h2 data-aos="fade-up">Proyectos</h2>
+            <div class="proyectos-grid">
+                <div class="proyecto" data-aos="zoom-in">
+                    <div class="proyecto-img">
+                        <div class="proyecto-overlay">
+                            <div class="overlay-content">
+                                <h4>Ver Detalles</h4>
+                                <div class="overlay-icons">
+                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
+                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
                             </div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-name">Backend</div>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-percent="80"></div>
-                            </div>
+                    </div>
+                    <div class="proyecto-content">
+                        <h3>Sistema de Gestión</h3>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>SQL</span>
+                            <span>Flask</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-name">Bases de Datos</div>
-                            <div class="skill-progress">
-                                <div class="progress-bar" data-percent="90"></div>
-                            </div>
-                        </div>
+                        <p>Sistema de gestión para pequeñas empresas con módulos de inventario, facturación y seguimiento de clientes.</p>
                     </div>
                 </div>
                 
-                <div class="experience-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Estudiante de Sistemas</h3>
-                            <span class="timeline-date">2023 - Presente</span>
-                            <p>UNLP - Universidad Nacional de La Plata</p>
+                <div class="proyecto" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="proyecto-img">
+                        <div class="proyecto-overlay">
+                            <div class="overlay-content">
+                                <h4>Ver Detalles</h4>
+                                <div class="overlay-icons">
+                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
+                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Proyectos Personales</h3>
-                            <span class="timeline-date">2022 - Presente</span>
-                            <p>Desarrollo de aplicaciones y soluciones de software</p>
+                    <div class="proyecto-content">
+                        <h3>Aplicación de Análisis de Datos</h3>
+                        <div class="tech-stack">
+                            <span>C#</span>
+                            <span>SQL</span>
+                            <span>WPF</span>
                         </div>
+                        <p>Herramienta de análisis estadístico con visualización gráfica y exportación de reportes.</p>
                     </div>
                 </div>
             </div>
+            
+            <div class="cta-container">
+                <a href="https://github.com/Julianidiego" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i> Ver más en GitHub
+                </a>
+            </div>
         </section>
         
+        <!-- Lenguajes con los nuevos efectos -->
         <section id="lenguajes">
             <h2 data-aos="fade-up">Lenguajes de Programación</h2>
             <div class="lenguajes-container">
@@ -212,63 +223,140 @@
             </div>
         </section>
         
-        <section id="proyectos">
-            <h2 data-aos="fade-up">Proyectos</h2>
-            <div class="proyectos-grid">
-                <div class="proyecto" data-aos="zoom-in">
-                    <div class="proyecto-img">
-                        <div class="proyecto-overlay">
-                            <div class="overlay-content">
-                                <h4>Ver Detalles</h4>
-                                <div class="overlay-icons">
-                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
-                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
-                                </div>
+        <!-- Sección Sobre Mi -->
+        <section id="sobre-mi">
+            <h2 data-aos="fade-up">Sobre mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="highlight-text">No tengo nada que decir, esto es un pequeño repaso por HTML, CSS y un primer acercamiento a Javascript.</p>
+                    <p>Estudiante apasionado por el desarrollo de software y la creación de soluciones tecnológicas. Constantemente explorando nuevas tecnologías y metodologías para mejorar mis habilidades.</p>
+                    
+                    <div class="skill-bars">
+                        <div class="skill-bar">
+                            <div class="skill-name">Frontend</div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-percent="85"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="proyecto-content">
-                        <h3>Sistema de Gestión</h3>
-                        <div class="tech-stack">
-                            <span>Python</span>
-                            <span>SQL</span>
-                            <span>Flask</span>
+                        <div class="skill-bar">
+                            <div class="skill-name">Backend</div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-percent="80"></div>
+                            </div>
                         </div>
-                        <p>Sistema de gestión para pequeñas empresas con módulos de inventario, facturación y seguimiento de clientes.</p>
+                        <div class="skill-bar">
+                            <div class="skill-name">Bases de Datos</div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-percent="90"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="proyecto" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="proyecto-img">
-                        <div class="proyecto-overlay">
-                            <div class="overlay-content">
-                                <h4>Ver Detalles</h4>
-                                <div class="overlay-icons">
-                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
-                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
-                                </div>
-                            </div>
+                <div class="experience-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Estudiante de Sistemas</h3>
+                            <span class="timeline-date">2023 - Presente</span>
+                            <p>UNLP - Universidad Nacional de La Plata</p>
                         </div>
                     </div>
-                    <div class="proyecto-content">
-                        <h3>Aplicación de Análisis de Datos</h3>
-                        <div class="tech-stack">
-                            <span>C#</span>
-                            <span>SQL</span>
-                            <span>WPF</span>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Proyectos Personales</h3>
+                            <span class="timeline-date">2022 - Presente</span>
+                            <p>Desarrollo de aplicaciones y soluciones de software</p>
                         </div>
-                        <p>Herramienta de análisis estadístico con visualización gráfica y exportación de reportes.</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="cta-container">
-                <a href="https://github.com/Julianidiego" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-github"></i> Ver más en GitHub
-                </a>
+        </section>
+        
+        <!-- Nueva sección de Bitácora -->
+        <section id="bitacora" class="bitacora-section">
+            <div class="bitacora-container">
+                <h2 data-aos="fade-up">Bitácora de un Estudiante</h2>
+                
+                <div class="bitacora-feed">
+                    <!-- Ejemplo Tweet 1 -->
+                    <div class="tweet">
+                        <div class="tweet-header">
+                            <div class="tweet-author">
+                                <div class="tweet-avatar">
+                                    <img src="https://github.com/Julianidiego.png" alt="Julianidiego Avatar">
+                                </div>
+                                <div class="tweet-author-info">
+                                    <h3>Julianidiego</h3>
+                                    <span>@Julianidiego_</span>
+                                </div>
+                            </div>
+                            <div class="tweet-date">
+                                10 de mayo, 2025 • 14:30
+                            </div>
+                        </div>
+                        <div class="tweet-content">
+                            <p>¡Primer día en la facultad de Informática de la UNLP! Emocionado por comenzar este viaje de aprendizaje en programación y sistemas. Los profesores parecen geniales y hay muchos proyectos interesantes por delante. #UNLP #Informática #NuevosComienzos</p>
+                        </div>
+                        <div class="tweet-footer">
+                            <div class="tweet-action">
+                                <i class="far fa-heart"></i>
+                                <span>24</span>
+                            </div>
+                            <div class="tweet-action">
+                                <i class="far fa-comment"></i>
+                                <span>5</span>
+                            </div>
+                            <div class="tweet-action">
+                                <i class="fas fa-retweet"></i>
+                                <span>12</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ejemplo Tweet 2 -->
+                    <div class="tweet">
+                        <div class="tweet-header">
+                            <div class="tweet-author">
+                                <div class="tweet-avatar">
+                                    <img src="https://github.com/Julianidiego.png" alt="Julianidiego Avatar">
+                                </div>
+                                <div class="tweet-author-info">
+                                    <h3>Julianidiego</h3>
+                                    <span>@Julianidiego_</span>
+                                </div>
+                            </div>
+                            <div class="tweet-date">
+                                8 de mayo, 2025 • 19:15
+                            </div>
+                        </div>
+                        <div class="tweet-content">
+                            <p>Acabo de terminar mi primer proyecto en Python utilizando Flask y SQLAlchemy. Es un sistema básico de gestión para pequeñas empresas. Todavía hay mucho por mejorar, pero estoy muy contento con el resultado. ¡Próximamente añadiré más funcionalidades! #Python #Programación</p>
+                        </div>
+                        <div class="tweet-media">
+                            <img src="https://via.placeholder.com/600x300?text=Proyecto+Python+Screenshot" alt="Proyecto Python Screenshot">
+                        </div>
+                        <div class="tweet-footer">
+                            <div class="tweet-action">
+                                <i class="far fa-heart"></i>
+                                <span>36</span>
+                            </div>
+                            <div class="tweet-action">
+                                <i class="far fa-comment"></i>
+                                <span>8</span>
+                            </div>
+                            <div class="tweet-action">
+                                <i class="fas fa-retweet"></i>
+                                <span>15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
+        <!-- Sección de Contacto -->
         <section id="contacto">
             <h2 data-aos="fade-up">Contacto</h2>
             <div class="contact-container">
@@ -279,7 +367,7 @@
                         </div>
                         <div class="info-content">
                             <h3>Email</h3>
-                            <p>contacto@julianidiego.com</p>
+                            <p>diego.juliani289761@alumnos.info.unlp.edu.ar</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -326,7 +414,7 @@
             </div>
         </section>
         
-        <!-- Nueva sección de redes sociales -->
+        <!-- Sección de redes sociales con botones mejorados -->
         <section id="redes-sociales" class="social-networks-section">
             <div class="social-networks-container">
                 <h2 data-aos="fade-up">Mis Redes Sociales</h2>
@@ -394,8 +482,10 @@
             
             <div class="footer-links">
                 <a href="#inicio">Inicio</a>
-                <a href="#sobre-mi">Sobre mí</a>
                 <a href="#proyectos">Proyectos</a>
+                <a href="#lenguajes">Lenguajes</a>
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#bitacora">Bitácora</a>
                 <a href="#contacto">Contacto</a>
             </div>
             
@@ -403,10 +493,10 @@
                 <a href="https://github.com/Julianidiego" target="_blank" class="github-link" aria-label="GitHub profile">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="linkedin-link" aria-label="LinkedIn profile">
+                <a href="https://www.linkedin.com/in/julianidiego/" target="_blank" class="linkedin-link" aria-label="LinkedIn profile">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="#" class="twitter-link" aria-label="Twitter profile">
+                <a href="https://twitter.com/Julianidiego_" target="_blank" class="twitter-link" aria-label="Twitter profile">
                     <i class="fab fa-twitter"></i>
                 </a>
             </div>

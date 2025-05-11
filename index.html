@@ -60,10 +60,20 @@
         </section>
         
         <!-- Proyectos (Ahora justo después del inicio) -->
-        <section id="proyectos">
-            <h2 data-aos="fade-up">Proyectos</h2>
-            <div class="proyectos-grid">
-                <div class="proyecto" data-aos="zoom-in">
+        <section id="proyectos" class="section">
+            <h2 class="section-title">Proyectos</h2>
+            
+            <div class="project-filters">
+                <button class="project-filter-btn active" data-filter="all">All</button>
+                <button class="project-filter-btn" data-filter="javascript">JavaScript</button>
+                <button class="project-filter-btn" data-filter="python">Python</button>
+                <button class="project-filter-btn" data-filter="cpp">C++</button>
+                <button class="project-filter-btn" data-filter="csharp">C#</button>
+                <button class="project-filter-btn" data-filter="sql">SQL</button>
+            </div>
+            
+            <div class="proyectos-container">
+                <div class="proyecto" data-technologies="javascript,html,css" data-aos="zoom-in">
                     <div class="proyecto-img">
                         <div class="proyecto-overlay">
                             <div class="overlay-content">
@@ -86,7 +96,7 @@
                     </div>
                 </div>
                 
-                <div class="proyecto" data-aos="zoom-in" data-aos-delay="100">
+                <div class="proyecto" data-technologies="python,sql" data-aos="zoom-in" data-aos-delay="100">
                     <div class="proyecto-img">
                         <div class="proyecto-overlay">
                             <div class="overlay-content">
@@ -114,6 +124,79 @@
                 <a href="https://github.com/Julianidiego" target="_blank" class="btn btn-primary">
                     <i class="fab fa-github"></i> Ver más en GitHub
                 </a>
+            </div>
+        </section>
+
+        <!-- Project Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <h2 class="section-title">Proyectos <span class="accent">Destacados</span></h2>
+                
+                <!-- Project Timeline -->
+                <div class="timeline">
+                    <!-- Project 1 -->
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2024</div>
+                            <h3 class="timeline-title">Portfolio Personal</h3>
+                            <p class="timeline-desc">Diseño y desarrollo de un portfolio personal interactivo con efectos visuales avanzados y animaciones personalizadas.</p>
+                            <div class="timeline-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                                <span>Canvas</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2023</div>
+                            <h3 class="timeline-title">Sistema de Gestión de Emergencias</h3>
+                            <p class="timeline-desc">Aplicación desarrollada para bomberos voluntarios que permite coordinar la respuesta a emergencias y gestionar recursos en tiempo real.</p>
+                            <div class="timeline-tech">
+                                <span>C#</span>
+                                <span>.NET</span>
+                                <span>SQL Server</span>
+                                <span>Entity Framework</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="timeline-container left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022</div>
+                            <h3 class="timeline-title">Dashboard Analítico</h3>
+                            <p class="timeline-desc">Panel de control para visualización de datos con gráficos interactivos y estadísticas en tiempo real para la toma de decisiones empresariales.</p>
+                            <div class="timeline-tech">
+                                <span>Python</span>
+                                <span>Django</span>
+                                <span>Chart.js</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="timeline-container right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2021</div>
+                            <h3 class="timeline-title">API RESTful</h3>
+                            <p class="timeline-desc">Desarrollo de una API RESTful escalable para conectar múltiples servicios y aplicaciones cliente, con autenticación JWT y documentación automatizada.</p>
+                            <div class="timeline-tech">
+                                <span>Node.js</span>
+                                <span>Express</span>
+                                <span>MongoDB</span>
+                                <span>Swagger</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projects Cards (Original section) -->
+                <!-- ...existing code... -->
             </div>
         </section>
         
@@ -230,6 +313,272 @@
                 <div class="about-text">
                     <p class="highlight-text">No tengo nada que decir, esto es un pequeño repaso por HTML, CSS y un primer acercamiento a Javascript.</p>
                     <p>Estudiante apasionado por el desarrollo de software y la creación de soluciones tecnológicas. Constantemente explorando nuevas tecnologías y metodologías para mejorar mis habilidades.</p>
+                    
+                    <div class="bombero-info" id="bombero-info">
+                        <h3><i class="fas fa-fire-extinguisher"></i> Bombero Voluntario</h3>
+                        <p class="bombero-intro"><strong>Destacamento N° 1 de Jeppener</strong> - Comprometido con el servicio a la comunidad y la atención de emergencias desde 2020.</p>
+                        
+                        <div class="bombero-details">
+                            <div class="bombero-stat">
+                                <i class="fas fa-calendar-check"></i>
+                                <div>
+                                    <h4>Años de servicio</h4>
+                                    <p>5 años</p>
+                                </div>
+                            </div>
+                            <div class="bombero-stat">
+                                <i class="fas fa-truck"></i>
+                                <div>
+                                    <h4>Especialidad</h4>
+                                    <p>Rescate y Extinción</p>
+                                </div>
+                            </div>
+                            <div class="bombero-stat">
+                                <i class="fas fa-certificate"></i>
+                                <div>
+                                    <h4>Certificaciones</h4>
+                                    <p>Primeros auxilios, Materiales peligrosos</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bombero-timeline">
+                            <h4><i class="fas fa-history"></i> Mi trayectoria como bombero</h4>
+                            <div class="timeline">
+                                <div class="bombero-timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-date">2020</div>
+                                    <div class="timeline-content">
+                                        <h5>Ingreso al cuerpo de bomberos</h5>
+                                        <p>Inicio de mi formación como aspirante a bombero voluntario.</p>
+                                    </div>
+                                </div>
+                                <div class="bombero-timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-date">2021</div>
+                                    <div class="timeline-content">
+                                        <h5>Certificación en primeros auxilios</h5>
+                                        <p>Completé la formación avanzada en primeros auxilios y RCP.</p>
+                                    </div>
+                                </div>
+                                <div class="bombero-timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-date">2023</div>
+                                    <div class="timeline-content">
+                                        <h5>Especialización en materiales peligrosos</h5>
+                                        <p>Formación específica para el manejo de incidentes con materiales peligrosos.</p>
+                                    </div>
+                                </div>
+                                <div class="bombero-timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-date">2025</div>
+                                    <div class="timeline-content">
+                                        <h5>Ascenso a Bombero de Primera</h5>
+                                        <p>Reconocimiento por servicios prestados y habilidades demostradas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <blockquote class="bombero-quote">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"El servicio voluntario como bombero me ha enseñado el verdadero valor del trabajo en equipo y la dedicación al servicio comunitario."</p>
+                            <i class="fas fa-quote-right"></i>
+                        </blockquote>
+
+                        <!-- New photo gallery for firefighter activities -->
+                        <div class="bombero-gallery">
+                            <h4><i class="fas fa-images"></i> Galería de actividades</h4>
+                            <div class="gallery-container">
+                                <div class="gallery-item" tabindex="0">
+                                    <img src="https://via.placeholder.com/300x200?text=Capacitación+2023" alt="Capacitación 2023">
+                                    <div class="gallery-caption">Capacitación anual 2023</div>
+                                </div>
+                                <div class="gallery-item" tabindex="0">
+                                    <img src="https://via.placeholder.com/300x200?text=Práctica+Extinción" alt="Práctica de Extinción">
+                                    <div class="gallery-caption">Práctica de extinción</div>
+                                </div>
+                                <div class="gallery-item" tabindex="0">
+                                    <img src="https://via.placeholder.com/300x200?text=Simulacro+Evacuación" alt="Simulacro de Evacuación">
+                                    <div class="gallery-caption">Simulacro de evacuación escolar</div>
+                                </div>
+                                <div class="gallery-item" tabindex="0">
+                                    <img src="https://via.placeholder.com/300x200?text=Equipo+Bomberos" alt="Equipo de Bomberos">
+                                    <div class="gallery-caption">Equipo del Destacamento N° 1</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New skills meter for specific firefighter skills -->
+                        <div class="bombero-skills">
+                            <h4><i class="fas fa-chart-line"></i> Habilidades específicas</h4>
+                            <div class="bombero-skill-bars">
+                                <div class="bombero-skill-bar">
+                                    <div class="bombero-skill-name">Extinción de incendios</div>
+                                    <div class="bombero-skill-progress">
+                                        <div class="bombero-progress" data-percent="90"></div>
+                                    </div>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="bombero-skill-bar">
+                                    <div class="bombero-skill-name">Rescate vehicular</div>
+                                    <div class="bombero-skill-progress">
+                                        <div class="bombero-progress" data-percent="85"></div>
+                                    </div>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="bombero-skill-bar">
+                                    <div class="bombero-skill-name">Primeros auxilios</div>
+                                    <div class="bombero-skill-progress">
+                                        <div class="bombero-progress" data-percent="95"></div>
+                                    </div>
+                                    <span class="skill-percent">95%</span>
+                                </div>
+                                <div class="bombero-skill-bar">
+                                    <div class="bombero-skill-name">Materiales peligrosos</div>
+                                    <div class="bombero-skill-progress">
+                                        <div class="bombero-progress" data-percent="80"></div>
+                                    </div>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive achievements section with hover animations -->
+                        <div class="bombero-achievements">
+                            <h4><i class="fas fa-trophy"></i> Logros y reconocimientos</h4>
+                            <div class="achievements-container">
+                                <div class="achievement-card">
+                                    <div class="achievement-icon">
+                                        <i class="fas fa-medal"></i>
+                                    </div>
+                                    <h5>Reconocimiento por valentía</h5>
+                                    <p>Intervención destacada en el incendio forestal de 2023</p>
+                                </div>
+                                <div class="achievement-card">
+                                    <div class="achievement-icon">
+                                        <i class="fas fa-award"></i>
+                                    </div>
+                                    <h5>Mejor compañero</h5>
+                                    <p>Elegido por los miembros del destacamento en 2024</p>
+                                </div>
+                                <div class="achievement-card">
+                                    <div class="achievement-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <h5>Récord de guardias</h5>
+                                    <p>Mayor número de guardias voluntarias en 2022</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Call-to-action about volunteer firefighting -->
+                        <div class="bombero-cta">
+                            <h4><i class="fas fa-hands-helping"></i> Únete al servicio voluntario</h4>
+                            <p>El cuerpo de bomberos voluntarios siempre está en busca de personas comprometidas con el servicio a la comunidad. Si estás interesado en formar parte de esta noble institución, no dudes en contactar al cuartel más cercano.</p>
+                            <a href="#contacto" class="btn btn-primary bombero-btn">
+                                <i class="fas fa-info-circle"></i> Más información
+                            </a>
+                        </div>
+
+                        <!-- New testimonials carousel -->
+                        <div class="bombero-testimonials">
+                            <h4><i class="fas fa-comments"></i> Testimonios de Compañeros</h4>
+                            <div class="testimonials-carousel">
+                                <div class="testimonial-slide active">
+                                    <div class="testimonial-content">
+                                        <p>"Diego es un compañero dedicado y siempre dispuesto a ayudar. Su compromiso con el equipo y la comunidad es ejemplar."</p>
+                                        <div class="testimonial-author">
+                                            <span class="author-name">Carlos Rodríguez</span>
+                                            <span class="author-role">Jefe de Brigada</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="testimonial-slide">
+                                    <div class="testimonial-content">
+                                        <p>"Su capacidad técnica y calma durante situaciones de emergencia hacen de Diego un bombero en quien se puede confiar plenamente."</p>
+                                        <div class="testimonial-author">
+                                            <span class="author-name">Laura Méndez</span>
+                                            <span class="author-role">Bombera Voluntaria</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="testimonial-slide">
+                                    <div class="testimonial-content">
+                                        <p>"He visto a Diego crecer como bombero durante estos años. Su dedicación al aprendizaje constante y su espíritu de servicio son admirables."</p>
+                                        <div class="testimonial-author">
+                                            <span class="author-name">Martín Suárez</span>
+                                            <span class="author-role">Instructor de Academia</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-controls">
+                                    <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                                    <div class="carousel-dots">
+                                        <span class="dot active" data-slide="0"></span>
+                                        <span class="dot" data-slide="1"></span>
+                                        <span class="dot" data-slide="2"></span>
+                                    </div>
+                                    <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New interactive emergency tips accordion -->
+                        <div class="bombero-tips">
+                            <h4><i class="fas fa-lightbulb"></i> Consejos de Seguridad</h4>
+                            <div class="tips-intro">
+                                <p>Como bombero voluntario, comparto estos consejos prácticos para prevenir emergencias y actuar correctamente en caso de necesidad:</p>
+                            </div>
+                            <div class="tips-accordion">
+                                <div class="tip-item">
+                                    <div class="tip-header">
+                                        <h5><i class="fas fa-fire"></i> Prevención de incendios en el hogar</h5>
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="tip-content">
+                                        <ul>
+                                            <li>Revisa regularmente la instalación eléctrica.</li>
+                                            <li>No sobrecargues los enchufes eléctricos.</li>
+                                            <li>Mantén los productos inflamables lejos de fuentes de calor.</li>
+                                            <li>Instala detectores de humo y revísalos mensualmente.</li>
+                                            <li>Ten siempre un extintor accesible y conoce su funcionamiento.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tip-item">
+                                    <div class="tip-header">
+                                        <h5><i class="fas fa-first-aid"></i> Primeros auxilios básicos</h5>
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="tip-content">
+                                        <ul>
+                                            <li>Ante cualquier emergencia, primero evalúa la seguridad de la escena.</li>
+                                            <li>Para hemorragias, aplica presión directa sobre la herida.</li>
+                                            <li>En caso de quemaduras, enfría con agua durante 10-15 minutos.</li>
+                                            <li>Si sospechas de una fractura, inmoviliza la extremidad sin intentar realinear.</li>
+                                            <li>Aprende RCP básico - puede salvar vidas mientras llega la ayuda profesional.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tip-item">
+                                    <div class="tip-header">
+                                        <h5><i class="fas fa-house-damage"></i> Plan de evacuación familiar</h5>
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="tip-content">
+                                        <ul>
+                                            <li>Diseña un plano de evacuación con al menos dos salidas por habitación.</li>
+                                            <li>Establece un punto de encuentro fuera de la vivienda.</li>
+                                            <li>Practica el plan de evacuación con toda la familia regularmente.</li>
+                                            <li>Mantén despejadas las vías de evacuación en todo momento.</li>
+                                            <li>Enseña a los niños cómo llamar a los servicios de emergencia.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="skill-bars">
                         <div class="skill-bar">
@@ -351,6 +700,62 @@
                                 <span>15</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonios -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">Testimonios</h2>
+                <div class="section-subtitle">Lo que dicen de mí</div>
+                
+                <div class="testimonials-container">
+                    <div class="testimonials-slider">
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonial-1.jpg" alt="Testimonial Avatar" onerror="this.src='https://via.placeholder.com/100?text=PM'">
+                            </div>
+                            <div class="testimonial-content">
+                                <p>Diego ha demostrado ser un desarrollador excepcional. Su capacidad para resolver problemas complejos y su atención al detalle son impresionantes. Siempre entrega proyectos de alta calidad antes del plazo previsto.</p>
+                            </div>
+                            <div class="testimonial-name">Pablo Martínez</div>
+                            <div class="testimonial-role">Project Manager</div>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonial-2.jpg" alt="Testimonial Avatar" onerror="this.src='https://via.placeholder.com/100?text=LS'">
+                            </div>
+                            <div class="testimonial-content">
+                                <p>Trabajar con Diego fue una experiencia excelente. Su conocimiento técnico y su habilidad para comunicar conceptos complejos de manera sencilla lo convierten en un activo valioso para cualquier equipo.</p>
+                            </div>
+                            <div class="testimonial-name">Laura Sánchez</div>
+                            <div class="testimonial-role">UX/UI Designer</div>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonial-3.jpg" alt="Testimonial Avatar" onerror="this.src='https://via.placeholder.com/100?text=AG'">
+                            </div>
+                            <div class="testimonial-content">
+                                <p>Como compañero de equipo, Diego siempre está dispuesto a ayudar y compartir su conocimiento. Su pasión por la programación y su constante búsqueda de mejores soluciones han sido fundamentales para el éxito de nuestros proyectos.</p>
+                            </div>
+                            <div class="testimonial-name">Alejandro Gómez</div>
+                            <div class="testimonial-role">Senior Developer</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-dots">
+                        <div class="testimonial-dot active"></div>
+                        <div class="testimonial-dot"></div>
+                        <div class="testimonial-dot"></div>
+                    </div>
+                    
+                    <div class="testimonial-nav">
+                        <button class="testimonial-btn prev-testimonial">&#10094;</button>
+                        <button class="testimonial-btn next-testimonial">&#10095;</button>
                     </div>
                 </div>
             </div>

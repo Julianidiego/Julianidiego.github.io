@@ -23,6 +23,13 @@
     --color-warning: #F59E0B;
     --color-error: #EF4444;
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    /* Colores de lenguajes para efectos de brillo */
+    --color-python: #3775A9;
+    --color-delphi: #EA4C1D;
+    --color-sql: #00618A;
+    --color-csharp: #68217A;
+    --color-cpp: #004482;
 }
 
 /* Estilos generales con animaciones sutiles */
@@ -41,6 +48,17 @@ body {
     overflow-x: hidden;
     opacity: 0;
     animation: fadeIn 0.8s ease-out forwards;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
 }
 
 @keyframes fadeIn {
@@ -1025,6 +1043,268 @@ header nav ul li a:hover::after {
     background: linear-gradient(90deg, var(--color-error), #DC2626);
 }
 
+/* Estilos para la sección de lenguajes con efectos 3D avanzados */
+#lenguajes {
+    text-align: center;
+}
+
+.lenguajes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    perspective: 1000px;
+}
+
+.lenguaje-card {
+    width: 120px;
+    height: 120px;
+    background-color: rgba(13, 17, 23, 0.8);
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.lenguaje-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateZ(3deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                0 0 15px var(--color-glow);
+    border-color: var(--color-accent);
+}
+
+.lenguaje-card[data-language="Python"]:hover {
+    background: radial-gradient(circle at center, rgba(55, 117, 169, 0.6) 0%, var(--color-bg-primary) 80%);
+}
+
+.lenguaje-card[data-language="Python"]:hover .lenguaje-logo img {
+    filter: drop-shadow(0 0 8px var(--color-python));
+}
+
+.lenguaje-card[data-language="Delphi"]:hover {
+    background: radial-gradient(circle at center, rgba(234, 76, 29, 0.6) 0%, var(--color-bg-primary) 80%);
+}
+
+.lenguaje-card[data-language="Delphi"]:hover .lenguaje-logo img {
+    filter: drop-shadow(0 0 8px var(--color-delphi));
+}
+
+.lenguaje-card[data-language="SQL"]:hover {
+    background: radial-gradient(circle at center, rgba(0, 97, 138, 0.6) 0%, var(--color-bg-primary) 80%);
+}
+
+.lenguaje-card[data-language="SQL"]:hover .lenguaje-logo img {
+    filter: drop-shadow(0 0 8px var(--color-sql));
+}
+
+.lenguaje-card[data-language="C#"]:hover {
+    background: radial-gradient(circle at center, rgba(104, 33, 122, 0.6) 0%, var(--color-bg-primary) 80%);
+}
+
+.lenguaje-card[data-language="C#"]:hover .lenguaje-logo img {
+    filter: drop-shadow(0 0 8px var(--color-csharp));
+}
+
+.lenguaje-card[data-language="C++"]:hover {
+    background: radial-gradient(circle at center, rgba(0, 68, 130, 0.6) 0%, var(--color-bg-primary) 80%);
+}
+
+.lenguaje-card[data-language="C++"]:hover .lenguaje-logo img {
+    filter: drop-shadow(0 0 8px var(--color-cpp));
+}
+
+.lenguaje-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lenguaje-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+    transition: all 0.4s ease;
+}
+
+.lenguaje-card:hover .lenguaje-logo img {
+    filter: drop-shadow(0 0 8px var(--color-accent));
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Sección de redes sociales */
+.social-networks-section {
+    background: rgba(22, 27, 34, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-networks-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+
+.social-networks-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+
+.social-networks-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.social-networks-container h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-text-primary);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.social-networks-container h2::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    bottom: -10px;
+    left: 20%;
+    background: var(--gradient-primary);
+    border-radius: 3px;
+}
+
+.social-networks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.social-card {
+    background: rgba(13, 17, 23, 0.6);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-card:hover::before {
+    opacity: 1;
+}
+
+.social-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.social-card:hover .social-icon {
+    transform: scale(1.2);
+}
+
+.social-card h3 {
+    margin: 1rem 0;
+    color: var(--color-text-primary);
+}
+
+.social-card p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.social-card a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.5rem;
+    background: var(--color-btn-bg);
+    color: var(--color-text-primary);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-border);
+}
+
+.social-card a:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+/* Estilos específicos por plataforma social */
+.social-card.email .social-icon {
+    color: #D44638;
+}
+
+.social-card.linkedin .social-icon {
+    color: #0A66C2;
+}
+
+.social-card.twitter .social-icon {
+    color: #1DA1F2;
+}
+
+.social-card.instagram .social-icon {
+    color: #E4405F;
+}
+
+.social-card.credly .social-icon {
+    color: #FF6B00;
+}
+
+.social-card.orcid .social-icon {
+    color: #A6CE39;
+}
+
+.social-card.facebook .social-icon {
+    color: #1877F2;
+}
+
 /* Media queries para diseño responsive */
 @media (max-width: 992px) {
     .about-content,
@@ -1065,6 +1345,10 @@ header nav ul li a:hover::after {
     
     .info-item {
         padding: 1rem;
+    }
+
+    .social-networks-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
 

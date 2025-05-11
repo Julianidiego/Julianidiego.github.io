@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll('a');
     const langCards = document.querySelectorAll('.lenguaje-card');
     const proyectos = document.querySelectorAll('.proyecto');
+    const socialCards = document.querySelectorAll('.social-card');
+    const progressBars = document.querySelectorAll('.progress-bar');
     
     // Inicializar efectos
     initScrollEffects();
@@ -16,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     initFormEffects();
     init3DEffects();
     initScrollProgress();
+    initSkillBars();
+    initBackToTop();
+    initSocialCards();
     
     // Formulario de contacto con validación y animaciones
     const form = document.querySelector("form");
@@ -466,6 +471,102 @@ document.addEventListener("DOMContentLoaded", () => {
             const scrolled = (window.scrollY / scrollHeight) * 100;
             scrollProgress.style.width = `${scrolled}%`;
         });
+    }
+
+    // Inicializar animación de barras de habilidades
+    function initSkillBars() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const percent = bar.dataset.percent || 0;
+                    bar.style.width = percent + '%';
+                    observer.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        progressBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    }
+
+    // Inicializar efecto de tarjetas sociales
+    function initSocialCards() {
+        socialCards.forEach(card => {
+            card.addEventListener('mouseenter', createFloatingParticles);
+        });
+
+        function createFloatingParticles(e) {
+            const card = e.currentTarget;
+            const icon = card.querySelector('.social-icon');
+            const rect = card.getBoundingClientRect();
+            
+            // Crear partículas
+            for (let i = 0; i < 5; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'floating-particle';
+                
+                // Propiedades aleatorias
+                const size = Math.random() * 8 + 4;
+                const x = Math.random() * rect.width;
+                const duration = Math.random() * 2 + 1;
+                const delay = Math.random() * 0.5;
+                
+                // Posicionar y estilar partícula
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.bottom = '0';
+                particle.style.position = 'absolute';
+                particle.style.borderRadius = '50%';
+                particle.style.backgroundColor = window.getComputedStyle(icon).color;
+                particle.style.opacity = '0.7';
+                particle.style.animation = `floatUp ${duration}s ease-in-out ${delay}s forwards`;
+                
+                card.appendChild(particle);
+                
+                // Remover partícula después de la animación
+                setTimeout(() => {
+                    particle.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+        
+        // Añadir estilos para la animación de partículas
+        if (!document.getElementById('particle-styles')) {
+            const styleEl = document.createElement('style');
+            styleEl.id = 'particle-styles';
+            styleEl.textContent = `
+                @keyframes floatUp {
+                    0% { transform: translateY(0); opacity: 0.7; }
+                    100% { transform: translateY(-100px); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(styleEl);
+        }
+    }
+
+    // Inicializar botón de volver arriba
+    function initBackToTop() {
+        const backToTop = document.getElementById('back-to-top');
+        
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     }
 });
 

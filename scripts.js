@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const socialCards = document.querySelectorAll('.social-card');
     const progressBars = document.querySelectorAll('.progress-bar');
     const themeToggle = document.getElementById('theme-toggle');
-    const tweets = document.querySelectorAll('.tweet');
     
     // Inicializar efectos
     initScrollEffects();
@@ -24,269 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initBackToTop();
     initSocialCards();
     initLanguageCards();
-    initTweetActions();
     initProjectFilters();
     initTestimonialCarousel();
-    
-    // Efecto para sección de bombero
-    const bomberoInfo = document.querySelector('.bombero-info');
-    
-    if (bomberoInfo) {
-        // Crear elementos para los efectos visuales adicionales
-        const sirenSound = document.createElement('audio');
-        sirenSound.src = 'https://assets.mixkit.co/active_storage/sfx/1787/1787-preview.mp3';
-        sirenSound.volume = 0.4;
-        sirenSound.preload = 'auto';
-        bomberoInfo.appendChild(sirenSound);
-
-        // Agregar efectos de partículas para simular destellos de emergencia
-        bomberoInfo.addEventListener('mouseenter', function() {
-            // Reproducir sonido con control de usuario
-            const userInteracted = sessionStorage.getItem('userInteracted');
-            if (userInteracted) {
-                sirenSound.play();
-            }
-            
-            // Crear efecto de destellos
-            createEmergencyParticles(bomberoInfo);
-            
-            // Agregar efecto de vibración suave
-            bomberoInfo.classList.add('emergency-shake');
-        });
-        
-        bomberoInfo.addEventListener('mouseleave', function() {
-            sirenSound.pause();
-            sirenSound.currentTime = 0;
-            bomberoInfo.classList.remove('emergency-shake');
-            
-            // Eliminar partículas al quitar el cursor
-            const particles = document.querySelectorAll('.emergency-particle');
-            particles.forEach(particle => {
-                particle.remove();
-            });
-        });
-        
-        // Registrar primera interacción para permitir sonido
-        document.addEventListener('click', function() {
-            sessionStorage.setItem('userInteracted', 'true');
-        }, { once: true });
-    }
-
-    // Efecto de luces de sirena para la sección de bombero
-    const bomberoElements = document.querySelectorAll('.bombero-info, #bombero-section, .firefighter-section');
-    
-    if (bomberoElements.length === 0) {
-        // Si no encontramos elementos con esas clases, busquemos cualquier elemento que mencione "bombero"
-        const allElements = document.querySelectorAll('*');
-        bomberoElements = Array.from(allElements).filter(el => {
-            const text = el.textContent.toLowerCase();
-            return text.includes('bombero') || text.includes('firefighter');
-        });
-    }
-    
-    bomberoElements.forEach(element => {
-        // Crear overlay para el efecto de luz
-        const overlay = document.createElement('div');
-        overlay.className = 'sirena-overlay';
-        overlay.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 2;
-            opacity: 0;
-            background: radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(0,0,0,0) 70%);
-            transition: opacity 0.3s;
-        `;
-        
-        // Posicionamiento relativo para el elemento padre
-        element.style.position = 'relative';
-        element.appendChild(overlay);
-        
-        // Eventos de mouse
-        element.addEventListener('mouseenter', function() {
-            this.classList.add('emergency-shake');
-            startSirenEffect(this, overlay);
-            createParticles(this);
-        });
-        
-        element.addEventListener('mouseleave', function() {
-            this.classList.remove('emergency-shake');
-            stopSirenEffect(overlay);
-            stopParticles();
-        });
-    });
-
-    // Función para crear partículas tipo chispas de emergencia
-    function createEmergencyParticles(element) {
-        const rect = element.getBoundingClientRect();
-        
-        // Crear 20 partículas por iteración
-        for (let i = 0; i < 10; i++) {
-            setTimeout(() => {
-                // Partículas en el lado izquierdo (rojo)
-                createParticle(rect.left, rect.top + rect.height/2, 'red');
-                // Partículas en el lado derecho (blanco)
-                createParticle(rect.right, rect.top + rect.height/2, 'white');
-            }, i * 200);
-        }
-    }
-
-    function createParticle(x, y, color) {
-        const particle = document.createElement('div');
-        particle.className = 'emergency-particle';
-        document.body.appendChild(particle);
-        
-        // Establecer posición inicial
-        particle.style.left = `${x}px`;
-        particle.style.top = `${y}px`;
-        particle.style.background = color;
-        
-        // Dirección aleatoria
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 1 + Math.random() * 3;
-        const size = Math.floor(3 + Math.random() * 4);
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Animar la partícula
-        const animation = particle.animate([
-            { 
-                transform: 'translate(0, 0) scale(1)', 
-                opacity: 1 
-            },
-            { 
-                transform: `translate(${Math.cos(angle) * 50}px, ${Math.sin(angle) * 50}px) scale(0)`, 
-                opacity: 0 
-            }
-        ], {
-            duration: 800 + Math.random() * 400,
-            easing: 'cubic-bezier(0.1, 0.8, 0.9, 0.1)'
-        });
-        
-        animation.onfinish = () => {
-            particle.remove();
-        };
-    }
-    
-    // Variables para controlar las animaciones
-    let sirenInterval = null;
-    let particleInterval = null;
-    let particles = [];
-
-    // Función para iniciar el efecto de sirena
-    function startSirenEffect(element, overlay) {
-        let isRed = true;
-        
-        // Crear sonido de sirena (opcional - solo se reproducirá si el usuario interactúa primero)
-        const sirenSound = new Audio();
-        sirenSound.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAAGYADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzM//////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAWDReeCUAAAAAAAAAAAAAAAAAAAAA//tQxAAACcibcBT5gAEyE3YGn4AAECQAA0goFhGP5QAMhAIBgP8+D/KAgCAIBn/B8Hwf+oCAIAgGOfB8Hwf/4HwfB/4IOc+CB8EDn+oMP8Y5z4P/5zgIBj//DAMcH/+D4IAjhoGH/iOc8E5/KAhzhoc//DYxHODgYf8MhwHB//+IczASQBgADhA8HH//p9NAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/+1LEAAPJlL94tex0MTsYLz9jCoZAAAAAANGlS5JCQxEMY0zgkJDEQxjTOCQkMRDGNM4JCQxEMY0zgkJDEQ/jPicQREQpSQQjMQQYYpU42RBTLYHlYPgz73eDgKHRT9LPSROM9vGXoziuPPokwJFB8OEKCd9AqCYTx0j1iij8aIqM2UIxyyC4SUXJd5PIjoOu2NNUpQnLCBp03GF1E0kipy2SoJDMQmMbMUEpteRoA0gwN//8kSWEhusgsJDdZBYSG6yCwkN1kFMbWfPWjZAjzKwaZDd9/8onMVVVVV////////+JzFVVVVVX///////8TmKqqqqqqqqqqqv///////xOYqqqqqqqq////////E5iqqqqqqqq1VVWFVVVUIAAAAZGltZQAAAA8AAABPAAAASA1VVVVVVf///////+JzFVVVVVVf////////E5iqqqqqqqqv///////xOYqqqqqqr///////xOYqqqqqqqq1VVWFVVVUIAAAAZGltZQAAAA8AAABPAAAASA1VVVVVVf///////+Jz//tSxBiDzEUZefjSVoF4oy6/GmrQqqqqv///////xOYqqqqqqqv///////xOYqqqqqqrVVVYVVVVQgAAAGRpbWUAAAAPAAAATwAAAEgNVVVVVVX////////icxVVVVVVV////////E5iqqqqqqqqv///////xOYqqqqqqqqv///////xOYqqqqqqrVVVYVVVVUIAAAAZGltZQAAAA8AAABPAAAASA1VVVVVVf///////+Jz//tSxIyDzEUZcfjDU4F3Iy4/GGpyFVVVVVVf////////E5iqqqqqqqqv///////xOYqqqqqqrVVVYVVVVQgAAAGRpbWUAAAAPAAAATwAAAEgNVVVVVVX////////icxVVVVVVV////////E5iqqqqqqqqv///////xOYqqqqqqrVVVYVVVVQgAAAGRpbWUAAAAPAAAATwAAAEgNf//9ISGIhjGmcEhIYiGMaZwSEhiIYxpnBISGIhjGmcEhIYiH8Z8TiCIiFKSCEZiCDDFPbZmlUAA';
-        sirenSound.loop = true;
-        
-        // Lógica para alternar colores
-        sirenInterval = setInterval(() => {
-            isRed = !isRed;
-            overlay.style.opacity = '0.7';
-            
-            if (isRed) {
-                overlay.style.background = 'radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(0,0,0,0) 70%)';
-                element.style.boxShadow = '0 0 20px 5px red, inset 0 0 10px red';
-            } else {
-                overlay.style.background = 'radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(0,0,0,0) 70%)';
-                element.style.boxShadow = '0 0 20px 5px white, inset 0 0 10px white';
-            }
-            
-            // Solo reproducir audio si el usuario ha interactuado con la página
-            if (document.documentElement.hasAttribute('data-user-interacted')) {
-                sirenSound.play().catch(e => console.log('Reproducción automática bloqueada'));
-            }
-        }, 200);
-    }
-
-    // Función para detener el efecto de sirena
-    function stopSirenEffect(overlay) {
-        clearInterval(sirenInterval);
-        overlay.style.opacity = '0';
-    }
-
-    // Función para crear partículas de emergencia
-    function createParticles(element) {
-        const rect = element.getBoundingClientRect();
-        
-        // Limpieza de partículas anteriores
-        stopParticles();
-        
-        particleInterval = setInterval(() => {
-            // Crear una nueva partícula
-            const particle = document.createElement('div');
-            particle.className = 'emergency-particle';
-            
-            // Posición aleatoria alrededor del elemento
-            const size = Math.random() * 6 + 3;
-            const posX = rect.left + Math.random() * rect.width;
-            const posY = rect.top + Math.random() * rect.height;
-            
-            // Estilo de la partícula
-            particle.style.cssText = `
-                width: ${size}px;
-                height: ${size}px;
-                left: ${posX}px;
-                top: ${posY}px;
-                opacity: 0.8;
-                color: ${Math.random() > 0.5 ? 'red' : 'white'};
-                position: fixed;
-            `;
-            
-            document.body.appendChild(particle);
-            particles.push(particle);
-            
-            // Animación de la partícula
-            const angle = Math.random() * Math.PI * 2;
-            const speed = Math.random() * 3 + 2;
-            const vx = Math.cos(angle) * speed;
-            const vy = Math.sin(angle) * speed;
-            
-            let opacity = 0.8;
-            const animate = () => {
-                if (opacity <= 0) {
-                    particle.remove();
-                    return;
-                }
-                
-                const x = parseFloat(particle.style.left);
-                const y = parseFloat(particle.style.top);
-                
-                particle.style.left = `${x + vx}px`;
-                particle.style.top = `${y + vy}px`;
-                
-                opacity -= 0.02;
-                particle.style.opacity = opacity;
-                
-                requestAnimationFrame(animate);
-            };
-            
-            requestAnimationFrame(animate);
-        }, 50);
-    }
-
-    // Función para detener y limpiar partículas
-    function stopParticles() {
-        clearInterval(particleInterval);
-        particles.forEach(particle => {
-            if (particle && particle.parentElement) {
-                particle.remove();
-            }
-        });
-        particles = [];
-    }
-
-    // Detectar interacción del usuario para permitir reproducción de audio
-    document.addEventListener('click', function() {
-        document.documentElement.setAttribute('data-user-interacted', 'true');
-    });
 
     // Efecto para tarjetas de lenguaje que coincide con el estilo de tarjetas sociales
     function initLanguageCards() {
@@ -449,55 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // Inicializar interactividad para tweets de la bitácora
-    function initTweetActions() {
-        tweets.forEach(tweet => {
-            const likeButton = tweet.querySelector('.tweet-action .fa-heart').parentElement;
-            const retweetButton = tweet.querySelector('.tweet-action .fa-retweet').parentElement;
-            const commentButton = tweet.querySelector('.tweet-action .fa-comment').parentElement;
-            
-            if (likeButton) {
-                likeButton.addEventListener('click', function() {
-                    const icon = this.querySelector('i');
-                    const countElement = this.querySelector('span');
-                    const currentCount = parseInt(countElement.textContent);
-                    
-                    if (icon.classList.contains('far')) { // No ha dado like
-                        icon.classList.replace('far', 'fas');
-                        icon.style.color = '#e0245e';
-                        countElement.textContent = currentCount + 1;
-                    } else { // Ya ha dado like
-                        icon.classList.replace('fas', 'far');
-                        icon.style.color = '';
-                        countElement.textContent = currentCount - 1;
-                    }
-                });
-            }
-            
-            if (retweetButton) {
-                retweetButton.addEventListener('click', function() {
-                    const icon = this.querySelector('i');
-                    const countElement = this.querySelector('span');
-                    const currentCount = parseInt(countElement.textContent);
-                    
-                    if (!icon.style.color) { // No ha dado retweet
-                        icon.style.color = '#17bf63';
-                        countElement.textContent = currentCount + 1;
-                    } else { // Ya ha dado retweet
-                        icon.style.color = '';
-                        countElement.textContent = currentCount - 1;
-                    }
-                });
-            }
-            
-            if (commentButton) {
-                commentButton.addEventListener('click', function() {
-                    alert('¡Funcionalidad de comentarios en desarrollo!');
-                });
-            }
-        });
-    }
-    
     // Inicializar efectos de scroll para animaciones en secciones
     function initScrollEffects() {
         const observer = new IntersectionObserver((entries) => {
@@ -529,11 +218,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Efecto para links de navegación
         links.forEach(link => {
             if (link.classList.contains('nav-link')) {
-                link.addEventListener('mouseover', (e) => {
+                link.addEventListener('mouseover', () => {
                     link.classList.add('hover');
                 });
                 
-                link.addEventListener('mouseout', (e) => {
+                link.addEventListener('mouseout', () => {
                     link.classList.remove('hover');
                 });
             }
@@ -639,10 +328,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const isLightTheme = body.classList.contains('theme-light');
                 localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
                 
-                // Actualizar el color de las partículas si existen
-                if (particles) {
-                    particles.forEach(p => {
-                        p.color = isLightTheme ? 'rgba(9, 105, 218, 0.3)' : 'rgba(88, 166, 255, 0.3)';
+                // Actualizar el color de las partículas
+                const canvas = document.getElementById('particles-canvas');
+                if (canvas) {
+                    const ctx = canvas.getContext('2d');
+                    const particles = [];
+                    
+                    // Obtener todas las partículas del canvas
+                    document.querySelectorAll('.particle').forEach(p => {
+                        if (p.color) {
+                            p.color = isLightTheme ? 'rgba(9, 105, 218, 0.3)' : 'rgba(88, 166, 255, 0.3)';
+                        }
                     });
                 }
             });
@@ -768,164 +464,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 width: 0%;
                 transition: width 0.1s;
             }
-            
-            .emergency-particle {
-                position: absolute;
-                border-radius: 50%;
-                pointer-events: none;
-            }
-            
-            .emergency-shake {
-                animation: shake 0.1s infinite;
-            }
-            
-            @keyframes shake {
-                0% { transform: translate(0, 0); }
-                25% { transform: translate(-2px, 2px); }
-                50% { transform: translate(2px, -2px); }
-                75% { transform: translate(-2px, -2px); }
-                100% { transform: translate(2px, 2px); }
-            }
         `;
         document.head.appendChild(styleEl);
-    }
-});
-
-// Función para crear el efecto de sirena de bombero
-document.addEventListener('DOMContentLoaded', function() {
-    // Encuentra todos los elementos que puedan contener la palabra "bombero"
-    const allTextElements = document.querySelectorAll('h1, h2, h3, p, div, span');
-    
-    // Recorre cada elemento para buscar la palabra "bombero"
-    allTextElements.forEach(element => {
-        if (element.innerText && element.innerText.toLowerCase().includes('bombero')) {
-            // Preparar el elemento para el efecto
-            element.style.position = 'relative';
-            element.style.display = 'inline-block';
-            element.style.overflow = 'visible';
-            
-            // Crear overlay para el efecto de sirena
-            const overlay = document.createElement('div');
-            overlay.classList.add('sirena-overlay');
-            overlay.style.position = 'absolute';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.pointerEvents = 'none';
-            
-            // Agregar el overlay al elemento
-            element.appendChild(overlay);
-            
-            // Evento para cuando el cursor pasa por encima
-            element.addEventListener('mouseenter', function() {
-                this.classList.add('emergency-shake');
-                this.dataset.userInteracted = "true";
-                createParticles(this);
-            });
-            
-            // Evento para cuando el cursor sale
-            element.addEventListener('mouseleave', function() {
-                this.classList.remove('emergency-shake');
-                this.dataset.userInteracted = "false";
-                stopParticles(this.id);
-            });
-        }
-    });
-});
-
-// Función para crear partículas simulando destellos y chispas
-function createParticles(element) {
-    const elementId = element.id || 'element-' + Math.random().toString(36).substr(2, 9);
-    element.id = elementId;
-    
-    const rect = element.getBoundingClientRect();
-    const colors = ['#ff0000', '#ff5500', '#ffaa00', '#ffffff'];
-    
-    const particleInterval = setInterval(() => {
-        if (element.dataset.userInteracted !== "true") {
-            clearInterval(particleInterval);
-            return;
-        }
-        
-        for (let i = 0; i < 3; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('emergency-particle');
-            
-            // Posición aleatoria alrededor del elemento
-            const x = rect.left + Math.random() * rect.width;
-            const y = rect.top + Math.random() * rect.height;
-            
-            // Tamaño aleatorio
-            const size = 2 + Math.random() * 4;
-            
-            // Color aleatorio
-            particle.style.color = colors[Math.floor(Math.random() * colors.length)];
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-            
-            document.body.appendChild(particle);
-            
-            // Eliminar la partícula después de la animación
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 1500);
-        }
-    }, 100);
-    
-    element.particleInterval = particleInterval;
-}
-
-// Función para detener la generación de partículas
-function stopParticles(elementId) {
-    const element = document.getElementById(elementId);
-    if (element && element.particleInterval) {
-        clearInterval(element.particleInterval);
-    }
-}
-
-// Efecto especial de luz que sigue al cursor cuando está cerca de elementos de bombero
-document.addEventListener('mousemove', function(e) {
-    const bomberoElements = document.querySelectorAll('[data-user-interacted="true"]');
-    if (bomberoElements.length > 0) {
-        bomberoElements.forEach(element => {
-            const rect = element.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            const distance = Math.sqrt(Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2));
-            
-            if (distance < 150) {
-                // Crear destello que sigue al cursor
-                const flash = document.createElement('div');
-                flash.classList.add('emergency-particle');
-                flash.style.color = Math.random() > 0.5 ? '#ff0000' : '#ffffff';
-                flash.style.width = '8px';
-                flash.style.height = '8px';
-                flash.style.left = e.clientX + 'px';
-                flash.style.top = e.clientY + 'px';
-                
-                document.body.appendChild(flash);
-                
-                setTimeout(() => {
-                    if (flash.parentNode) {
-                        flash.parentNode.removeChild(flash);
-                    }
-                }, 500);
-            }
-        });
-    }
-});
-
-// Añadir evento para cargar tema guardado cuando la página esté completamente cargada
-window.addEventListener('load', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('theme-light');
     }
 });
 
@@ -1051,20 +591,10 @@ function initTestimonialCarousel() {
     }
 }
 
-// Initialize all features
-document.addEventListener('DOMContentLoaded', function() {
-    initScrollEffects();
-    initMouseEffects();
-    initParticles();
-    initThemeSwitch();
-    initFormEffects();
-    init3DEffects();
-    initScrollProgress();
-    initSkillBars();
-    initBackToTop();
-    initSocialCards();
-    initLanguageCards();
-    initTweetActions();
-    initProjectFilters();
-    initTestimonialCarousel();
+// Añadir evento para cargar tema guardado cuando la página esté completamente cargada
+window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('theme-light');
+    }
 });

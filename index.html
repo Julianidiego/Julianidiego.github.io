@@ -3,112 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Sitio Web de pruebas - Julianidiego</title>
+    <meta name="description" content="Portafolio profesional de Julianidiego - Desarrollador de software con experiencia en Python, C#, C++, Delphi y SQL">
+    <meta name="keywords" content="desarrollador, programación, portfolio, Julianidiego, UNLP, Python, C#, C++, Delphi, SQL">
+    <meta name="author" content="Julianidiego">
+    <meta property="og:title" content="Julianidiego - Desarrollador de Software">
+    <meta property="og:description" content="Portafolio profesional con proyectos y experiencia en desarrollo de software">
+    <meta property="og:type" content="website">
+    
+    <title>Julianidiego | Desarrollador de Software</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="scripts.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
             <h1>
-                Julianidiego
-                <a href="https://github.com/Julianidiego" target="_blank" class="header-github-link">
+                <span class="logo-text">Julianidiego</span>
+                <a href="https://github.com/Julianidiego" target="_blank" class="header-github-link" aria-label="GitHub profile">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                 </a>
             </h1>
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#inicio" class="nav-link"><span>Inicio</span></a></li>
+                <li><a href="#sobre-mi" class="nav-link"><span>Sobre mí</span></a></li>
+                <li><a href="#lenguajes" class="nav-link"><span>Lenguajes</span></a></li>
+                <li><a href="#proyectos" class="nav-link"><span>Proyectos</span></a></li>
+                <li><a href="#contacto" class="nav-link"><span>Contacto</span></a></li>
             </ul>
         </nav>
     </header>
+    
     <main>
-        <section id="inicio">
-            <h2>Bienvenido a mi sitio web</h2>
-            <p>Soy Julianidiego, un estudiante de programación de la UNLP.</p>
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h2 class="glitch-text" data-text="Bienvenido a mi sitio web">Bienvenido a mi sitio web</h2>
+                <p class="typewriter-text">Soy Julianidiego, estudiante de programación de la UNLP.</p>
+                
+                <div class="hero-cta">
+                    <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#contacto" class="btn btn-secondary">Contáctame</a>
+                </div>
+                
+                <div class="scroll-indicator">
+                    <span>Scroll</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
         </section>
+        
         <section id="sobre-mi">
-            <h2>Sobre mí</h2>
-            <p>No tengo nada que decir, esto es un pequeño repaso por HTML, CSS y un primer acercamiento a Javascript.</p>
+            <h2 data-aos="fade-up">Sobre mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="highlight-text">No tengo nada que decir, esto es un pequeño repaso por HTML, CSS y un primer acercamiento a Javascript.</p>
+                    <p>Estudiante apasionado por el desarrollo de software y la creación de soluciones tecnológicas. Constantemente explorando nuevas tecnologías y metodologías para mejorar mis habilidades.</p>
+                    
+                    <div class="skill-bars">
+                        <div class="skill-bar">
+                            <div class="skill-name">Frontend</div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-name">Backend</div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-percent="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-name">Bases de Datos</div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-percent="90"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Estudiante de Sistemas</h3>
+                            <span class="timeline-date">2023 - Presente</span>
+                            <p>UNLP - Universidad Nacional de La Plata</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Proyectos Personales</h3>
+                            <span class="timeline-date">2022 - Presente</span>
+                            <p>Desarrollo de aplicaciones y soluciones de software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <section id="lenguajes">
-            <h2>Lenguajes de Programación</h2>
+            <h2 data-aos="fade-up">Lenguajes de Programación</h2>
             <div class="lenguajes-container">
-                <div class="lenguaje-card">
+                <div class="lenguaje-card" data-language="Python">
                     <div class="lenguaje-logo">
                         <img src="./images/logos/python-logo.png" alt="Python Logo">
                         <span>Python</span>
                     </div>
+                    <div class="card-back">
+                        <h4>Python</h4>
+                        <div class="skill-level">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                        <p>Data Science, Web, Automatización</p>
+                    </div>
                 </div>
                 
-                <div class="lenguaje-card">
+                <div class="lenguaje-card" data-language="Delphi">
                     <div class="lenguaje-logo">
                         <img src="./images/logos/delphi-logo.png" alt="Delphi Logo">
                         <span>Delphi</span>
                     </div>
+                    <div class="card-back">
+                        <h4>Delphi</h4>
+                        <div class="skill-level">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <p>Aplicaciones de escritorio, DB</p>
+                    </div>
                 </div>
                 
-                <div class="lenguaje-card">
+                <div class="lenguaje-card" data-language="SQL">
                     <div class="lenguaje-logo">
                         <img src="./images/logos/sql-logo.png" alt="SQL Logo">
                         <span>SQL</span>
                     </div>
+                    <div class="card-back">
+                        <h4>SQL</h4>
+                        <div class="skill-level">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p>PostgreSQL, MySQL, SQLite</p>
+                    </div>
                 </div>
                 
-                <div class="lenguaje-card">
+                <div class="lenguaje-card" data-language="C#">
                     <div class="lenguaje-logo">
                         <img src="./images/logos/csharp-logo.png" alt="C# Logo">
                         <span>C#</span>
                     </div>
+                    <div class="card-back">
+                        <h4>C#</h4>
+                        <div class="skill-level">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <p>.NET, Unity, Aplicaciones escritorio</p>
+                    </div>
                 </div>
                 
-                <div class="lenguaje-card">
+                <div class="lenguaje-card" data-language="C++">
                     <div class="lenguaje-logo">
                         <img src="./images/logos/cpp-logo.png" alt="C++ Logo">
                         <span>C++</span>
+                    </div>
+                    <div class="card-back">
+                        <h4>C++</h4>
+                        <div class="skill-level">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <p>Programación de bajo nivel, Consola</p>
                     </div>
                 </div>
             </div>
         </section>
         
         <section id="proyectos">
-            <h2>Proyectos</h2>
-            <div class="proyecto">
-                <h3>Proyecto 1</h3>
-                <p>Descripción breve del proyecto.</p>
+            <h2 data-aos="fade-up">Proyectos</h2>
+            <div class="proyectos-grid">
+                <div class="proyecto" data-aos="zoom-in">
+                    <div class="proyecto-img">
+                        <div class="proyecto-overlay">
+                            <div class="overlay-content">
+                                <h4>Ver Detalles</h4>
+                                <div class="overlay-icons">
+                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
+                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proyecto-content">
+                        <h3>Sistema de Gestión</h3>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>SQL</span>
+                            <span>Flask</span>
+                        </div>
+                        <p>Sistema de gestión para pequeñas empresas con módulos de inventario, facturación y seguimiento de clientes.</p>
+                    </div>
+                </div>
+                
+                <div class="proyecto" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="proyecto-img">
+                        <div class="proyecto-overlay">
+                            <div class="overlay-content">
+                                <h4>Ver Detalles</h4>
+                                <div class="overlay-icons">
+                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
+                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proyecto-content">
+                        <h3>Aplicación de Análisis de Datos</h3>
+                        <div class="tech-stack">
+                            <span>C#</span>
+                            <span>SQL</span>
+                            <span>WPF</span>
+                        </div>
+                        <p>Herramienta de análisis estadístico con visualización gráfica y exportación de reportes.</p>
+                    </div>
+                </div>
             </div>
-            <div class="proyecto">
-                <h3>Proyecto 2</h3>
-                <p>Descripción breve del proyecto.</p>
+            
+            <div class="cta-container">
+                <a href="https://github.com/Julianidiego" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-github"></i> Ver más en GitHub
+                </a>
             </div>
         </section>
+        
         <section id="contacto">
-            <h2>Contacto</h2>
-            <form>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
+            <h2 data-aos="fade-up">Contacto</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <p>contacto@julianidiego.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Ubicación</h3>
+                            <p>La Plata, Buenos Aires, Argentina</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>GitHub</h3>
+                            <p>github.com/Julianidiego</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <span>Enviar Mensaje</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
         </section>
     </main>
+    
     <footer>
-        <p>&copy; 2025 Julianidiego. Todos los derechos reservados.</p>
-        <div class="social-links">
-            <a href="https://github.com/Julianidiego" target="_blank" class="github-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-            </a>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Julianidiego</h3>
+                <p>Desarrollador de Software</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://github.com/Julianidiego" target="_blank" class="github-link" aria-label="GitHub profile">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="linkedin-link" aria-label="LinkedIn profile">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="twitter-link" aria-label="Twitter profile">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Julianidiego. Todos los derechos reservados.</p>
         </div>
     </footer>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html>

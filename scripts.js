@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initTestimonialCarousel();
     initAprendiendoCards();
     addAprendiendoNavLink();
+    initImprovedAnimations();
 
     // Efecto para tarjetas de lenguaje que coincide con el estilo de tarjetas sociales
     function initLanguageCards() {
@@ -1059,3 +1060,179 @@ function addAprendiendoNavLink() {
         navUl.insertBefore(li, sobreMiLi.nextSibling);
     }
 }
+
+/**
+ * Animaciones de carga mejoradas
+ * Sistema de animaciones con efectos personalizados para cada tipo de elemento
+ */
+function initImprovedAnimations() {
+    // Animación para títulos de sección
+    const sectionTitles = document.querySelectorAll('section h2');
+    sectionTitles.forEach(title => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Efecto de aparición con borde deslizante
+                    title.style.opacity = '1';
+                    title.style.transform = 'translateY(0)';
+                    
+                    // Si tiene un pseudo-elemento after (línea debajo)
+                    if (getComputedStyle(title, '::after').content !== 'none') {
+                        title.classList.add('title-animated');
+                    }
+                    
+                    observer.unobserve(title);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        // Estilos iniciales
+        title.style.opacity = '0';
+        title.style.transform = 'translateY(20px)';
+        title.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        
+        observer.observe(title);
+    });
+    
+    // Animación para tarjetas (proyectos, lenguajes, redes)
+    const cards = document.querySelectorAll('.proyecto, .aprendiendo-card, .social-card');
+    cards.forEach((card, index) => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Aplicar un retraso escalonado basado en el índice
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100); // 100ms de retraso entre cada tarjeta
+                    
+                    observer.unobserve(card);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Estilos iniciales
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        
+        observer.observe(card);
+    });
+    
+    // Efecto de entrada para la sección Hero
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        // Animación de aparición secuencial para elementos del hero
+        const elements = heroContent.children;
+        Array.from(elements).forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            
+            // Tiempo de retraso escalonado
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 300 + (index * 200)); // El primer elemento aparece a los 300ms, luego cada 200ms
+        });
+    }
+    
+    // Animación para las barras de habilidades que sea más fluida
+    const skillBars = document.querySelectorAll('.progress-bar');
+    const skillObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Definir la animación con CSS para mayor fluidez
+                const bar = entry.target;
+                const percent = bar.dataset.percent || 0;
+                
+                // Reset inicial
+                bar.style.width = '0%';
+                
+                // Permitir que el navegador renderice el reset antes de la animación
+                setTimeout(() => {
+                    bar.style.width = percent + '%';
+                    bar.style.transition = 'width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }, 50);
+                
+                skillObserver.unobserve(bar);
+                
+                // Añadir contador numérico
+                const parent = bar.parentNode;
+                const percentCounter = document.createElement('span');
+                percentCounter.className = 'percent-counter';
+                percentCounter.textContent = '0%';
+                percentCounter.style.position = 'absolute';
+                percentCounter.style.right = '10px';
+                percentCounter.style.top = '50%';
+                percentCounter.style.transform = 'translateY(-50%)';
+                percentCounter.style.fontSize = '0.85rem';
+                percentCounter.style.fontWeight = '600';
+                percentCounter.style.color = '#fff';
+                
+                parent.style.position = 'relative';
+                parent.appendChild(percentCounter);
+                
+                // Animación de contador
+                let currentCount = 0;
+                const targetCount = parseInt(percent);
+                const duration = 1500; // ms
+                const interval = 20; // ms
+                const steps = duration / interval;
+                const increment = targetCount / steps;
+                
+                const counter = setInterval(() => {
+                    currentCount += increment;
+                    if (currentCount >= targetCount) {
+                        currentCount = targetCount;
+                        clearInterval(counter);
+                    }
+                    percentCounter.textContent = Math.round(currentCount) + '%';
+                }, interval);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    skillBars.forEach(bar => {
+        skillObserver.observe(bar);
+    });
+    
+    // Mejorar animación de la línea de tiempo
+    const timelineContainers = document.querySelectorAll('.timeline-container');
+    timelineContainers.forEach((container, index) => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Retraso basado en la posición en la línea de tiempo
+                    setTimeout(() => {
+                        container.style.opacity = '1';
+                        container.style.transform = 'translateY(0)';
+                    }, index * 200); // 200ms de retraso entre cada elemento
+                    
+                    observer.unobserve(container);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(container);
+    });
+    
+    // Efecto parallax suave para el fondo
+    if (window.innerWidth > 768) { // Solo en pantallas más grandes
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            
+            // Mover fondo a velocidad reducida (efecto parallax)
+            const background = document.getElementById('github-background') || document.querySelector('.github-background');
+            if (background) {
+                background.style.transform = `translateY(${scrollPosition * 0.05}px)`;
+            }
+        });
+    }
+}
+
+// Iniciar las animaciones mejoradas después de que el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    // ...existing code from DOMContentLoaded...
+    initImprovedAnimations();
+});

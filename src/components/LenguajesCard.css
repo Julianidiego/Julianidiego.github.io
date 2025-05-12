@@ -1,0 +1,96 @@
+.lenguaje-card {
+  background-color: var(--card-bg-color, #161b22);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid var(--border-color, #30363d);
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lenguaje-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lenguaje-logo {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: opacity 0.3s;
+  z-index: 2;
+  background-color: var(--card-bg-color, #161b22);
+}
+
+.lenguaje-logo img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.lenguaje-logo span {
+  font-weight: 600;
+  color: var(--primary-color, #58a6ff);
+}
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--card-bg-color, #161b22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  opacity: 0;
+  transform: rotateY(180deg);
+  transition: opacity 0.3s, transform 0.6s;
+  z-index: 1;
+}
+
+.lenguaje-card.flipped .lenguaje-logo {
+  opacity: 0;
+}
+
+.lenguaje-card.flipped .card-back {
+  opacity: 1;
+  transform: rotateY(0);
+}
+
+.card-back h4 {
+  color: var(--primary-color, #58a6ff);
+  margin-bottom: 5px;
+}
+
+.skill-level {
+  margin-bottom: 10px;
+}
+
+.stars {
+  color: var(--secondary-color, #3fb950);
+}
+
+.card-back p {
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--text-color, #c9d1d9);
+}
+
+/* Media queries para responsividad en distintas pantallas */
+@media (max-width: 768px) {
+  .lenguaje-logo img {
+    width: 50px;
+    height: 50px;
+  }
+}

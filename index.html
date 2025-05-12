@@ -17,6 +17,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="scripts.js" defer></script>
+    
+    <!-- Scripts de React en modo desarrollo -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Scripts compilados de la aplicación React -->
+    <script src="dist/bundle.js" defer></script>
 </head>
 <body>
     <canvas id="particles-canvas"></canvas>
@@ -194,9 +200,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Projects Cards (Original section) -->
-                <!-- ...existing code... -->
             </div>
         </section>
         
@@ -357,62 +360,6 @@
             </div>
         </section>
         
-        <!-- Testimonios -->
-        <section id="testimonials" class="testimonials-section">
-            <div class="container">
-                <h2 class="section-title">Testimonios</h2>
-                <div class="section-subtitle">Lo que dicen de mí</div>
-                
-                <div class="testimonials-container">
-                    <div class="testimonials-slider">
-                        <div class="testimonial">
-                            <div class="testimonial-avatar">
-                                <img src="images/testimonial-1.jpg" alt="Testimonial Avatar" onerror="this.src='https://via.placeholder.com/100?text=PM'">
-                            </div>
-                            <div class="testimonial-content">
-                                <p>Diego ha demostrado ser un desarrollador excepcional. Su capacidad para resolver problemas complejos y su atención al detalle son impresionantes. Siempre entrega proyectos de alta calidad antes del plazo previsto.</p>
-                            </div>
-                            <div class="testimonial-name">Pablo Martínez</div>
-                            <div class="testimonial-role">Project Manager</div>
-                        </div>
-                        
-                        <div class="testimonial">
-                            <div class="testimonial-avatar">
-                                <img src="images/testimonial-2.jpg" alt="Testimonial Avatar" onerror="this.src='https://via.placeholder.com/100?text=LS'">
-                            </div>
-                            <div class="testimonial-content">
-                                <p>Trabajar con Diego fue una experiencia excelente. Su conocimiento técnico y su habilidad para comunicar conceptos complejos de manera sencilla lo convierten en un activo valioso para cualquier equipo.</p>
-                            </div>
-                            <div class="testimonial-name">Laura Sánchez</div>
-                            <div class="testimonial-role">UX/UI Designer</div>
-                        </div>
-                        
-                        <div class="testimonial">
-                            <div class="testimonial-avatar">
-                                <img src="images/testimonial-3.jpg" alt="Testimonial Avatar" onerror="this.src='https://via.placeholder.com/100?text=AG'">
-                            </div>
-                            <div class="testimonial-content">
-                                <p>Como compañero de equipo, Diego siempre está dispuesto a ayudar y compartir su conocimiento. Su pasión por la programación y su constante búsqueda de mejores soluciones han sido fundamentales para el éxito de nuestros proyectos.</p>
-                            </div>
-                            <div class="testimonial-name">Alejandro Gómez</div>
-                            <div class="testimonial-role">Senior Developer</div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-dots">
-                        <div class="testimonial-dot active"></div>
-                        <div class="testimonial-dot"></div>
-                        <div class="testimonial-dot"></div>
-                    </div>
-                    
-                    <div class="testimonial-nav">
-                        <button class="testimonial-btn prev-testimonial">&#10094;</button>
-                        <button class="testimonial-btn next-testimonial">&#10095;</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <!-- Sección de Contacto -->
         <section id="contacto">
             <h2 data-aos="fade-up">Contacto</h2>
@@ -524,6 +471,13 @@
                         <h3>Facebook</h3>
                         <p>Conéctate conmigo en Facebook para updates personales</p>
                         <a href="https://www.facebook.com/profile.php?id=61572621364177" target="_blank">Añadir Amigo</a>
+                    </div>
+                    
+                    <div class="social-card microsoft">
+                        <i class="fab fa-microsoft social-icon"></i>
+                        <h3>Microsoft Learn</h3>
+                        <p>Explora mi perfil de aprendizaje y certificaciones en Microsoft</p>
+                        <a href="https://learn.microsoft.com/es-es/users/julianidiego/" target="_blank">Ver Perfil</a>
                     </div>
                 </div>
             </div>

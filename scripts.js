@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector('header');
     const body = document.body;
     const links = document.querySelectorAll('a');
-    const langCards = document.querySelectorAll('.lenguaje-card');
+    const langCards = document.querySelectorAll('.aprendiendo-card[data-language]'); // Actualizado para los nuevos elementos
     const proyectos = document.querySelectorAll('.proyecto');
     const socialCards = document.querySelectorAll('.social-card');
     const progressBars = document.querySelectorAll('.progress-bar');
@@ -22,9 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     initSkillBars();
     initBackToTop();
     initSocialCards();
-    initLanguageCards();
+    initLanguageCards(); // Este método se está conservando pero ahora trabaja con los nuevos elementos
     initProjectFilters();
     initTestimonialCarousel();
+    initAprendiendoCards();
+    addAprendiendoNavLink();
 
     // Efecto para tarjetas de lenguaje que coincide con el estilo de tarjetas sociales
     function initLanguageCards() {
@@ -32,6 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // Determinar color según el lenguaje
             const language = card.getAttribute('data-language');
             let glowColor;
+            
+            // Preparar para añadir el contenedor de partículas si no existe
+            if (!card.querySelector('.particles-container')) {
+                const particlesContainer = document.createElement('div');
+                particlesContainer.className = 'particles-container';
+                card.prepend(particlesContainer);
+            }
             
             switch(language) {
                 case 'Python':
@@ -58,13 +67,278 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.style.boxShadow = `0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px ${glowColor}`;
                 card.style.borderColor = glowColor.replace('0.7', '1');
                 // Crear partículas para los lenguajes
-                createFloatingParticles(card, glowColor);
+                createLanguageParticles(card, language, glowColor);
             });
             
             card.addEventListener('mouseleave', () => {
                 card.style.boxShadow = '';
                 card.style.borderColor = '';
+                // Eliminar partículas
+                removeLanguageParticles(card);
             });
+        });
+    }
+    
+    // Función para crear partículas para tarjetas de lenguaje
+    function createLanguageParticles(card, language, color) {
+        const particlesContainer = card.querySelector('.particles-container');
+        if (!particlesContainer) return;
+        
+        // Configurar partículas según el lenguaje
+        let config = { count: 30, shapes: ['square'] };
+        
+        switch(language) {
+            case 'Python':
+                config.shapes = ['snake', 'square', 'code', 'indentation'];
+                break;
+            case 'Delphi':
+                config.shapes = ['component', 'form', 'square', 'object'];
+                break;
+            case 'SQL':
+                config.shapes = ['table', 'query', 'square', 'database'];
+                break;
+            case 'C#':
+                config.shapes = ['sharp', 'dotnet', 'square', 'class'];
+                break;
+            case 'C++':
+                config.shapes = ['cpp', 'square', 'pointer', 'template'];
+                break;
+        }
+        
+        // Crear partículas
+        for (let i = 0; i < config.count; i++) {
+            createLanguageParticle(particlesContainer, language, color, config.shapes);
+        }
+    }
+    
+    // Crear partículas individuales para lenguajes
+    function createLanguageParticle(container, language, color, shapes = ['square']) {
+        const particle = document.createElement('div');
+        particle.classList.add('tech-particle');
+        
+        // Posicionar en el centro
+        const centerX = container.offsetWidth / 2;
+        const centerY = container.offsetHeight / 2;
+        
+        // Seleccionar una forma aleatoria de las disponibles
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        
+        // Tamaño base aleatorio entre 6px y 14px
+        const baseSize = 6 + Math.random() * 8;
+        
+        // Aplicar forma según el tipo de lenguaje
+        switch(shape) {
+            case 'square':
+                // Cuadrado estándar
+                particle.style.width = `${baseSize}px`;
+                particle.style.height = `${baseSize}px`;
+                // Rotar aleatoriamente
+                particle.style.transform = `rotate(${Math.random() * 180}deg)`;
+                break;
+                
+            case 'snake': // Python
+                // Símbolo de serpiente (S)
+                particle.innerHTML = '~';
+                particle.style.fontSize = `${baseSize * 1.5}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.fontWeight = 'bold';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'indentation': // Python
+                // Indentación
+                particle.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'component': // Delphi
+                particle.innerHTML = 'T';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.fontWeight = 'bold';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'form': // Delphi
+                particle.innerHTML = '[]';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'table': // SQL
+                particle.innerHTML = '═';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'query': // SQL
+                particle.innerHTML = ['SELECT', 'FROM', 'WHERE', 'JOIN'][Math.floor(Math.random() * 4)];
+                particle.style.fontSize = `${baseSize * 0.6}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                particle.style.padding = '0 2px';
+                break;
+                
+            case 'database': // SQL
+                particle.innerHTML = '{ }';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'sharp': // C#
+                particle.innerHTML = '#';
+                particle.style.fontSize = `${baseSize * 1.5}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.fontWeight = 'bold';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'dotnet': // C#
+                particle.innerHTML = '.NET';
+                particle.style.fontSize = `${baseSize * 0.7}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'cpp': // C++
+                particle.innerHTML = '++';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.fontWeight = 'bold';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'pointer': // C++
+                particle.innerHTML = '*&';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'code':
+                // Símbolos generales de código
+                particle.innerHTML = ['{ }', '( )', '[ ]', '/*', '*/'][Math.floor(Math.random() * 5)];
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'object': // General
+                particle.innerHTML = '{}';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'class': // General OOP
+                particle.innerHTML = 'class';
+                particle.style.fontSize = `${baseSize * 0.7}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            case 'template': // C++
+                particle.innerHTML = '<T>';
+                particle.style.fontSize = `${baseSize}px`;
+                particle.style.fontFamily = 'monospace';
+                particle.style.color = color;
+                particle.style.backgroundColor = 'transparent';
+                break;
+                
+            default:
+                // Cuadrado por defecto con borde
+                particle.style.width = `${baseSize}px`;
+                particle.style.height = `${baseSize}px`;
+                particle.style.border = `1px solid ${color}`;
+                particle.style.backgroundColor = 'transparent';
+        }
+        
+        // Si es una forma geométrica, aplicar color de fondo
+        if (shape === 'square') {
+            particle.style.backgroundColor = color;
+            // Añadir borde y transparencia para más efecto visual
+            particle.style.border = `1px solid ${color}`;
+            particle.style.opacity = (0.5 + Math.random() * 0.5).toString(); // Opacidad variable
+        }
+        
+        // Posición inicial en el centro
+        particle.style.left = `${centerX}px`;
+        particle.style.top = `${centerY}px`;
+        
+        // Añadir la partícula al contenedor
+        container.appendChild(particle);
+        
+        // Pequeño retraso antes de la animación para un efecto escalonado
+        setTimeout(() => {
+            // Ángulo aleatorio para la dirección
+            const angle = Math.random() * Math.PI * 2;
+            // Distancia aleatoria desde el centro
+            const distance = 40 + Math.random() * 120;
+            
+            // Destino X e Y basado en el ángulo y la distancia
+            const destX = centerX + Math.cos(angle) * distance;
+            const destY = centerY + Math.sin(angle) * distance;
+            
+            // Aplicar transformación con rotación adicional para más dinamismo
+            const rotation = Math.random() * 360;
+            particle.style.transform = `translate(${destX - centerX}px, ${destY - centerY}px) rotate(${rotation}deg)`;
+            
+            // Variar la opacidad final
+            const finalOpacity = 0.3 + Math.random() * 0.7;
+            particle.style.opacity = finalOpacity.toString();
+            
+            // Configurar transición para animación suave con velocidades variables
+            const duration = 0.7 + Math.random() * 1.5;
+            particle.style.transition = `transform ${duration}s cubic-bezier(0.165, 0.84, 0.44, 1), opacity ${duration * 0.8}s ease-out`;
+            
+            // Eliminar la partícula después de la animación
+            setTimeout(() => {
+                particle.style.opacity = '0';
+                setTimeout(() => {
+                    if (container && container.contains(particle)) {
+                        container.removeChild(particle);
+                    }
+                }, 1000);
+            }, duration * 800);
+        }, Math.random() * 200);
+    }
+    
+    // Eliminar todas las partículas de un contenedor
+    function removeLanguageParticles(card) {
+        const particlesContainer = card.querySelector('.particles-container');
+        if (!particlesContainer) return;
+        
+        const particles = particlesContainer.querySelectorAll('.tech-particle');
+        
+        particles.forEach(particle => {
+            // Fade out rápido
+            particle.style.opacity = '0';
+            particle.style.transition = 'opacity 0.3s ease-out';
+            
+            setTimeout(() => {
+                if (particlesContainer.contains(particle)) {
+                    particlesContainer.removeChild(particle);
+                }
+            }, 300);
         });
     }
     
@@ -231,88 +505,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Inicializar sistema de partículas en el fondo
     function initParticles() {
+        // En lugar de usar canvas con animaciones pesadas,
+        // creamos un fondo estático inspirado en GitHub usando CSS
         const canvas = document.getElementById('particles-canvas');
         
         if (canvas) {
-            const ctx = canvas.getContext('2d');
-            const particles = [];
-            const particleCount = 50;
+            // Eliminamos el canvas
+            canvas.remove();
             
-            // Ajustar tamaño del canvas al tamaño de la ventana
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
+            // Creamos un elemento div para el fondo
+            const githubBackground = document.createElement('div');
+            githubBackground.id = 'github-background';
+            githubBackground.className = 'github-background';
+            document.body.insertBefore(githubBackground, document.body.firstChild);
             
-            // Crear partículas iniciales
-            function createParticles() {
-                for (let i = 0; i < particleCount; i++) {
-                    particles.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        vx: Math.random() * 1 - 0.5,
-                        vy: Math.random() * 1 - 0.5,
-                        size: Math.random() * 3 + 1,
-                        color: body.classList.contains('theme-light') ? 'rgba(9, 105, 218, 0.3)' : 'rgba(88, 166, 255, 0.3)'
-                    });
-                }
-            }
-            
-            // Animar partículas
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                particles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    
-                    if (p.x < 0 || p.x > canvas.width) p.vx = -p.vx;
-                    if (p.y < 0 || p.y > canvas.height) p.vy = -p.vy;
-                    
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.fill();
-                });
-                
-                connectParticles();
-                requestAnimationFrame(animateParticles);
-            }
-            
-            // Conectar partículas cercanas con líneas
-            function connectParticles() {
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-                        
-                        if (distance < 150) {
-                            const opacity = 1 - distance / 150;
-                            ctx.strokeStyle = body.classList.contains('theme-light') ? 
-                                `rgba(9, 105, 218, ${opacity * 0.2})` : 
-                                `rgba(88, 166, 255, ${opacity * 0.2})`;
-                            ctx.lineWidth = 1;
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.stroke();
-                        }
+            // Añadimos estilos CSS para el fondo
+            if (!document.getElementById('github-background-styles')) {
+                const styleEl = document.createElement('style');
+                styleEl.id = 'github-background-styles';
+                styleEl.textContent = `
+                    .github-background {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: -1;
+                        background-color: var(--background-color);
+                        background-image: 
+                            radial-gradient(circle at 25px 25px, 
+                                var(--background-color) 2px, 
+                                transparent 0),
+                            radial-gradient(circle at 75px 75px, 
+                                var(--border-color) 1px, 
+                                transparent 0);
+                        background-size: 100px 100px;
+                        opacity: 0.3;
                     }
-                }
+                    
+                    body.theme-light .github-background {
+                        background-image: 
+                            radial-gradient(circle at 25px 25px, 
+                                var(--border-color) 2px, 
+                                transparent 0),
+                            radial-gradient(circle at 75px 75px, 
+                                var(--border-color) 1px, 
+                                transparent 0);
+                        opacity: 0.2;
+                    }
+                `;
+                document.head.appendChild(styleEl);
             }
-            
-            // Iniciar canvas
-            resizeCanvas();
-            createParticles();
-            animateParticles();
-            
-            // Redimensionar canvas si cambia el tamaño de la ventana
-            window.addEventListener('resize', () => {
-                resizeCanvas();
-                particles.length = 0; // Limpiar partículas existentes
-                createParticles(); // Crear nuevas partículas
-            });
         }
     }
 
@@ -598,3 +841,221 @@ window.addEventListener('load', () => {
         document.body.classList.add('theme-light');
     }
 });
+
+// Función para inicializar la sección "Estoy aprendiendo" con las animaciones de partículas
+function initAprendiendoCards() {
+    const cards = document.querySelectorAll('.aprendiendo-card');
+    
+    cards.forEach(card => {
+        // Añadir listeners para mouseenter y mouseleave
+        card.addEventListener('mouseenter', () => createParticles(card));
+        card.addEventListener('mouseleave', () => removeParticles(card));
+    });
+}
+
+// Función para crear partículas cuando el mouse pasa sobre una tarjeta
+function createParticles(card) {
+    const tech = card.getAttribute('data-tech');
+    const particlesContainer = card.querySelector('.particles-container');
+    
+    // Configuración por tecnología
+    const configs = {
+        'javascript': { color: '#f7df1e', count: 40, shapes: ['square', 'code', 'triangle'] }, // Amarillo JavaScript
+        'html': { color: '#e34c26', count: 40, shapes: ['bracket', 'tag', 'square'] }, // Naranja HTML
+        'css': { color: '#264de4', count: 40, shapes: ['curly', 'hash', 'square'] }, // Azul CSS
+        'java': { color: '#5382a1', count: 40, shapes: ['coffee', 'curly', 'square'] } // Azul Java
+    };
+    
+    const config = configs[tech] || { color: '#ffffff', count: 40, shapes: ['square'] };
+    
+    // Crear partículas
+    for (let i = 0; i < config.count; i++) {
+        createTechParticle(particlesContainer, config.color, config.shapes);
+    }
+}
+
+// Crear una partícula tecnológica individual con formas variadas
+function createTechParticle(container, color, shapes = ['square']) {
+    const particle = document.createElement('div');
+    particle.classList.add('tech-particle');
+    
+    // Posicionar en el centro
+    const centerX = container.offsetWidth / 2;
+    const centerY = container.offsetHeight / 2;
+    
+    // Seleccionar una forma aleatoria de las disponibles
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    
+    // Tamaño base aleatorio entre 6px y 14px
+    const baseSize = 6 + Math.random() * 8;
+    
+    // Aplicar forma según el tipo
+    switch(shape) {
+        case 'square':
+            // Cuadrado estándar
+            particle.style.width = `${baseSize}px`;
+            particle.style.height = `${baseSize}px`;
+            // Rotar aleatoriamente
+            particle.style.transform = `rotate(${Math.random() * 180}deg)`;
+            break;
+            
+        case 'triangle':
+            // Triángulo (usando clip-path)
+            particle.style.width = `${baseSize}px`;
+            particle.style.height = `${baseSize}px`;
+            particle.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+            break;
+            
+        case 'code':
+            // Símbolos de código
+            particle.innerHTML = ['{ }', '( )', '[ ]', '< >', '//', '/*', '*/', '==', '!=', '=>'][Math.floor(Math.random() * 10)];
+            particle.style.fontSize = `${baseSize}px`;
+            particle.style.fontFamily = 'monospace';
+            particle.style.color = color;
+            particle.style.backgroundColor = 'transparent';
+            break;
+            
+        case 'bracket':
+            // Símbolo de HTML
+            particle.innerHTML = ['<>', '</>'][Math.floor(Math.random() * 2)];
+            particle.style.fontSize = `${baseSize}px`;
+            particle.style.fontFamily = 'monospace';
+            particle.style.color = color;
+            particle.style.backgroundColor = 'transparent';
+            break;
+            
+        case 'tag':
+            // Etiqueta HTML
+            particle.innerHTML = ['div', 'span', 'p', 'h1', 'a'][Math.floor(Math.random() * 5)];
+            particle.style.fontSize = `${baseSize}px`;
+            particle.style.fontFamily = 'monospace';
+            particle.style.color = color;
+            particle.style.backgroundColor = 'transparent';
+            particle.style.border = `1px solid ${color}`;
+            particle.style.padding = '0 2px';
+            break;
+            
+        case 'coffee':
+            // Símbolo de Java (taza de café)
+            particle.innerHTML = '☕';
+            particle.style.fontSize = `${baseSize * 1.2}px`;
+            particle.style.color = color;
+            particle.style.backgroundColor = 'transparent';
+            break;
+            
+        case 'curly':
+            // Llaves
+            particle.innerHTML = ['{ }', '[ ]', '( )'][Math.floor(Math.random() * 3)];
+            particle.style.fontSize = `${baseSize}px`;
+            particle.style.fontFamily = 'monospace';
+            particle.style.color = color;
+            particle.style.backgroundColor = 'transparent';
+            break;
+            
+        case 'hash':
+            // Símbolo de CSS
+            particle.innerHTML = ['#', '.', '*', '{}'][Math.floor(Math.random() * 4)];
+            particle.style.fontSize = `${baseSize}px`;
+            particle.style.fontFamily = 'monospace';
+            particle.style.color = color;
+            particle.style.fontWeight = 'bold';
+            particle.style.backgroundColor = 'transparent';
+            break;
+            
+        default:
+            // Cuadrado por defecto con borde
+            particle.style.width = `${baseSize}px`;
+            particle.style.height = `${baseSize}px`;
+            particle.style.border = `1px solid ${color}`;
+            particle.style.backgroundColor = 'transparent';
+    }
+    
+    // Si es una forma geométrica, aplicar color de fondo
+    if (['square', 'triangle'].includes(shape)) {
+        particle.style.backgroundColor = color;
+        // Añadir borde y transparencia para más efecto visual
+        particle.style.border = `1px solid ${color}`;
+        particle.style.opacity = (0.5 + Math.random() * 0.5).toString(); // Opacidad variable
+    }
+    
+    // Posición inicial en el centro
+    particle.style.left = `${centerX}px`;
+    particle.style.top = `${centerY}px`;
+    
+    // Añadir la partícula al contenedor
+    container.appendChild(particle);
+    
+    // Pequeño retraso antes de la animación para un efecto escalonado
+    setTimeout(() => {
+        // Ángulo aleatorio para la dirección
+        const angle = Math.random() * Math.PI * 2;
+        // Distancia aleatoria desde el centro (mayor que antes)
+        const distance = 40 + Math.random() * 150;
+        
+        // Destino X e Y basado en el ángulo y la distancia
+        const destX = centerX + Math.cos(angle) * distance;
+        const destY = centerY + Math.sin(angle) * distance;
+        
+        // Aplicar transformación con rotación adicional para más dinamismo
+        const rotation = Math.random() * 360;
+        particle.style.transform = `translate(${destX - centerX}px, ${destY - centerY}px) rotate(${rotation}deg)`;
+        
+        // Variar la opacidad final
+        const finalOpacity = 0.3 + Math.random() * 0.7;
+        particle.style.opacity = finalOpacity.toString();
+        
+        // Configurar transición para animación suave con velocidades variables
+        const duration = 0.7 + Math.random() * 2;
+        particle.style.transition = `transform ${duration}s cubic-bezier(0.165, 0.84, 0.44, 1), opacity ${duration * 0.8}s ease-out`;
+        
+        // Eliminar la partícula después de la animación
+        setTimeout(() => {
+            particle.style.opacity = '0';
+            setTimeout(() => {
+                if (container && container.contains(particle)) {
+                    container.removeChild(particle);
+                }
+            }, 1000);
+        }, duration * 800);
+    }, Math.random() * 200);
+}
+
+// Eliminar todas las partículas cuando el mouse sale de la tarjeta
+function removeParticles(card) {
+    const particlesContainer = card.querySelector('.particles-container');
+    const particles = particlesContainer.querySelectorAll('.tech-particle');
+    
+    particles.forEach(particle => {
+        // Fade out más rápido
+        particle.style.opacity = '0';
+        particle.style.transition = 'opacity 0.3s ease-out';
+        
+        setTimeout(() => {
+            if (particlesContainer.contains(particle)) {
+                particlesContainer.removeChild(particle);
+            }
+        }, 300);
+    });
+}
+
+// Añadir el enlace a la sección "Estoy aprendiendo" en la navegación
+function addAprendiendoNavLink() {
+    const navUl = document.querySelector('nav ul');
+    const sobreMiLink = document.querySelector('nav ul li a[href="#sobre-mi"]');
+    
+    if (navUl && sobreMiLink) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#aprendiendo';
+        a.className = 'nav-link';
+        
+        const span = document.createElement('span');
+        span.textContent = 'Aprendiendo';
+        a.appendChild(span);
+        li.appendChild(a);
+        
+        // Insertar después del enlace "Sobre mí"
+        const sobreMiLi = sobreMiLink.parentNode;
+        navUl.insertBefore(li, sobreMiLi.nextSibling);
+    }
+}

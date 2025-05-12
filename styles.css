@@ -296,6 +296,75 @@ section h2::after {
     animation: glitch-anim-2 5s linear infinite alternate-reverse;
 }
 
+/* Contenedor para el texto de bienvenida y el Octocat */
+.welcome-container {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Contenedor de la animación del Octocat */
+.octocat-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Estilo del Octocat */
+.octocat {
+    position: absolute;
+    transform-origin: center center;
+    animation: octocat-bounce 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px var(--primary-color));
+}
+
+.octocat img {
+    width: 40px;
+    height: 40px;
+    fill: var(--primary-color);
+    animation: octocat-wiggle 3s ease-in-out infinite;
+}
+
+/* Animaciones para el Octocat */
+@keyframes octocat-bounce {
+    0% {
+        transform: translate(-50px, -20px) scale(1);
+    }
+    25% {
+        transform: translate(calc(100% + 50px), -40px) scale(1.1);
+    }
+    50% {
+        transform: translate(calc(100% + 50px), calc(100% + 20px)) scale(1);
+    }
+    75% {
+        transform: translate(-50px, calc(100% + 40px)) scale(1.1);
+    }
+    100% {
+        transform: translate(-50px, -20px) scale(1);
+    }
+}
+
+@keyframes octocat-wiggle {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+/* Estilo para el texto de bienvenida dentro del contenedor */
+.welcome-container .glitch-text {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
 /* ---------- Sección Proyectos ---------- */
 .proyectos-grid {
     display: grid;
@@ -1008,6 +1077,73 @@ section h2::after {
     }
 }
 
+/* Estilos específicos para la sección de Lenguajes (distintos a Estoy Aprendiendo) */
+#lenguajes .aprendiendo-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+#lenguajes .aprendiendo-card {
+    min-height: 240px;
+    padding: 15px 10px;
+}
+
+#lenguajes .aprendiendo-logo {
+    padding: 15px 0;
+    margin-bottom: 10px;
+}
+
+#lenguajes .aprendiendo-logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    transition: transform 0.3s;
+}
+
+#lenguajes .aprendiendo-info {
+    padding: 5px 10px 15px;
+}
+
+#lenguajes .aprendiendo-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+#lenguajes .aprendiendo-info p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+#lenguajes .skill-level {
+    margin-top: 8px;
+}
+
+#lenguajes .stars {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    #lenguajes .aprendiendo-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+    
+    #lenguajes .aprendiendo-logo img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    #lenguajes .aprendiendo-info h4 {
+        font-size: 1rem;
+    }
+    
+    #lenguajes .aprendiendo-info p {
+        font-size: 0.8rem;
+    }
+}
+
 /* Sección de Redes Sociales Mejorada */
 .social-networks-section {
     background-color: var(--card-bg-color);
@@ -1038,6 +1174,7 @@ section h2::after {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     overflow: hidden;
     height: 240px;
@@ -1086,16 +1223,17 @@ section h2::after {
 
 .social-card p {
     font-size: 0.9rem;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     color: var(--text-color);
     opacity: 0.8;
     line-height: 1.5;
-    flex: 1;
+    flex-grow: 1;
 }
 
 .social-card a {
     display: inline-block;
-    padding: 8px 20px;
+    width: 80%;
+    padding: 10px 20px;
     background-color: var(--primary-color);
     color: white;
     border-radius: 20px;
@@ -1106,6 +1244,8 @@ section h2::after {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .social-card a:before {
@@ -1130,7 +1270,7 @@ section h2::after {
 }
 
 .social-card:hover .social-icon {
-    transform: scale(1.1) rotateY(180deg);
+    transform: scale(1.1);
 }
 
 .social-card:hover h3 {
@@ -1159,6 +1299,31 @@ section h2::after {
 .social-card.facebook a:hover { background-color: #4267B2; }
 .social-card.microsoft a:hover { background-color: #00A4EF; }
 
+/* Estilos para la imagen del logo de Credly */
+.social-icon-container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.social-logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.social-card:hover .social-logo-img {
+    transform: scale(1.1);
+}
+
 /* Ajuste para dispositivos móviles */
 @media (max-width: 768px) {
     .social-networks-grid {
@@ -1169,5 +1334,937 @@ section h2::after {
         padding: 20px;
         height: auto;
         min-height: 220px;
+    }
+}
+
+/* Estilos para el box visual de la UNLP */
+.unlp-box {
+    margin: 30px 0;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, rgba(23, 42, 99, 0.8), rgba(47, 79, 158, 0.8));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                inset 0 0 15px rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s;
+}
+
+.unlp-box:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                inset 0 0 15px rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.unlp-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+                                transparent 30%, 
+                                rgba(255, 255, 255, 0.1) 30%, 
+                                transparent 70%);
+    opacity: 0.3;
+    animation: unlpRipple 15s linear infinite;
+    z-index: 0;
+}
+
+@keyframes unlpRipple {
+    0% {
+        transform: rotate(0deg) scale(0.8);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+    100% {
+        transform: rotate(360deg) scale(0.8);
+    }
+}
+
+.unlp-box-content {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+    color: white;
+}
+
+.unlp-decoration {
+    position: relative;
+    height: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.unlp-letters {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    animation: unlpGlowPulse 5s infinite alternate;
+}
+
+@keyframes unlpGlowPulse {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        letter-spacing: 4px;
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 
+                     0 0 30px rgba(66, 133, 244, 0.6);
+        letter-spacing: 6px;
+    }
+}
+
+.unlp-symbol {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin: 0 auto;
+    animation: unlpRotate 10s infinite linear;
+}
+
+.unlp-symbol::before, 
+.unlp-symbol::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.unlp-symbol::before {
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: unlpRotate 8s infinite linear reverse;
+}
+
+.unlp-symbol::after {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: unlpRotate 6s infinite linear;
+}
+
+@keyframes unlpRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.unlp-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.unlp-particles::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    filter: blur(5px);
+    animation: unlpParticleMove 20s infinite ease-in-out;
+}
+
+@keyframes unlpParticleMove {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(20px, -10px) scale(1.2);
+    }
+    50% {
+        transform: translate(-20px, 20px) scale(0.8);
+    }
+    75% {
+        transform: translate(10px, -20px) scale(1.1);
+    }
+}
+
+.unlp-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.unlp-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, #5389ed, #b4d2ff);
+    transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.unlp-box:hover .unlp-title::after {
+    width: 100%;
+}
+
+.unlp-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.accent-text {
+    color: #b4d2ff;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.accent-text::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(180, 210, 255, 0.3);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.unlp-box:hover .accent-text::before {
+    transform: scaleX(1);
+}
+
+.unlp-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.unlp-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                                transparent, 
+                                rgba(255, 255, 255, 0.2), 
+                                transparent);
+    transition: left 0.7s ease;
+}
+
+.unlp-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.unlp-button:hover::before {
+    left: 100%;
+}
+
+.unlp-button-arrow {
+    margin-left: 8px;
+    stroke: white;
+    stroke-width: 2;
+    fill: none;
+    transition: transform 0.3s ease;
+}
+
+.unlp-button:hover .unlp-button-arrow {
+    transform: translateX(3px);
+}
+
+/* Estilo para asegurar que el box sea responsive */
+@media (max-width: 768px) {
+    .unlp-letters {
+        font-size: 48px;
+    }
+    
+    .unlp-title {
+        font-size: 20px;
+    }
+    
+    .unlp-description {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .unlp-letters {
+        font-size: 36px;
+    }
+    
+    .unlp-box-content {
+        padding: 20px;
+    }
+}
+
+/* Estilos para el box de Bombero Voluntario */
+.firefighter-box {
+    margin: 30px 0;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(178, 34, 34, 0.8));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                inset 0 0 15px rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s;
+}
+
+.firefighter-box:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                inset 0 0 15px rgba(255, 255, 255, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.firefighter-box-content {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+    color: white;
+}
+
+.firefighter-decoration {
+    position: relative;
+    height: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.firefighter-icon {
+    font-size: 50px;
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    animation: flicker 3s infinite alternate;
+    z-index: 2;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    }
+    20%, 24%, 55% {
+        opacity: 0.5;
+        text-shadow: none;
+    }
+}
+
+/* Luces de sirena que se activan al hover */
+.siren-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.firefighter-box:hover .siren-lights {
+    opacity: 1;
+}
+
+.siren-light {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.siren-light.left {
+    left: -50px;
+    background: radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(255,0,0,0) 70%);
+    animation: sirenLeft 1s infinite alternate;
+}
+
+.siren-light.right {
+    right: -50px;
+    background: radial-gradient(circle, rgba(255,0,0,0.8) 0%, rgba(255,0,0,0) 70%);
+    animation: sirenRight 1s infinite alternate;
+}
+
+@keyframes sirenLeft {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0.5);
+    }
+    50% {
+        opacity: 0.3;
+        box-shadow: none;
+    }
+}
+
+@keyframes sirenRight {
+    0%, 100% {
+        opacity: 0.3;
+        box-shadow: none;
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0.5);
+    }
+}
+
+.firefighter-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.firefighter-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, #ff3b3b, #ffcaca);
+    transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.firefighter-box:hover .firefighter-title::after {
+    width: 100%;
+}
+
+.firefighter-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.accent-text-fire {
+    color: #ffd700;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.accent-text-fire::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 215, 0, 0.3);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.firefighter-box:hover .accent-text-fire::before {
+    transform: scaleX(1);
+}
+
+.firefighter-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    margin-top: 10px;
+}
+
+.firefighter-badge i {
+    color: #ffd700;
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.firefighter-badge span {
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Efecto de sirena en todo el box al hacer hover */
+.firefighter-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+                rgba(255, 0, 0, 0) 0%, 
+                rgba(255, 0, 0, 0.3) 50%, 
+                rgba(255, 0, 0, 0) 100%);
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.3s;
+}
+
+.firefighter-box:hover::before {
+    animation: sirenSweep 2s infinite;
+    opacity: 1;
+}
+
+@keyframes sirenSweep {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .firefighter-icon {
+        font-size: 40px;
+    }
+    
+    .firefighter-title {
+        font-size: 20px;
+    }
+    
+    .firefighter-description {
+        font-size: 14px;
+    }
+}
+
+/* Estilos para el box de Analista Programador con estilo de código */
+.coding-box {
+    margin: 30px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #1e1e1e; /* Color de fondo de VSCode/editor de código */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.coding-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                0 0 15px rgba(103, 175, 255, 0.5),
+                0 0 0 1px rgba(103, 175, 255, 0.1) inset;
+}
+
+.coding-box-content {
+    position: relative;
+    padding: 0 0 25px 0;
+    color: #e2e2e2;
+}
+
+/* Header de la terminal */
+.terminal-header {
+    background: #252525;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-dot.red { background-color: #ff5f56; }
+.terminal-dot.yellow { background-color: #ffbd2e; }
+.terminal-dot.green { background-color: #27c93f; }
+
+.terminal-title {
+    margin-left: 15px;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 12px;
+    color: #9e9e9e;
+    flex-grow: 1;
+}
+
+/* Contenedor de código animado */
+.code-animation {
+    background-color: #1e1e1e;
+    padding: 20px;
+    position: relative;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.code-content {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* Estilos de coloración sintáctica */
+.code-keyword { color: #569cd6; }
+.code-class { color: #4ec9b0; }
+.code-comment { color: #608b4e; }
+.code-string { color: #ce9178; }
+.code-function { color: #dcdcaa; }
+.code-this { color: #569cd6; }
+
+/* Cursor parpadeante */
+.cursor-blink {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 8px;
+    height: 18px;
+    background-color: #67afff;
+    animation: cursor-blink 1s infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Título y descripción */
+.coding-title {
+    font-size: 24px;
+    color: #67afff;
+    margin: 20px 20px 10px 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.coding-description {
+    padding: 0 20px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #d2d2d2;
+}
+
+.accent-text-code {
+    color: #7cb4ff;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.accent-text-code:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #7cb4ff, #4ec9b0);
+    transition: width 0.3s ease;
+}
+
+.coding-box:hover .accent-text-code:after {
+    width: 100%;
+}
+
+/* Tecnologías */
+.coding-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.tech-pill {
+    background-color: #2d2d2d;
+    color: #4ec9b0;
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+}
+
+.tech-pill:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de enlace a información de la carrera */
+.coding-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 20px;
+    padding: 8px 16px;
+    background-color: #0e639c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.coding-button:hover {
+    background-color: #1177bb;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.coding-button i {
+    font-size: 1rem;
+}
+
+/* Efecto de tipeo de código */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.code-animation:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                transparent 0%, 
+                transparent 99%, 
+                #1e1e1e 99.5%, 
+                #1e1e1e 100%);
+    animation: typing 3s steps(40) 1s forwards;
+}
+
+/* Para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .code-animation {
+        font-size: 12px;
+        padding: 15px;
+    }
+    
+    .coding-techs {
+        justify-content: center;
+    }
+    
+    .coding-title {
+        font-size: 20px;
+    }
+}
+
+/* Estilos para la sección Estoy Aprendiendo */
+#aprendiendo {
+    margin: 4rem auto;
+    padding: 5rem 5% 6rem;
+    position: relative;
+    background-color: var(--background-color);
+}
+
+.aprendiendo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 3rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.aprendiendo-card {
+    position: relative;
+    background-color: var(--card-bg-color);
+    border-radius: 14px;
+    overflow: hidden;
+    height: auto; /* Cambiado de altura fija a auto */
+    min-height: 300px; /* Altura mínima para mantener la consistencia */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 15px; /* Aumentado el padding para más espacio */
+    border: 1px solid var(--border-color);
+    z-index: 1;
+}
+
+.aprendiendo-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(103, 175, 255, 0.2);
+}
+
+.aprendiendo-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 25px 0;
+    margin-bottom: 15px;
+    transition: transform 0.4s;
+}
+
+.aprendiendo-card:hover .aprendiendo-logo {
+    transform: translateY(-15px) scale(0.95);
+}
+
+.aprendiendo-logo i {
+    font-size: 5rem;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+/* Colores específicos para cada tecnología */
+.aprendiendo-card[data-tech="javascript"] .aprendiendo-logo i {
+    color: #f7df1e; /* Amarillo JavaScript */
+}
+
+.aprendiendo-card[data-tech="html"] .aprendiendo-logo i {
+    color: #e34c26; /* Naranja HTML */
+}
+
+.aprendiendo-card[data-tech="css"] .aprendiendo-logo i {
+    color: #264de4; /* Azul CSS */
+}
+
+.aprendiendo-card[data-tech="java"] .aprendiendo-logo i {
+    color: #5382a1; /* Azul Java */
+}
+
+.aprendiendo-logo span {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.aprendiendo-info {
+    padding: 10px 15px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    z-index: 2; /* Asegura que el contenido esté sobre las partículas */
+}
+
+.aprendiendo-info h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    align-self: center;
+}
+
+.aprendiendo-info h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.aprendiendo-card:hover .aprendiendo-info h4::after {
+    width: 100%;
+}
+
+.aprendiendo-info p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+/* Contenedor para las partículas */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    backdrop-filter: blur(2px); /* Efecto de desenfoque sutil */
+}
+
+/* Estilos para las partículas */
+.tech-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    border-radius: 2px; /* Bordes levemente redondeados para formas más interesantes */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .aprendiendo-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .aprendiendo-logo i {
+        font-size: 4rem;
     }
 }

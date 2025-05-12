@@ -9,6 +9,10 @@
     <meta property="og:title" content="Julianidiego - Desarrollador de Software">
     <meta property="og:description" content="Portafolio profesional con proyectos y experiencia en desarrollo de software">
     <meta property="og:type" content="website">
+    <!-- Tema preferido del sistema -->
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)">
     
     <title>Julianidiego | Desarrollador de Software</title>
     <link rel="stylesheet" href="styles.css">
@@ -24,6 +28,7 @@
     <!-- Scripts compilados de la aplicación React -->
     <script src="dist/bundle.js" defer></script>
 </head>
+<!-- No se añade data-theme por defecto, se establecerá mediante JavaScript según la preferencia del usuario -->
 <body>
     <canvas id="particles-canvas"></canvas>
     <header>

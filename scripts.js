@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initTestimonialCarousel();
     initAprendiendoCards();
     addAprendiendoNavLink();
+    createThemeToggle();
+    restoreThemePreference();
 
     // Efecto para tarjetas de lenguaje que coincide con el estilo de tarjetas sociales
     function initLanguageCards() {
@@ -1057,5 +1059,42 @@ function addAprendiendoNavLink() {
         // Insertar después del enlace "Sobre mí"
         const sobreMiLi = sobreMiLink.parentNode;
         navUl.insertBefore(li, sobreMiLi.nextSibling);
+    }
+}
+
+// Función para alternar entre modo claro y oscuro
+function toggleDarkMode() {
+    const body = document.body;
+    const currentTheme = body.getAttribute('data-theme') || 'light';
+    
+    // Cambiar el tema
+    if (currentTheme === 'light') {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        body.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Crear el botón de cambio de tema
+function createThemeToggle() {
+    const themeToggle = document.createElement('button');
+    themeToggle.className = 'theme-toggle';
+    themeToggle.setAttribute('aria-label', 'Cambiar modo de visualización');
+    themeToggle.innerHTML = `
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    `;
+    
+    themeToggle.addEventListener('click', toggleDarkMode);
+    document.body.appendChild(themeToggle);
+}
+
+// Restaurar el tema preferido del usuario
+function restoreThemePreference() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.body.setAttribute('data-theme', savedTheme);
     }
 }

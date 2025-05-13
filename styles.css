@@ -2360,3 +2360,327 @@ section h2::after {
         font-size: 4rem;
     }
 }
+
+/* Estilos para la sección de visualización de datos */
+.data-viz-section {
+    background-color: var(--background-color);
+    padding: 5rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.section-title .accent {
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title .accent::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background-color: rgba(var(--primary-color-rgb), 0.2);
+    z-index: -1;
+}
+
+.section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.viz-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.viz-nav-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.viz-nav-btn:hover, .viz-nav-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.viz-container {
+    position: relative;
+    margin-bottom: 3rem;
+    min-height: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+}
+
+.viz-panel {
+    display: none;
+    padding: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.viz-panel.active {
+    display: grid;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chart-container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background: var(--background-color);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-color);
+}
+
+.chart-description h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.chart-description p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.color-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.chart-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background-color: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.projects-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.highlight-project {
+    background-color: var(--background-color);
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.highlight-project h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.project-tech {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.project-contrib {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.languages-proficiency {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.proficiency-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr 0.5fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.language {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.proficiency-bar {
+    height: 10px;
+    background-color: var(--background-color);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.proficiency-level {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 5px;
+    transition: width 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    width: 0;
+}
+
+.proficiency-percent {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.data-source {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    border-top: 1px dashed var(--border-color);
+}
+
+.source-info, .source-tech {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.source-info i, .source-tech i {
+    color: var(--primary-color);
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .viz-panel {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-container {
+        height: 350px;
+    }
+    
+    .projects-highlights {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .viz-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .viz-nav-btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}

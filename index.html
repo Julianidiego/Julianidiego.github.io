@@ -14,12 +14,14 @@
     <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)">
     
-    <title>Julianidiego | Desarrollador de Software</title>
+    <title>Diego Juliani - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Añadiendo Chart.js para visualizaciones de datos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="scripts.js" defer></script>
     
     <!-- Scripts de React en modo desarrollo -->
@@ -202,7 +204,7 @@
                         <div class="timeline-content">
                             <div class="timeline-date">2021</div>
                             <h3 class="timeline-title">API RESTful</h3>
-                            <p class="timeline-desc">Desarrollo de una API RESTful escalable para conectar múltiples servicios y aplicaciones cliente, con autenticación JWT y documentación automatizada.</p>
+                            <p>Desarrollo de una API RESTful escalable para conectar múltiples servicios y aplicaciones cliente, con autenticación JWT y documentación automatizada.</p>
                             <div class="timeline-tech">
                                 <span>Node.js</span>
                                 <span>Express</span>
@@ -331,6 +333,148 @@
                                 <i class="far fa-star"></i>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Nueva sección: Visualizaciones de datos -->
+        <section id="visualizaciones" class="data-viz-section">
+            <div class="section-container">
+                <h2 class="section-title">Visualización de <span class="accent">Datos</span></h2>
+                <p class="section-intro">Una representación visual de mi progreso y habilidades en desarrollo de software, con gráficos interactivos que muestran mi evolución a lo largo del tiempo.</p>
+                
+                <div class="viz-nav">
+                    <button class="viz-nav-btn active" data-chart="skills">Habilidades</button>
+                    <button class="viz-nav-btn" data-chart="progress">Progreso</button>
+                    <button class="viz-nav-btn" data-chart="projects">Proyectos</button>
+                    <button class="viz-nav-btn" data-chart="languages">Lenguajes</button>
+                </div>
+                
+                <div class="viz-container">
+                    <div class="viz-panel active" id="skills-panel">
+                        <div class="chart-container">
+                            <canvas id="skills-chart"></canvas>
+                        </div>
+                        <div class="chart-description">
+                            <h3>Distribución de Habilidades</h3>
+                            <p>Este gráfico muestra la distribución de mis habilidades técnicas entre diferentes áreas del desarrollo de software. Frontend incluye HTML, CSS y JavaScript, mientras que Backend abarca Python, C# y Java. Bases de Datos contempla SQL y NoSQL, y DevOps incluye Docker, Git y CI/CD.</p>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <span class="color-dot" style="background-color: rgba(88, 166, 255, 0.7)"></span>
+                                    <span>Frontend (HTML, CSS, JS)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="color-dot" style="background-color: rgba(63, 185, 80, 0.7)"></span>
+                                    <span>Backend (Python, C#, Java)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="color-dot" style="background-color: rgba(249, 117, 131, 0.7)"></span>
+                                    <span>Bases de Datos (SQL, NoSQL)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="color-dot" style="background-color: rgba(255, 171, 76, 0.7)"></span>
+                                    <span>DevOps (Docker, Git, CI/CD)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="viz-panel" id="progress-panel">
+                        <div class="chart-container">
+                            <canvas id="progress-chart"></canvas>
+                        </div>
+                        <div class="chart-description">
+                            <h3>Progreso de Aprendizaje</h3>
+                            <p>Esta línea de tiempo muestra mi progreso en el dominio de diferentes lenguajes de programación y tecnologías durante los últimos 5 años. El gráfico refleja tanto mi formación académica como el aprendizaje autodidacta.</p>
+                            <div class="chart-stats">
+                                <div class="stat-card">
+                                    <div class="stat-value">2,500+</div>
+                                    <div class="stat-label">Horas de código</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">35+</div>
+                                    <div class="stat-label">Cursos completados</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">12+</div>
+                                    <div class="stat-label">Tecnologías aprendidas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="viz-panel" id="projects-panel">
+                        <div class="chart-container">
+                            <canvas id="projects-chart"></canvas>
+                        </div>
+                        <div class="chart-description">
+                            <h3>Distribución de Proyectos</h3>
+                            <p>Este gráfico muestra la distribución de mis proyectos por categoría y tecnología principal utilizada. Los proyectos académicos son parte de mi formación universitaria, mientras que los proyectos personales son desarrollados por iniciativa propia.</p>
+                            <div class="projects-highlights">
+                                <div class="highlight-project">
+                                    <h4>Dashboard Analítico</h4>
+                                    <div class="project-tech">Python · Django · Chart.js</div>
+                                    <div class="project-contrib">Mayor proyecto: 3,500+ líneas de código</div>
+                                </div>
+                                <div class="highlight-project">
+                                    <h4>Sistema de Gestión</h4>
+                                    <div class="project-tech">C# · SQL · .NET</div>
+                                    <div class="project-contrib">Proyecto más complejo: 15+ entidades</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="viz-panel" id="languages-panel">
+                        <div class="chart-container">
+                            <canvas id="languages-chart"></canvas>
+                        </div>
+                        <div class="chart-description">
+                            <h3>Tiempo Dedicado por Lenguaje</h3>
+                            <p>Este gráfico muestra la distribución del tiempo que he dedicado a cada lenguaje de programación durante mi formación y desarrollo profesional. Python y SQL son los lenguajes con los que más he trabajado, seguidos por C# y C++.</p>
+                            <div class="languages-proficiency">
+                                <div class="proficiency-item">
+                                    <div class="language">Python</div>
+                                    <div class="proficiency-bar">
+                                        <div class="proficiency-level" style="width: 90%"></div>
+                                    </div>
+                                    <div class="proficiency-percent">90%</div>
+                                </div>
+                                <div class="proficiency-item">
+                                    <div class="language">SQL</div>
+                                    <div class="proficiency-bar">
+                                        <div class="proficiency-level" style="width: 85%"></div>
+                                    </div>
+                                    <div class="proficiency-percent">85%</div>
+                                </div>
+                                <div class="proficiency-item">
+                                    <div class="language">C#</div>
+                                    <div class="proficiency-bar">
+                                        <div class="proficiency-level" style="width: 75%"></div>
+                                    </div>
+                                    <div class="proficiency-percent">75%</div>
+                                </div>
+                                <div class="proficiency-item">
+                                    <div class="language">C++</div>
+                                    <div class="proficiency-bar">
+                                        <div class="proficiency-level" style="width: 65%"></div>
+                                    </div>
+                                    <div class="proficiency-percent">65%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="data-source">
+                    <div class="source-info">
+                        <i class="fas fa-database"></i>
+                        <span>Datos actualizados: <strong>Mayo 2025</strong></span>
+                    </div>
+                    <div class="source-tech">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Visualizado con: <strong>Chart.js</strong></span>
                     </div>
                 </div>
             </div>

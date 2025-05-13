@@ -16,21 +16,14 @@
     
     <title>Diego Hernán Juliani - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="build/static/css/main.962b20b6.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Añadiendo Chart.js para visualizaciones de datos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Scripts tradicionales -->
     <script src="scripts.js" defer></script>
-    
-    <!-- Scripts de React en modo desarrollo -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <!-- Scripts compilados de la aplicación React -->
-    <script src="dist/bundle.js" defer></script>
-    <script src="build/static/js/main.f4087bde.js"></script>
 </head>
 <!-- No se añade data-theme por defecto, se establecerá mediante JavaScript según la preferencia del usuario -->
 <body>
@@ -751,5 +744,8 @@
     
     <!-- Contenedor para React -->
     <div id="root"></div>
+    
+    <!-- Cargamos el script de React generado por webpack -->
+    <script src="build/static/js/bundle.js"></script>
 </body>
 </html>

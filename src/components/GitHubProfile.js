@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import './GitHubProfile.css';
 
 const GitHubProfile = ({ username }) => {
   const [profile, setProfile] = useState(null);
@@ -12,14 +12,22 @@ const GitHubProfile = ({ username }) => {
       try {
         setLoading(true);
         
-        // Obtener datos del perfil
-        const profileResponse = await axios.get(`https://api.github.com/users/${username}`);
+        // Utilizamos fetch nativo en lugar de axios para reducir dependencias
+        const profileResponse = await fetch(`https://api.github.com/users/${username}`);
+        if (!profileResponse.ok) {
+          throw new Error(`Error al obtener perfil: ${profileResponse.status}`);
+        }
+        const profileData = await profileResponse.json();
         
         // Obtener repositorios
-        const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
+        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
+        if (!reposResponse.ok) {
+          throw new Error(`Error al obtener repositorios: ${reposResponse.status}`);
+        }
+        const reposData = await reposResponse.json();
         
-        setProfile(profileResponse.data);
-        setRepos(reposResponse.data);
+        setProfile(profileData);
+        setRepos(reposData);
         setLoading(false);
       } catch (err) {
         setError('Error al obtener datos de GitHub: ' + err.message);

@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-// Esperar a que el DOM esté completamente cargado para evitar conflictos 
-// con los scripts tradicionales del sitio
+// Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
-  // Verificar que el elemento root exista antes de intentar renderizar
   const rootElement = document.getElementById('root');
+  
   if (rootElement) {
     try {
+      // Crear root de React y renderizar la aplicación
       const root = ReactDOM.createRoot(rootElement);
       root.render(
         <React.StrictMode>

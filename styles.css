@@ -2360,3 +2360,404 @@ section h2::after {
         font-size: 4rem;
     }
 }
+
+/* Estilos para la sección de Blog Técnico */
+.blog-section {
+    background-color: var(--background-color);
+    padding: 5rem 5%;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.blog-intro {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.blog-categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.blog-category {
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.blog-category.active, .blog-category:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.blog-card {
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.blog-card.featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    z-index: 10;
+}
+
+.blog-card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: rgba(var(--primary-color-rgb), 0.05);
+}
+
+.featured-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+.blog-card-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 60px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.blog-card-date .day {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.blog-card-date .month, 
+.blog-card-date .year {
+    font-size: 0.75rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.blog-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.blog-tag {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.blog-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.blog-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.blog-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.blog-card-excerpt {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.blog-card-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.blog-card-meta i {
+    margin-right: 5px;
+}
+
+.blog-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.blog-card-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: width 0.4s ease;
+    opacity: 0.1;
+}
+
+.blog-card-link:hover {
+    color: var(--primary-color);
+}
+
+.blog-card-link:hover i {
+    transform: translateX(5px);
+}
+
+.blog-card-link:hover::before {
+    width: 100%;
+}
+
+.blog-card-link i {
+    transition: transform 0.3s ease;
+}
+
+/* Newsletter Section */
+.blog-newsletter {
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.newsletter-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    min-height: 250px;
+}
+
+.newsletter-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.newsletter-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.newsletter-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    max-width: 90%;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 90%;
+}
+
+.newsletter-form input[type="email"] {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.newsletter-form button {
+    padding: 0 1.5rem;
+    height: 100%;
+}
+
+.newsletter-image {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-image::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    animation: pulse 5s infinite;
+}
+
+.newsletter-image i {
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* Responsive styles for blog section */
+@media (max-width: 992px) {
+    .blog-container {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    
+    .newsletter-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .newsletter-image {
+        height: 150px;
+    }
+    
+    .newsletter-image i {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .blog-categories {
+        gap: 0.5rem;
+    }
+    
+    .blog-category {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .newsletter-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .newsletter-content p {
+        max-width: 100%;
+    }
+}

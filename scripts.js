@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
     addAprendiendoNavLink();
     createThemeToggle();
     restoreThemePreference();
+    initBlogFilters();
+    initNewsletterForm();
 
     // Efecto para tarjetas de lenguaje que coincide con el estilo de tarjetas sociales
     function initLanguageCards() {
@@ -1096,5 +1098,75 @@ function restoreThemePreference() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         document.body.setAttribute('data-theme', savedTheme);
+    }
+}
+
+// Función para manejar el filtrado de artículos del blog por categoría
+function initBlogFilters() {
+    const categoryButtons = document.querySelectorAll('.blog-category');
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    if (categoryButtons.length > 0 && blogCards.length > 0) {
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remover clase active de todos los botones
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Añadir clase active al botón seleccionado
+                button.classList.add('active');
+                
+                const selectedCategory = button.getAttribute('data-category');
+                
+                // Filtrar los artículos
+                blogCards.forEach(card => {
+                    if (selectedCategory === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const categories = card.getAttribute('data-categories').split(',');
+                        if (categories.includes(selectedCategory)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+                
+                // Animar la aparición con un pequeño retraso escalonado
+                let delay = 0;
+                blogCards.forEach(card => {
+                    if (card.style.display === 'flex') {
+                        setTimeout(() => {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            
+                            // Forzar un reflow para que la animación funcione
+                            void card.offsetWidth;
+                            
+                            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, delay);
+                        delay += 100;
+                    }
+                });
+            });
+        });
+    }
+}
+
+// Función para suscripción al newsletter (simulada)
+function initNewsletterForm() {
+    const newsletterForm = document.querySelector('.newsletter-form');
+    
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            
+            if (emailInput && emailInput.value) {
+                // Simulamos un envío exitoso
+                alert(`¡Gracias por suscribirte con ${emailInput.value}! Recibirás pronto noticias y artículos.`);
+                emailInput.value = '';
+            }
+        });
     }
 }

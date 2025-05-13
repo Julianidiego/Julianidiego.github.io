@@ -30,19 +30,23 @@
 </head>
 <!-- No se añade data-theme por defecto, se establecerá mediante JavaScript según la preferencia del usuario -->
 <body>
-    <canvas id="particles-canvas"></canvas>
-    <header>
-        <nav>
+    <!-- Skip to content link for accessibility -->
+    <a href="#inicio" class="skip-link">Saltar al contenido principal</a>
+    
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    <header role="banner">
+        <nav role="navigation" aria-label="Navegación principal">
             <h1>
                 <span class="logo-text">Julianidiego</span>
-                <a href="https://github.com/Julianidiego" target="_blank" class="header-github-link" aria-label="GitHub profile">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <a href="https://github.com/Julianidiego" target="_blank" class="header-github-link" aria-label="Perfil de GitHub - abre en una nueva ventana">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                 </a>
             </h1>
             <ul>
                 <li><a href="#inicio" class="nav-link"><span>Inicio</span></a></li>
+                <li><a href="#blog-tecnico" class="nav-link"><span>Blog Técnico</span></a></li>
                 <li><a href="#proyectos" class="nav-link"><span>Proyectos</span></a></li>
                 <li><a href="#lenguajes" class="nav-link"><span>Lenguajes</span></a></li>
                 <li><a href="#sobre-mi" class="nav-link"><span>Sobre mí</span></a></li>
@@ -77,7 +81,182 @@
             </div>
         </section>
         
-        <!-- Proyectos (Ahora justo después del inicio) -->
+        <!-- Nueva sección: Blog Técnico -->
+        <section id="blog-tecnico" class="blog-section" aria-labelledby="blog-tecnico-title">
+            <h2 id="blog-tecnico-title" class="section-title">Blog <span class="accent">Técnico</span></h2>
+            
+            <div class="blog-intro">
+                <p>Comparto mis conocimientos, experiencias y descubrimientos en el mundo de la programación. Aquí encontrarás artículos sobre desarrollo de software, tecnologías emergentes y buenas prácticas.</p>
+            </div>
+
+            <div class="blog-categories">
+                <button class="blog-category active" data-category="all">Todos</button>
+                <button class="blog-category" data-category="programming">Programación</button>
+                <button class="blog-category" data-category="data-science">Data Science</button>
+                <button class="blog-category" data-category="webdev">Desarrollo Web</button>
+                <button class="blog-category" data-category="tools">Herramientas</button>
+            </div>
+            
+            <div class="blog-container">
+                <!-- Artículo 1 -->
+                <article class="blog-card" data-categories="programming,webdev">
+                    <div class="blog-card-header">
+                        <div class="blog-card-date">
+                            <span class="day">12</span>
+                            <span class="month">May</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">JavaScript</span>
+                            <span class="blog-tag">Frontend</span>
+                        </div>
+                    </div>
+                    <div class="blog-card-content">
+                        <h3 class="blog-card-title">Optimización del Rendimiento en Aplicaciones React</h3>
+                        <p class="blog-card-excerpt">Técnicas avanzadas para mejorar el rendimiento de tus aplicaciones React, incluyendo memoización, uso efectivo de hooks y estrategias de renderizado.</p>
+                        <div class="blog-card-meta">
+                            <span class="read-time"><i class="far fa-clock"></i> 8 min lectura</span>
+                        </div>
+                        <a href="#" class="blog-card-link">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Artículo 2 -->
+                <article class="blog-card" data-categories="data-science,programming">
+                    <div class="blog-card-header">
+                        <div class="blog-card-date">
+                            <span class="day">05</span>
+                            <span class="month">May</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Python</span>
+                            <span class="blog-tag">ML</span>
+                        </div>
+                    </div>
+                    <div class="blog-card-content">
+                        <h3 class="blog-card-title">Introducción a Pandas para Análisis de Datos</h3>
+                        <p class="blog-card-excerpt">Una guía práctica para comenzar con Pandas, la biblioteca de Python para análisis y manipulación de datos. Incluye ejemplos de código y casos de uso.</p>
+                        <div class="blog-card-meta">
+                            <span class="read-time"><i class="far fa-clock"></i> 12 min lectura</span>
+                        </div>
+                        <a href="#" class="blog-card-link">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Artículo 3 -->
+                <article class="blog-card" data-categories="webdev,tools">
+                    <div class="blog-card-header">
+                        <div class="blog-card-date">
+                            <span class="day">28</span>
+                            <span class="month">Abr</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">DevOps</span>
+                            <span class="blog-tag">CI/CD</span>
+                        </div>
+                    </div>
+                    <div class="blog-card-content">
+                        <h3 class="blog-card-title">Automatización del Despliegue con GitHub Actions</h3>
+                        <p class="blog-card-excerpt">Aprende a configurar pipelines de CI/CD usando GitHub Actions para automatizar pruebas, construcción y despliegue de tus proyectos web.</p>
+                        <div class="blog-card-meta">
+                            <span class="read-time"><i class="far fa-clock"></i> 10 min lectura</span>
+                        </div>
+                        <a href="#" class="blog-card-link">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Artículo 4 -->
+                <article class="blog-card featured" data-categories="programming,tools">
+                    <div class="blog-card-header">
+                        <div class="featured-label">Destacado</div>
+                        <div class="blog-card-date">
+                            <span class="day">20</span>
+                            <span class="month">Abr</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">VSCode</span>
+                            <span class="blog-tag">Productividad</span>
+                        </div>
+                    </div>
+                    <div class="blog-card-content">
+                        <h3 class="blog-card-title">10 Extensiones de VS Code que Todo Desarrollador Debería Conocer</h3>
+                        <p class="blog-card-excerpt">Una selección de las extensiones más útiles para VS Code que pueden mejorar significativamente tu flujo de trabajo y productividad como desarrollador.</p>
+                        <div class="blog-card-meta">
+                            <span class="read-time"><i class="far fa-clock"></i> 6 min lectura</span>
+                            <span class="comments"><i class="far fa-comment"></i> 15 comentarios</span>
+                        </div>
+                        <a href="#" class="blog-card-link">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Artículo 5 -->
+                <article class="blog-card" data-categories="webdev,programming">
+                    <div class="blog-card-header">
+                        <div class="blog-card-date">
+                            <span class="day">15</span>
+                            <span class="month">Abr</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">CSS</span>
+                            <span class="blog-tag">Diseño</span>
+                        </div>
+                    </div>
+                    <div class="blog-card-content">
+                        <h3 class="blog-card-title">Dominando CSS Grid: Layouts Modernos para la Web</h3>
+                        <p class="blog-card-excerpt">Exploración detallada de CSS Grid Layout, con ejemplos prácticos y técnicas para crear diseños web responsivos y complejos.</p>
+                        <div class="blog-card-meta">
+                            <span class="read-time"><i class="far fa-clock"></i> 9 min lectura</span>
+                        </div>
+                        <a href="#" class="blog-card-link">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Artículo 6 -->
+                <article class="blog-card" data-categories="data-science">
+                    <div class="blog-card-header">
+                        <div class="blog-card-date">
+                            <span class="day">08</span>
+                            <span class="month">Abr</span>
+                            <span class="year">2025</span>
+                        </div>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">SQL</span>
+                            <span class="blog-tag">Datos</span>
+                        </div>
+                    </div>
+                    <div class="blog-card-content">
+                        <h3 class="blog-card-title">Consultas SQL Avanzadas para Análisis de Datos</h3>
+                        <p class="blog-card-excerpt">Técnicas y patrones de SQL para extraer información valiosa de bases de datos complejas, incluyendo window functions y CTEs.</p>
+                        <div class="blog-card-meta">
+                            <span class="read-time"><i class="far fa-clock"></i> 11 min lectura</span>
+                        </div>
+                        <a href="#" class="blog-card-link">Leer artículo completo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="blog-newsletter">
+                <div class="newsletter-container">
+                    <div class="newsletter-content">
+                        <h3>Suscríbete a mi Newsletter</h3>
+                        <p>Recibe mis últimos artículos técnicos, tips de programación y recursos directamente en tu bandeja de entrada.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Tu correo electrónico" required aria-label="Tu correo electrónico">
+                            <button type="submit" class="btn btn-primary">Suscribirse</button>
+                        </form>
+                    </div>
+                    <div class="newsletter-image">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Proyectos (Ahora justo después del blog técnico) -->
         <section id="proyectos" class="section">
             <h2 class="section-title">Proyectos</h2>
             

@@ -2360,3 +2360,353 @@ section h2::after {
         font-size: 4rem;
     }
 }
+
+/* Estilos para la Sección de Perfil Personal */
+.personal-profile-section {
+    background-color: var(--background-color);
+    padding: 5rem 5%;
+    position: relative;
+}
+
+.personal-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.personal-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.personal-interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 4rem;
+}
+
+/* Tarjetas de intereses */
+.interest-card {
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.interest-header {
+    padding: 25px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.interest-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.interest-card:hover .interest-header::before {
+    transform: scaleX(1);
+}
+
+.interest-icon-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.interest-icon {
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+.interest-header h3 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.interest-content {
+    padding: 25px;
+    position: relative;
+}
+
+.interest-content p {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.interest-stats {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.recent-activity {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.recent-activity h4 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.activity-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.activity-list li {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    position: relative;
+    color: var(--text-color);
+}
+
+.activity-list li::before {
+    content: '•';
+    position: absolute;
+    left: 5px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.interest-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.interest-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.4s ease;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.interest-link:hover {
+    color: var(--primary-color);
+}
+
+.interest-link:hover::before {
+    width: 100%;
+}
+
+.interest-link i {
+    transition: transform 0.3s ease;
+}
+
+.interest-link:hover i {
+    transform: translateX(5px);
+}
+
+/* Estilos específicos para cada plataforma */
+.letterboxd .interest-icon {
+    color: #ff8000;
+}
+
+.goodreads .interest-icon {
+    color: #553b08;
+}
+
+.kaggle .interest-icon {
+    color: #20beff;
+}
+
+.discord .interest-icon {
+    color: #7289da;
+}
+
+.telegram .interest-icon {
+    color: #0088cc;
+}
+
+.spotify .interest-icon {
+    color: #1db954;
+}
+
+/* Sección de visualización de datos personales */
+.personal-data-viz {
+    background-color: var(--card-bg-color);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.personal-data-viz h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.data-viz-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.viz-item {
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+}
+
+.viz-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Gráfico de barras para géneros favoritos */
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chart-bar {
+    position: relative;
+    height: 35px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.chart-bar:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chart-label {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    flex-grow: 1;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.chart-value {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Nube de directores */
+.director-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.director-tag {
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.director-tag:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.2);
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .personal-interests-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .data-viz-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .personal-data-viz {
+        padding: 20px;
+    }
+}

@@ -30,13 +30,16 @@
 </head>
 <!-- No se añade data-theme por defecto, se establecerá mediante JavaScript según la preferencia del usuario -->
 <body>
-    <canvas id="particles-canvas"></canvas>
-    <header>
-        <nav>
+    <!-- Skip to content link for accessibility -->
+    <a href="#inicio" class="skip-link">Saltar al contenido principal</a>
+    
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    <header role="banner">
+        <nav role="navigation" aria-label="Navegación principal">
             <h1>
                 <span class="logo-text">Julianidiego</span>
-                <a href="https://github.com/Julianidiego" target="_blank" class="header-github-link" aria-label="GitHub profile">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <a href="https://github.com/Julianidiego" target="_blank" class="header-github-link" aria-label="Perfil de GitHub - abre en una nueva ventana">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
                 </a>
@@ -46,22 +49,23 @@
                 <li><a href="#proyectos" class="nav-link"><span>Proyectos</span></a></li>
                 <li><a href="#lenguajes" class="nav-link"><span>Lenguajes</span></a></li>
                 <li><a href="#sobre-mi" class="nav-link"><span>Sobre mí</span></a></li>
+                <li><a href="#perfil-personal" class="nav-link"><span>Perfil Personal</span></a></li>
                 <li><a href="#redes-sociales" class="nav-link"><span>Redes Sociales</span></a></li>
             </ul>
         </nav>
     </header>
     
-    <main>
+    <main id="contenido-principal" role="main">
         <!-- Sección Hero/Inicio -->
-        <section id="inicio" class="hero-section">
+        <section id="inicio" class="hero-section" aria-labelledby="hero-title">
             <div class="hero-content">
                 <div class="welcome-container">
-                    <div class="octocat-animation">
+                    <div class="octocat-animation" aria-hidden="true">
                         <div class="octocat">
-                            <img src="./images/octocat.svg" alt="GitHub Octocat">
+                            <img src="./images/octocat.svg" alt="GitHub Octocat animado" width="40" height="40">
                         </div>
                     </div>
-                    <h2 class="glitch-text" data-text="Bienvenido a mi sitio web">Bienvenido a mi sitio web</h2>
+                    <h2 id="hero-title" class="glitch-text" data-text="Bienvenido a mi sitio web">Bienvenido a mi sitio web</h2>
                 </div>
                 <p class="typewriter-text">Soy Julianidiego, estudiante de programación de la UNLP.</p>
                 
@@ -70,7 +74,7 @@
                     <a href="#redes-sociales" class="btn btn-secondary">Redes Sociales</a>
                 </div>
                 
-                <div class="scroll-indicator">
+                <div class="scroll-indicator" aria-hidden="true">
                     <span>Scroll</span>
                     <div class="scroll-arrow"></div>
                 </div>
@@ -78,34 +82,34 @@
         </section>
         
         <!-- Proyectos (Ahora justo después del inicio) -->
-        <section id="proyectos" class="section">
-            <h2 class="section-title">Proyectos</h2>
+        <section id="proyectos" class="section" aria-labelledby="proyectos-title">
+            <h2 id="proyectos-title" class="section-title">Proyectos</h2>
             
-            <div class="project-filters">
-                <button class="project-filter-btn active" data-filter="all">All</button>
-                <button class="project-filter-btn" data-filter="javascript">JavaScript</button>
-                <button class="project-filter-btn" data-filter="python">Python</button>
-                <button class="project-filter-btn" data-filter="cpp">C++</button>
-                <button class="project-filter-btn" data-filter="csharp">C#</button>
-                <button class="project-filter-btn" data-filter="sql">SQL</button>
+            <div class="project-filters" role="tablist" aria-label="Filtros de proyectos">
+                <button class="project-filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="todos-proyectos">All</button>
+                <button class="project-filter-btn" data-filter="javascript" role="tab" aria-selected="false" aria-controls="javascript-proyectos">JavaScript</button>
+                <button class="project-filter-btn" data-filter="python" role="tab" aria-selected="false" aria-controls="python-proyectos">Python</button>
+                <button class="project-filter-btn" data-filter="cpp" role="tab" aria-selected="false" aria-controls="cpp-proyectos">C++</button>
+                <button class="project-filter-btn" data-filter="csharp" role="tab" aria-selected="false" aria-controls="csharp-proyectos">C#</button>
+                <button class="project-filter-btn" data-filter="sql" role="tab" aria-selected="false" aria-controls="sql-proyectos">SQL</button>
             </div>
             
-            <div class="proyectos-container">
+            <div class="proyectos-container" id="todos-proyectos" role="tabpanel" aria-labelledby="todos-proyectos-tab">
                 <div class="proyecto" data-technologies="javascript,html,css" data-aos="zoom-in">
                     <div class="proyecto-img">
                         <div class="proyecto-overlay">
                             <div class="overlay-content">
                                 <h4>Ver Detalles</h4>
                                 <div class="overlay-icons">
-                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
-                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código del Sistema de Gestión en GitHub - abre en una nueva ventana"><i class="fab fa-github" aria-hidden="true"></i></a>
+                                    <a href="#" aria-label="Ver demo del Sistema de Gestión"><i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="proyecto-content">
                         <h3>Sistema de Gestión</h3>
-                        <div class="tech-stack">
+                        <div class="tech-stack" aria-label="Tecnologías utilizadas">
                             <span>Python</span>
                             <span>SQL</span>
                             <span>Flask</span>
@@ -120,15 +124,15 @@
                             <div class="overlay-content">
                                 <h4>Ver Detalles</h4>
                                 <div class="overlay-icons">
-                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código en GitHub"><i class="fab fa-github"></i></a>
-                                    <a href="#" aria-label="Ver demo"><i class="fas fa-external-link-alt"></i></a>
+                                    <a href="https://github.com/Julianidiego" target="_blank" aria-label="Ver código de la Aplicación de Análisis de Datos en GitHub - abre en una nueva ventana"><i class="fab fa-github" aria-hidden="true"></i></a>
+                                    <a href="#" aria-label="Ver demo de la Aplicación de Análisis de Datos"><i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="proyecto-content">
                         <h3>Aplicación de Análisis de Datos</h3>
-                        <div class="tech-stack">
+                        <div class="tech-stack" aria-label="Tecnologías utilizadas">
                             <span>C#</span>
                             <span>SQL</span>
                             <span>WPF</span>
@@ -139,26 +143,26 @@
             </div>
             
             <div class="cta-container">
-                <a href="https://github.com/Julianidiego" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-github"></i> Ver más en GitHub
+                <a href="https://github.com/Julianidiego" target="_blank" class="btn btn-primary" aria-label="Ver más proyectos en GitHub - abre en una nueva ventana">
+                    <i class="fab fa-github" aria-hidden="true"></i> Ver más en GitHub
                 </a>
             </div>
         </section>
 
         <!-- Project Section -->
-        <section id="projects" class="section projects-section">
+        <section id="projects" class="section projects-section" aria-labelledby="projects-featured-title">
             <div class="container">
-                <h2 class="section-title">Proyectos <span class="accent">Destacados</span></h2>
+                <h2 id="projects-featured-title" class="section-title">Proyectos <span class="accent">Destacados</span></h2>
                 
                 <!-- Project Timeline -->
-                <div class="timeline">
+                <div class="timeline" aria-label="Cronología de proyectos destacados">
                     <!-- Project 1 -->
                     <div class="timeline-container left">
                         <div class="timeline-content">
-                            <div class="timeline-date">2024</div>
+                            <div class="timeline-date" aria-label="Año: 2024">2024</div>
                             <h3 class="timeline-title">Portfolio Personal</h3>
                             <p class="timeline-desc">Diseño y desarrollo de un portfolio personal interactivo con efectos visuales avanzados y animaciones personalizadas.</p>
-                            <div class="timeline-tech">
+                            <div class="timeline-tech" aria-label="Tecnologías utilizadas">
                                 <span>HTML5</span>
                                 <span>CSS3</span>
                                 <span>JavaScript</span>
@@ -170,10 +174,10 @@
                     <!-- Project 2 -->
                     <div class="timeline-container right">
                         <div class="timeline-content">
-                            <div class="timeline-date">2023</div>
+                            <div class="timeline-date" aria-label="Año: 2023">2023</div>
                             <h3 class="timeline-title">Sistema de Gestión de Emergencias</h3>
                             <p class="timeline-desc">Aplicación que permite coordinar la respuesta a emergencias y gestionar recursos en tiempo real para instituciones de seguridad pública.</p>
-                            <div class="timeline-tech">
+                            <div class="timeline-tech" aria-label="Tecnologías utilizadas">
                                 <span>C#</span>
                                 <span>.NET</span>
                                 <span>SQL Server</span>
@@ -185,10 +189,10 @@
                     <!-- Project 3 -->
                     <div class="timeline-container left">
                         <div class="timeline-content">
-                            <div class="timeline-date">2022</div>
+                            <div class="timeline-date" aria-label="Año: 2022">2022</div>
                             <h3 class="timeline-title">Dashboard Analítico</h3>
                             <p class="timeline-desc">Panel de control para visualización de datos con gráficos interactivos y estadísticas en tiempo real para la toma de decisiones empresariales.</p>
-                            <div class="timeline-tech">
+                            <div class="timeline-tech" aria-label="Tecnologías utilizadas">
                                 <span>Python</span>
                                 <span>Django</span>
                                 <span>Chart.js</span>
@@ -200,10 +204,10 @@
                     <!-- Project 4 -->
                     <div class="timeline-container right">
                         <div class="timeline-content">
-                            <div class="timeline-date">2021</div>
+                            <div class="timeline-date" aria-label="Año: 2021">2021</div>
                             <h3 class="timeline-title">API RESTful</h3>
                             <p class="timeline-desc">Desarrollo de una API RESTful escalable para conectar múltiples servicios y aplicaciones cliente, con autenticación JWT y documentación automatizada.</p>
-                            <div class="timeline-tech">
+                            <div class="timeline-tech" aria-label="Tecnologías utilizadas">
                                 <span>Node.js</span>
                                 <span>Express</span>
                                 <span>MongoDB</span>
@@ -216,50 +220,50 @@
         </section>
         
         <!-- Lenguajes con los nuevos efectos -->
-        <section id="lenguajes">
-            <h2 data-aos="fade-up">Lenguajes de Programación</h2>
+        <section id="lenguajes" aria-labelledby="lenguajes-title">
+            <h2 id="lenguajes-title" data-aos="fade-up">Lenguajes de Programación</h2>
             <div class="aprendiendo-container">
                 <div class="aprendiendo-card" data-language="Python">
-                    <div class="particles-container">
+                    <div class="particles-container" aria-hidden="true">
                         <!-- Las partículas se generarán con JavaScript -->
                     </div>
                     <div class="aprendiendo-logo">
-                        <img src="./images/logos/python-logo.png" alt="Python Logo">
+                        <img src="./images/logos/python-logo.png" alt="Logo de Python" width="50" height="50">
                         <span>Python</span>
                     </div>
                     <div class="aprendiendo-info">
                         <h4>Python</h4>
                         <p>Data Science, Web, Automatización</p>
-                        <div class="skill-level">
+                        <div class="skill-level" aria-label="Nivel de habilidad: 4.5 de 5 estrellas">
                             <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star-half-alt" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="aprendiendo-card" data-language="Delphi">
-                    <div class="particles-container">
+                    <div class="particles-container" aria-hidden="true">
                         <!-- Las partículas se generarán con JavaScript -->
                     </div>
                     <div class="aprendiendo-logo">
-                        <img src="./images/logos/delphi-logo.png" alt="Delphi Logo">
+                        <img src="./images/logos/delphi-logo.png" alt="Logo de Delphi" width="50" height="50">
                         <span>Delphi</span>
                     </div>
                     <div class="aprendiendo-info">
                         <h4>Delphi</h4>
                         <p>Aplicaciones de escritorio, DB</p>
-                        <div class="skill-level">
+                        <div class="skill-level" aria-label="Nivel de habilidad: 4 de 5 estrellas">
                             <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="far fa-star" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
@@ -491,6 +495,268 @@
                             <h3>Proyectos Personales</h3>
                             <span class="timeline-date">2022 - Presente</span>
                             <p>Desarrollo de aplicaciones y soluciones de software</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Nueva sección: Perfil Personal -->
+        <section id="perfil-personal" class="personal-profile-section" aria-labelledby="perfil-personal-title">
+            <div class="container">
+                <h2 id="perfil-personal-title" class="section-title">Perfil <span class="accent">Personal</span></h2>
+                
+                <div class="personal-intro">
+                    <p class="personal-text">Más allá de la programación, soy un entusiasta de diversas formas de arte y cultura. Aquí encontrarás enlaces a mis perfiles en diferentes plataformas donde comparto mis intereses personales.</p>
+                </div>
+                
+                <div class="personal-interests-grid">
+                    <!-- Letterboxd -->
+                    <div class="interest-card letterboxd">
+                        <div class="interest-header">
+                            <div class="interest-icon-container">
+                                <i class="fas fa-film interest-icon"></i>
+                            </div>
+                            <h3>Letterboxd</h3>
+                        </div>
+                        <div class="interest-content">
+                            <p>Sigo el cine independiente y clásico. Aquí catalogo y reseño películas que veo.</p>
+                            <div class="interest-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">250+</span>
+                                    <span class="stat-label">Películas</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">120+</span>
+                                    <span class="stat-label">Reseñas</span>
+                                </div>
+                            </div>
+                            <div class="recent-activity">
+                                <h4>Últimas películas:</h4>
+                                <ul class="activity-list">
+                                    <li>The Matrix (1999)</li>
+                                    <li>Blade Runner 2049 (2017)</li>
+                                    <li>Arrival (2016)</li>
+                                </ul>
+                            </div>
+                            <a href="https://letterboxd.com/julianidiego/" target="_blank" class="interest-link" aria-label="Ver mi perfil en Letterboxd - abre en una nueva ventana">
+                                <span>Seguir mi diario de películas</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Goodreads -->
+                    <div class="interest-card goodreads">
+                        <div class="interest-header">
+                            <div class="interest-icon-container">
+                                <i class="fas fa-book interest-icon"></i>
+                            </div>
+                            <h3>Goodreads</h3>
+                        </div>
+                        <div class="interest-content">
+                            <p>Amante de la ciencia ficción, la filosofía y los libros técnicos. Registro mis lecturas aquí.</p>
+                            <div class="interest-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">75+</span>
+                                    <span class="stat-label">Libros</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">12</span>
+                                    <span class="stat-label">Este año</span>
+                                </div>
+                            </div>
+                            <div class="recent-activity">
+                                <h4>Leyendo actualmente:</h4>
+                                <ul class="activity-list">
+                                    <li>Clean Code - Robert Martin</li>
+                                    <li>Dune - Frank Herbert</li>
+                                </ul>
+                            </div>
+                            <a href="https://www.goodreads.com/user/show/julianidiego" target="_blank" class="interest-link" aria-label="Ver mi perfil en Goodreads - abre en una nueva ventana">
+                                <span>Ver mis lecturas</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Kaggle -->
+                    <div class="interest-card kaggle">
+                        <div class="interest-header">
+                            <div class="interest-icon-container">
+                                <i class="fas fa-chart-bar interest-icon"></i>
+                            </div>
+                            <h3>Kaggle</h3>
+                        </div>
+                        <div class="interest-content">
+                            <p>Explorando el mundo del análisis de datos y machine learning a través de competencias y datasets.</p>
+                            <div class="interest-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">5</span>
+                                    <span class="stat-label">Proyectos</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">3</span>
+                                    <span class="stat-label">Competencias</span>
+                                </div>
+                            </div>
+                            <div class="recent-activity">
+                                <h4>Último proyecto:</h4>
+                                <ul class="activity-list">
+                                    <li>Análisis de datos climáticos</li>
+                                </ul>
+                            </div>
+                            <a href="https://www.kaggle.com/julianidiego" target="_blank" class="interest-link" aria-label="Ver mi perfil en Kaggle - abre en una nueva ventana">
+                                <span>Explorar mi trabajo en datos</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Discord -->
+                    <div class="interest-card discord">
+                        <div class="interest-header">
+                            <div class="interest-icon-container">
+                                <i class="fab fa-discord interest-icon"></i>
+                            </div>
+                            <h3>Discord</h3>
+                        </div>
+                        <div class="interest-content">
+                            <p>Comunidades de programación, gaming y aprendizaje colaborativo.</p>
+                            <div class="interest-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">8+</span>
+                                    <span class="stat-label">Servidores</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">2</span>
+                                    <span class="stat-label">Moderando</span>
+                                </div>
+                            </div>
+                            <div class="recent-activity">
+                                <h4>Comunidades activas:</h4>
+                                <ul class="activity-list">
+                                    <li>Python Developers</li>
+                                    <li>UNLP Informática</li>
+                                </ul>
+                            </div>
+                            <a href="https://discord.gg/julianidiego" target="_blank" class="interest-link" aria-label="Conectar conmigo en Discord - abre en una nueva ventana">
+                                <span>Conectar en Discord</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Telegram -->
+                    <div class="interest-card telegram">
+                        <div class="interest-header">
+                            <div class="interest-icon-container">
+                                <i class="fab fa-telegram interest-icon"></i>
+                            </div>
+                            <h3>Telegram</h3>
+                        </div>
+                        <div class="interest-content">
+                            <p>Canal y grupos sobre tecnología, noticias de programación y recursos educativos.</p>
+                            <div class="interest-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">1</span>
+                                    <span class="stat-label">Canal</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">3</span>
+                                    <span class="stat-label">Grupos</span>
+                                </div>
+                            </div>
+                            <div class="recent-activity">
+                                <h4>Temas recientes:</h4>
+                                <ul class="activity-list">
+                                    <li>Tendencias en desarrollo web</li>
+                                    <li>Recursos gratuitos para aprender</li>
+                                </ul>
+                            </div>
+                            <a href="https://t.me/julianidiego" target="_blank" class="interest-link" aria-label="Seguirme en Telegram - abre en una nueva ventana">
+                                <span>Seguir canal</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Spotify -->
+                    <div class="interest-card spotify">
+                        <div class="interest-header">
+                            <div class="interest-icon-container">
+                                <i class="fab fa-spotify interest-icon"></i>
+                            </div>
+                            <h3>Spotify</h3>
+                        </div>
+                        <div class="interest-content">
+                            <p>Mi biblioteca musical y playlists para programar, estudiar y relajarse.</p>
+                            <div class="interest-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">12</span>
+                                    <span class="stat-label">Playlists</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">1000+</span>
+                                    <span class="stat-label">Canciones</span>
+                                </div>
+                            </div>
+                            <div class="recent-activity">
+                                <h4>Playlists destacadas:</h4>
+                                <ul class="activity-list">
+                                    <li>Coding Sessions</li>
+                                    <li>Música Instrumental</li>
+                                </ul>
+                            </div>
+                            <a href="https://open.spotify.com/user/julianidiego" target="_blank" class="interest-link" aria-label="Ver mi perfil en Spotify - abre en una nueva ventana">
+                                <span>Escuchar mis playlists</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visualización de datos personales -->
+                <div class="personal-data-viz">
+                    <h3>Hábitos de Lectura y Películas</h3>
+                    <div class="data-viz-container">
+                        <div class="viz-item reading-stats">
+                            <h4>Géneros Favoritos - Libros</h4>
+                            <div class="chart-container">
+                                <div class="chart-bar" style="width: 85%;" data-genre="Ciencia Ficción">
+                                    <span class="chart-label">Ciencia Ficción</span>
+                                    <span class="chart-value">85%</span>
+                                </div>
+                                <div class="chart-bar" style="width: 70%;" data-genre="Tecnología">
+                                    <span class="chart-label">Tecnología</span>
+                                    <span class="chart-value">70%</span>
+                                </div>
+                                <div class="chart-bar" style="width: 65%;" data-genre="Filosofía">
+                                    <span class="chart-label">Filosofía</span>
+                                    <span class="chart-value">65%</span>
+                                </div>
+                                <div class="chart-bar" style="width: 50%;" data-genre="Historia">
+                                    <span class="chart-label">Historia</span>
+                                    <span class="chart-value">50%</span>
+                                </div>
+                                <div class="chart-bar" style="width: 40%;" data-genre="Biografías">
+                                    <span class="chart-label">Biografías</span>
+                                    <span class="chart-value">40%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="viz-item movie-stats">
+                            <h4>Directores Favoritos</h4>
+                            <div class="director-cloud">
+                                <span class="director-tag" style="font-size: 1.8em;">Christopher Nolan</span>
+                                <span class="director-tag" style="font-size: 1.6em;">Denis Villeneuve</span>
+                                <span class="director-tag" style="font-size: 1.5em;">Stanley Kubrick</span>
+                                <span class="director-tag" style="font-size: 1.4em;">David Fincher</span>
+                                <span class="director-tag" style="font-size: 1.3em;">Quentin Tarantino</span>
+                                <span class="director-tag" style="font-size: 1.2em;">Martin Scorsese</span>
+                                <span class="director-tag" style="font-size: 1.1em;">Alfonso Cuarón</span>
+                            </div>
                         </div>
                     </div>
                 </div>

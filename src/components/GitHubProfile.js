@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './GitHubProfile.css';
 
 const GitHubProfile = ({ username }) => {
@@ -13,14 +12,22 @@ const GitHubProfile = ({ username }) => {
       try {
         setLoading(true);
         
-        // Obtener datos del perfil
-        const profileResponse = await axios.get(`https://api.github.com/users/${username}`);
+        // Utilizamos fetch nativo en lugar de axios para reducir dependencias
+        const profileResponse = await fetch(`https://api.github.com/users/${username}`);
+        if (!profileResponse.ok) {
+          throw new Error(`Error al obtener perfil: ${profileResponse.status}`);
+        }
+        const profileData = await profileResponse.json();
         
         // Obtener repositorios
-        const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
+        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=5`);
+        if (!reposResponse.ok) {
+          throw new Error(`Error al obtener repositorios: ${reposResponse.status}`);
+        }
+        const reposData = await reposResponse.json();
         
-        setProfile(profileResponse.data);
-        setRepos(reposResponse.data);
+        setProfile(profileData);
+        setRepos(reposData);
         setLoading(false);
       } catch (err) {
         setError('Error al obtener datos de GitHub: ' + err.message);
@@ -34,42 +41,61 @@ const GitHubProfile = ({ username }) => {
   if (loading) return <div className="github-loading">Cargando datos de GitHub...</div>;
   if (error) return <div className="github-error">{error}</div>;
 
+  // Función para determinar el color del lenguaje
+  const getLanguageColor = (language) => {
+    const colors = {
+      JavaScript: '#f1e05a',
+      TypeScript: '#2b7489',
+      Python: '#3572A5',
+      Java: '#b07219',
+      HTML: '#e34c26',
+      CSS: '#563d7c',
+      C: '#555555',
+      'C++': '#f34b7d',
+      'C#': '#178600',
+      Ruby: '#701516',
+      Go: '#00ADD8',
+      PHP: '#4F5D95',
+      Shell: '#89e051',
+    };
+    
+    return colors[language] || '#8b949e';
+  };
+
   return (
     <div className="github-profile">
-      <h2>Mi Perfil de GitHub</h2>
-      
       <div className="github-profile-header">
         <img 
           src={profile.avatar_url} 
           alt={`${username}'s avatar`} 
           className="github-avatar" 
         />
-        <div className="github-profile-info">
-          <h3>{profile.name || username}</h3>
-          <p className="github-bio">{profile.bio || 'No bio available'}</p>
-          <div className="github-stats">
-            <div className="github-stat">
-              <span className="github-stat-value">{profile.followers}</span>
-              <span className="github-stat-label">Seguidores</span>
-            </div>
-            <div className="github-stat">
-              <span className="github-stat-value">{profile.following}</span>
-              <span className="github-stat-label">Siguiendo</span>
-            </div>
-            <div className="github-stat">
-              <span className="github-stat-value">{profile.public_repos}</span>
-              <span className="github-stat-label">Repos</span>
-            </div>
-          </div>
-          <a 
-            href={profile.html_url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="github-button"
-          >
-            Ver Perfil Completo
-          </a>
+        <div className="github-info">
+          <h3 className="github-name">{profile.name || username}</h3>
+          <div className="github-username">@{profile.login}</div>
+          <p className="github-bio">{profile.bio || 'No hay biografía disponible'}</p>
         </div>
+      </div>
+      
+      <div className="github-stats">
+        <div className="github-stat">
+          <div className="stat-value">{profile.followers}</div>
+          <div className="stat-label">Seguidores</div>
+        </div>
+        <div className="github-stat">
+          <div className="stat-value">{profile.following}</div>
+          <div className="stat-label">Siguiendo</div>
+        </div>
+        <div className="github-stat">
+          <div className="stat-value">{profile.public_repos}</div>
+          <div className="stat-label">Repositorios</div>
+        </div>
+        {profile.location && (
+          <div className="github-stat">
+            <div className="stat-value"><i className="fas fa-map-marker-alt"></i></div>
+            <div className="stat-label">{profile.location}</div>
+          </div>
+        )}
       </div>
       
       <div className="github-repos">
@@ -77,37 +103,47 @@ const GitHubProfile = ({ username }) => {
         {repos.length === 0 ? (
           <p>No hay repositorios disponibles.</p>
         ) : (
-          <ul className="github-repos-list">
+          <div className="repo-list">
             {repos.map(repo => (
-              <li key={repo.id} className="github-repo">
-                <h4>
-                  <a 
-                    href={repo.html_url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    {repo.name}
-                  </a>
-                </h4>
-                <p>{repo.description || 'Sin descripción'}</p>
-                <div className="github-repo-stats">
-                  <span className="github-repo-stat">
-                    <span className="github-repo-stat-icon">★</span> {repo.stargazers_count}
-                  </span>
-                  <span className="github-repo-stat">
-                    <span className="github-repo-stat-icon">🍴</span> {repo.forks_count}
-                  </span>
-                  <span className="github-repo-language">{repo.language || 'No language'}</span>
+              <div key={repo.id} className="repo-item">
+                <a 
+                  href={repo.html_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="repo-name"
+                >
+                  {repo.name}
+                </a>
+                <p className="repo-description">{repo.description || 'Sin descripción'}</p>
+                <div className="repo-meta">
+                  {repo.language && (
+                    <div className="repo-language">
+                      <span 
+                        className="language-color" 
+                        style={{backgroundColor: getLanguageColor(repo.language)}}
+                      ></span>
+                      <span>{repo.language}</span>
+                    </div>
+                  )}
+                  <div>
+                    <span title="Stars"><i className="far fa-star"></i> {repo.stargazers_count}</span>
+                    <span title="Forks" style={{marginLeft: '1rem'}}><i className="fas fa-code-branch"></i> {repo.forks_count}</span>
+                  </div>
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
       
-      <div className="github-footer">
-        <p>Este componente utiliza la API pública de GitHub, demostrando la integración con GitHub para formar parte del GitHub Developer Program.</p>
-      </div>
+      <a 
+        href={`https://github.com/${username}`}
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="github-view-profile"
+      >
+        Ver perfil completo en GitHub
+      </a>
     </div>
   );
 };

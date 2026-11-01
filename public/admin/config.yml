@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: Julianidiego/Julianidiego.github.io
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: public/images/blog
+public_folder: /images/blog
+
+collections:
+  - name: blog
+    label: Entradas del blog
+    folder: content/blog
+    create: true
+    slug: '{{slug}}'
+    extension: json
+    format: json
+    fields:
+      - { label: Slug, name: slug, widget: string }
+      - { label: Título, name: title, widget: string }
+      - { label: Extracto, name: excerpt, widget: text }
+      - { label: Fecha, name: date, widget: datetime }
+      - { label: Categoría, name: category, widget: string }
+      - { label: Tiempo de lectura, name: readingTime, widget: string, default: '5 min' }
+      - label: Párrafos
+        name: content
+        widget: list
+        field: { label: Párrafo, name: paragraph, widget: text }

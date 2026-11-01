@@ -1,0 +1,13 @@
+{
+  "slug": "mi-flujo-con-github-y-copilot",
+  "title": "Un flujo de trabajo más profesional con GitHub",
+  "excerpt": "Ramas, pull requests, tests y documentación: las prácticas que estoy incorporando a mis proyectos.",
+  "date": "2026-10-28",
+  "category": "Desarrollo",
+  "readingTime": "5 min",
+  "content": [
+    "Un repositorio no es solamente un lugar para guardar código. También es una forma de comunicar decisiones, recibir feedback y demostrar cómo evoluciona un proyecto.",
+    "Estoy incorporando ramas pequeñas, pull requests descriptivas, pruebas automatizadas y README que expliquen cómo ejecutar cada proyecto.",
+    "El uso responsable de Copilot me ayuda a explorar alternativas más rápido, pero la revisión, las pruebas y las decisiones técnicas siguen siendo parte de mi trabajo."
+  ]
+}

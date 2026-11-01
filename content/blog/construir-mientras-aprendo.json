@@ -1,0 +1,13 @@
+{
+  "slug": "construir-con-aprendizaje-continuo",
+  "title": "Construir mientras aprendo",
+  "excerpt": "Cómo estoy convirtiendo ejercicios de estudio en proyectos pequeños, documentados y cada vez más útiles.",
+  "date": "2026-11-01",
+  "category": "Aprendizaje",
+  "readingTime": "4 min",
+  "content": [
+    "Aprender desarrollo de software no consiste únicamente en terminar cursos. También implica transformar cada concepto en algo que pueda explicar, probar y mejorar.",
+    "Por eso estoy organizando mi trabajo en proyectos pequeños: una herramienta, una interfaz o una automatización que resuelva un problema concreto y deje una base para el siguiente paso.",
+    "Mi objetivo es que este blog funcione como un registro honesto del proceso: qué intenté, qué falló y qué aprendí."
+  ]
+}

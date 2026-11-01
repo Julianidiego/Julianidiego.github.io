@@ -1,4 +1,4 @@
-// File: /home/diego-hernan-juliani/Documentos/Julianidiego.github.io/src/app/page.tsx
+// File: /root/Julianidiego.github.io/src/app/page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

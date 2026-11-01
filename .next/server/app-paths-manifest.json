@@ -1,5 +1,9 @@
 {
   "/_not-found": "app/_not-found.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/blog/page": "app/blog/page.js",
+  "/lecturas/page": "app/lecturas/page.js",
+  "/lecturas/[slug]/page": "app/lecturas/[slug]/page.js",
+  "/blog/[slug]/page": "app/blog/[slug]/page.js"
 }

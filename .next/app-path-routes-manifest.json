@@ -1,5 +1,9 @@
 {
   "/_not-found": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
   "/page": "/",
-  "/favicon.ico/route": "/favicon.ico"
+  "/blog/page": "/blog",
+  "/lecturas/page": "/lecturas",
+  "/lecturas/[slug]/page": "/lecturas/[slug]",
+  "/blog/[slug]/page": "/blog/[slug]"
 }

@@ -152,6 +152,30 @@ h1, h2, h3, p { margin-top: 0; }
 .note-card h3 { max-width: 270px; margin: 65px 0 12px; font-size: 1.5rem; line-height: 1.1; letter-spacing: -.04em; }
 .note-card p { color: var(--muted); font-size: .9rem; line-height: 1.65; }
 .note-card .text-link { margin-top: 18px; }
+.reading-section { background: #f7faf7; }
+.reading-grid, .reading-page-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 65px; }
+.book-card { display: grid; grid-template-columns: 108px 1fr; gap: 20px; padding: 18px; border: 1px solid var(--line); background: var(--surface); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.book-card:hover { border-color: var(--green); box-shadow: 0 16px 35px #1d453314; transform: translateY(-6px); }
+.book-cover { overflow: hidden; aspect-ratio: 5 / 7; background: var(--green); box-shadow: 5px 8px 18px #1d453322; }
+.book-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.book-card__body { min-width: 0; }
+.book-card__meta { display: flex; justify-content: space-between; gap: 10px; align-items: center; color: var(--green); font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.book-card h3, .book-card h2 { margin: 20px 0 5px; font-size: 1.15rem; line-height: 1.1; letter-spacing: -.035em; }
+.book-card p { color: var(--muted); font-size: .8rem; line-height: 1.55; }
+.book-card .book-author { margin-bottom: 16px; font-size: .72rem; }
+.book-rating { color: #b8860b; font-size: .74rem; letter-spacing: .1em; white-space: nowrap; }
+.book-rating > span { color: var(--line); }
+.reading-hero { padding-bottom: 60px; }
+.reading-page-grid { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding-bottom: 120px; }
+.reading-page-grid .book-card { grid-template-columns: 150px 1fr; padding: 24px; }
+.reading-page-grid .book-card h2 { font-size: 1.65rem; }
+.review-shell { width: min(1000px, calc(100% - 48px)); margin: 0 auto; padding: 90px 0 120px; }
+.review-layout { display: grid; grid-template-columns: 240px 1fr; gap: 65px; align-items: center; margin-top: 65px; }
+.book-cover--large { width: 240px; }
+.review-shell h1 { max-width: 700px; margin: 20px 0 10px; font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: .98; letter-spacing: -.07em; }
+.review-shell .book-author { color: var(--muted); }
+.review-shell .article-lead { max-width: 620px; margin-top: 25px; }
+.review-shell .article-content { max-width: 700px; margin-left: 305px; }
 .contact-section { display: flex; justify-content: space-between; gap: 60px; padding-top: 120px; padding-bottom: 120px; }
 .contact-section > div:first-child { max-width: 720px; }
 .contact-section h2 { margin-bottom: 20px; }
@@ -227,6 +251,14 @@ h1, h2, h3, p { margin-top: 0; }
   .note-card { min-height: 250px; }
   .contact-section { gap: 35px; padding-top: 85px; padding-bottom: 85px; }
   .contact-links { width: 100%; }
+  .reading-grid, .reading-page-grid { grid-template-columns: 1fr; margin-top: 45px; }
+  .reading-page-grid { width: calc(100% - 32px); }
+  .reading-page-grid .book-card { grid-template-columns: 105px 1fr; padding: 16px; }
+  .review-shell { width: calc(100% - 32px); padding-top: 55px; }
+  .review-layout { grid-template-columns: 115px 1fr; gap: 22px; margin-top: 45px; }
+  .book-cover--large { width: 115px; }
+  .review-shell h1 { font-size: 2.4rem; }
+  .review-shell .article-content { margin-left: 0; }
   .site-footer { flex-direction: column; gap: 10px; }
   .post-grid { grid-template-columns: 1fr; }
   .blog-page .page-main { padding-top: 66px; }

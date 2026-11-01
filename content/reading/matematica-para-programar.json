@@ -1,0 +1,10 @@
+{
+  "slug": "matematica-para-programar",
+  "title": "Matemática para programar",
+  "author": "Tomás Ferrer",
+  "category": "Matemáticas",
+  "rating": 4,
+  "cover": "/images/reading/matematica-para-programar.svg",
+  "summary": "Conceptos de lógica, conjuntos y funciones conectados con problemas de software.",
+  "review": "La propuesta más interesante es conectar cada concepto con una situación concreta: validar datos, modelar relaciones o razonar sobre límites. Lo estoy leyendo como puente entre las materias teóricas y los proyectos que construyo."
+}

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { blogPostsData } from '@/content/blog-data';
+import ReadingSection from '@/components/ReadingSection';
 
 const projects = [
   {
@@ -77,6 +78,7 @@ export default function PortfolioHome() {
               ['sobre-mi', 'Sobre mí'],
               ['proyectos', 'Proyectos'],
               ['notas', 'Notas'],
+              ['lecturas', 'Lecturas'],
             ].map(([id, label]) => (
               <Link
                 key={id}
@@ -196,10 +198,11 @@ export default function PortfolioHome() {
             ))}
           </div>
         </section>
+        <ReadingSection />
 
         <section id="contacto" data-section="contacto" className="contact-section reveal-section">
           <div>
-            <p className="section-index">04 / Contacto</p>
+            <p className="section-index">05 / Contacto</p>
             <h2>¿Construimos algo con sentido?</h2>
             <p>Estoy abierto a conversar sobre proyectos, aprendizaje y oportunidades para crecer.</p>
           </div>

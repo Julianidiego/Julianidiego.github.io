@@ -27,3 +27,19 @@ collections:
         name: content
         widget: list
         field: { label: Párrafo, name: paragraph, widget: text }
+  - name: reading
+    label: Qué estoy leyendo
+    folder: content/reading
+    create: true
+    slug: '{{slug}}'
+    extension: json
+    format: json
+    fields:
+      - { label: Slug, name: slug, widget: string }
+      - { label: Título, name: title, widget: string }
+      - { label: Autor, name: author, widget: string }
+      - { label: Categoría, name: category, widget: string }
+      - { label: Puntuación, name: rating, widget: number, min: 1, max: 5 }
+      - { label: Portada, name: cover, widget: image, media_folder: public/images/reading, public_folder: /images/reading }
+      - { label: Resumen, name: summary, widget: text }
+      - { label: Reseña, name: review, widget: text }

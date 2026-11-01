@@ -26,6 +26,7 @@ export default function BlogHeader() {
           <Link href="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
           <Link href="/#proyectos" onClick={() => setMenuOpen(false)}>Proyectos</Link>
           <Link href="/blog/" className="is-active" onClick={() => setMenuOpen(false)}>Notas</Link>
+          <Link href="/lecturas/" onClick={() => setMenuOpen(false)}>Lecturas</Link>
           <Link href="/#contacto" className="nav-cta" onClick={() => setMenuOpen(false)}>Hablemos</Link>
         </nav>
       </div>

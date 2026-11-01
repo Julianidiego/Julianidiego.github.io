@@ -1,0 +1,13 @@
+{
+  "slug": "github-pages-como-laboratorio",
+  "title": "GitHub Pages como laboratorio personal",
+  "excerpt": "Por qué convertir una página personal en un proyecto vivo mejora tanto el código como la forma de presentarlo.",
+  "date": "2026-10-11",
+  "category": "GitHub",
+  "readingTime": "4 min",
+  "content": [
+    "Una página personal tiene una ventaja especial: permite experimentar en público con una superficie pequeña y un objetivo claro.",
+    "Cada cambio puede pasar por una rama, un pull request, una revisión visual y un despliegue. Ese circuito es una práctica concreta de ingeniería, aunque el proyecto sea personal.",
+    "Este sitio será mi laboratorio para probar accesibilidad, contenido, automatización y una comunicación técnica más clara."
+  ]
+}

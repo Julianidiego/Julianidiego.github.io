@@ -4,6 +4,6 @@
   "/page": "app/page.js",
   "/blog/page": "app/blog/page.js",
   "/lecturas/page": "app/lecturas/page.js",
-  "/lecturas/[slug]/page": "app/lecturas/[slug]/page.js",
-  "/blog/[slug]/page": "app/blog/[slug]/page.js"
+  "/blog/[slug]/page": "app/blog/[slug]/page.js",
+  "/lecturas/[slug]/page": "app/lecturas/[slug]/page.js"
 }

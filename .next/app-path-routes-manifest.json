@@ -4,6 +4,6 @@
   "/page": "/",
   "/blog/page": "/blog",
   "/lecturas/page": "/lecturas",
-  "/lecturas/[slug]/page": "/lecturas/[slug]",
-  "/blog/[slug]/page": "/blog/[slug]"
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/lecturas/[slug]/page": "/lecturas/[slug]"
 }

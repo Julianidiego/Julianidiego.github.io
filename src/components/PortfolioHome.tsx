@@ -115,8 +115,20 @@ export default function PortfolioHome() {
               </div>
             </div>
             <div className="hero-art" aria-label="Perfil técnico de Diego Juliani">
+              <div className="hero-console" aria-hidden="true">
+                <div className="hero-console__bar"><span /><span /><span /><small>~/diego/portfolio</small></div>
+                <div className="hero-console__body">
+                  <p><b>$</b> whoami</p>
+                  <p className="console-value">software.student</p>
+                  <p><b>$</b> status --now</p>
+                  <p className="console-value console-value--lime">learning: true</p>
+                  <p><b>$</b> _</p>
+                </div>
+              </div>
               <div className="hero-art__ring hero-art__ring--outer" />
               <div className="hero-art__ring hero-art__ring--inner" />
+              <span className="hero-art__orbit-dot hero-art__orbit-dot--one" aria-hidden="true" />
+              <span className="hero-art__orbit-dot hero-art__orbit-dot--two" aria-hidden="true" />
               <div className="hero-art__core">
                 <span>DJ</span>
                 <small>build / learn / repeat</small>

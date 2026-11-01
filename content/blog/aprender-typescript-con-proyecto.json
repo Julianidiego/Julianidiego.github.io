@@ -1,0 +1,13 @@
+{
+  "slug": "aprender-typescript-con-proyecto",
+  "title": "Aprender TypeScript construyendo una herramienta real",
+  "excerpt": "Qué cambia cuando el aprendizaje deja de ser un ejercicio aislado y empieza a tener usuarios, errores y decisiones.",
+  "date": "2026-10-18",
+  "category": "TypeScript",
+  "readingTime": "5 min",
+  "content": [
+    "TypeScript se entiende mejor cuando los tipos ayudan a proteger un dominio real. En lugar de memorizar sintaxis, estoy usando una pequeña herramienta de consola para modelar entradas, validaciones y resultados.",
+    "El trabajo también me obliga a pensar en nombres, límites y mensajes de error. Esas decisiones son tan importantes como escribir una función que compile.",
+    "El próximo paso será documentar los casos límite y automatizar la publicación de nuevas versiones."
+  ]
+}

@@ -12,6 +12,10 @@ export default function BlogPreview() {
           que encuentro en el camino.
         </p>
       </div>
+      <div className="blog-banner">
+        <span className="status-dot" aria-hidden="true" />
+        <span>Publicando el proceso: decisiones, aprendizajes y próximos experimentos.</span>
+      </div>
       <div className="post-grid">
         {blogPosts.map((post) => (
           <article className="post-card" key={post.slug}>

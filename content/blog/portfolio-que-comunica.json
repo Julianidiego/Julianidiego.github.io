@@ -1,0 +1,13 @@
+{
+  "slug": "portfolio-que-comunica",
+  "title": "Un portfolio que comunica, no solo muestra",
+  "excerpt": "La diferencia entre listar tecnologías y contar cómo pienso, construyo y mejoro un producto.",
+  "date": "2026-10-24",
+  "category": "Carrera",
+  "readingTime": "6 min",
+  "content": [
+    "Un recruiter necesita entender rápidamente qué problema resuelve una persona y cómo trabaja. Por eso un portfolio efectivo no debería ser una galería de logos: debe mostrar contexto, decisiones y resultados.",
+    "En este borrador estoy reorganizando mis proyectos para explicar el desafío, el enfoque técnico, lo que aprendí y qué mejoraría en una siguiente versión.",
+    "La meta es que cada proyecto funcione como una conversación: una puerta de entrada para hablar de código, producto y colaboración."
+  ]
+}

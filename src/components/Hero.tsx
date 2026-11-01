@@ -3,7 +3,8 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center bg-gray-50 dark:bg-gray-900 pt-16">
+    <section className="hero-grid relative min-h-screen flex items-center bg-gray-50 dark:bg-gray-900 pt-16">
+      <div className="hero-glow" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>

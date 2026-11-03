@@ -1,0 +1,10 @@
+{
+  "name": "Calculadora Científica",
+  "short_name": "Calculadora",
+  "start_url": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#111827",
+  "theme_color": "#1f2937",
+  "icons": []
+}

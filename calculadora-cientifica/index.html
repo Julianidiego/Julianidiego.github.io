@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Científica</title>
+    <meta name="theme-color" content="#1f2937">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.webmanifest">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados mínimos */
+        :root { background: #111827; }
+        html, body { min-height: 100%; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100svh;
+            min-height: 100dvh;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right)
+                env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+        #app-container { max-height: 100dvh; }
+        @media (max-width: 640px) {
+            body { align-items: stretch; }
+            #app-container {
+                width: 100%;
+                height: 100dvh;
+                max-height: none;
+                border-radius: 0;
+                border: 0;
+            }
+        }
+        .hidden-mode {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9px;
+            color: #555;
+            background-color: #111;
+            line-height: 1.1;
+        }
+        .hidden-mode input, .hidden-mode select {
+            background-color: #222;
+            color: #666;
+            border: 1px solid #333;
+            font-size: 9px;
+            padding: 1px;
+            width: 25px;
+            text-align: center;
+        }
+        .hidden-mode button {
+            background-color: #333;
+            color: #777;
+            border: none;
+            padding: 2px 5px;
+            cursor: pointer;
+        }
+        .hidden-mode button:hover { background-color: #444; }
+        .matrix-input-grid { display: grid; gap: 2px; justify-content: center; margin-bottom: 5px; }
+        
+        /* Ocultar barra de desplazamiento en modo oculto para máxima discreción */
+        .hidden-mode-container::-webkit-scrollbar { width: 2px; }
+        .hidden-mode-container::-webkit-scrollbar-thumb { background: #333; }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="relative w-80 h-[500px] bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-300 flex flex-col" id="app-container">
+        
+        <!-- CALCULADORA NORMAL -->
+        <div id="normal-calc" class="flex flex-col h-full w-full">
+            <div class="bg-gray-800 text-white p-4 h-1/3 flex flex-col justify-end text-right">
+                <div id="calc-history" class="text-gray-400 text-sm h-6"></div>
+                <div id="calc-display" class="text-4xl font-semibold overflow-x-auto">0</div>
+            </div>
+            <div class="p-4 grid grid-cols-4 gap-2 h-2/3 bg-gray-50 overflow-y-auto">
+                <!-- Fila 1 -->
+                <button class="calc-btn col-span-2 bg-yellow-100 text-yellow-700 p-2 rounded hover:bg-yellow-200 font-bold shadow" data-action="shift">Shift</button>
+                <button class="calc-btn col-span-2 bg-red-100 text-red-600 p-2 rounded hover:bg-red-200 font-bold shadow" data-action="clear">C</button>
+                
+                <!-- Fila 2 -->
+                <button class="calc-btn bg-gray-200 p-2 rounded hover:bg-gray-300" data-val="sin(">sin</button>
+                <button class="calc-btn bg-gray-200 p-2 rounded hover:bg-gray-300" data-val="cos(">cos</button>
+                <button class="calc-btn bg-gray-200 p-2 rounded hover:bg-gray-300" data-val="tan(">tan</button>
+                <button class="calc-btn bg-gray-200 p-2 rounded hover:bg-gray-300" data-val="sqrt(">√</button>
+                
+                <!-- Fila 3 -->
+                <button class="calc-btn bg-gray-200 p-2 rounded hover:bg-gray-300" data-val="log(">log</button>
+                <button class="calc-btn bg-gray-200 p-2 rounded hover:bg-gray-300" data-val="(">(</button>
+                <button class="calc-btn bg-gray-200 p-2 rounded hover:bg-gray-300" data-val=")">)</button>
+                <button class="calc-btn bg-blue-100 text-blue-700 p-2 rounded hover:bg-blue-200" data-val="/">÷</button>
+                
+                <!-- Fila 4 -->
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="7">7</button>
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="8">8</button>
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="9">9</button>
+                <button class="calc-btn bg-blue-100 text-blue-700 p-2 rounded hover:bg-blue-200" data-val="*">×</button>
+                
+                <!-- Fila 5 -->
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="4">4</button>
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="5">5</button>
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="6">6</button>
+                <button class="calc-btn bg-blue-100 text-blue-700 p-2 rounded hover:bg-blue-200" data-val="-">-</button>
+                
+                <!-- Fila 6 -->
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="1">1</button>
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="2">2</button>
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="3">3</button>
+                <button class="calc-btn bg-blue-100 text-blue-700 p-2 rounded hover:bg-blue-200" data-val="+">+</button>
+
+                <!-- Fila 7 -->
+                <button class="calc-btn col-span-2 bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val="0">0</button>
+                <button class="calc-btn bg-white shadow p-2 rounded hover:bg-gray-100 font-bold" data-val=".">.</button>
+                <button class="calc-btn bg-blue-500 text-white p-2 rounded hover:bg-blue-600 font-bold shadow" data-action="equal">=</button>
+            </div>
+        </div>
+
+        <!-- MODO OCULTO (DISCRETO) -->
+        <div id="hidden-calc" class="hidden absolute inset-0 hidden-mode hidden-mode-container overflow-y-auto z-50 p-2">
+            
+            <div class="flex gap-1 mb-2 border-b border-[#333] pb-1">
+                <button onclick="switchTab('tab-gj')" id="btn-tab-gj" class="bg-[#222]">GJ</button>
+                <button onclick="switchTab('tab-g')" id="btn-tab-g">G</button>
+                <button onclick="switchTab('tab-glos')" id="btn-tab-glos">GLOS</button>
+                <button onclick="exitHiddenMode()" class="ml-auto text-[#400]">X</button>
+            </div>
+
+            <!-- Tab: Gauss-Jordan -->
+            <div id="tab-gj" class="tab-content">
+                <div class="mb-2">
+                    Sz: 
+                    <select id="gj-size" onchange="renderGJInput()">
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <button onclick="calcGJ()">Calc</button>
+                </div>
+                <div id="gj-inputs" class="matrix-input-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+                <div id="gj-output" class="mt-2 whitespace-pre-wrap"></div>
+            </div>
+
+            <!-- Tab: Eliminación Gaussiana -->
+            <div id="tab-g" class="tab-content hidden">
+                <div class="mb-2">
+                    Sz: 
+                    <select id="g-size" onchange="renderGInput()">
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <button onclick="calcG()">Calc</button>
+                </div>
+                <div class="flex gap-2 justify-center">
+                    <div id="g-inputs-a" class="matrix-input-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+                    <div id="g-inputs-b" class="matrix-input-grid" style="grid-template-columns: 1fr;"></div>
+                </div>
+                <div id="g-output" class="mt-2 whitespace-pre-wrap"></div>
+            </div>
+
+            <!-- Tab: Glosario -->
+            <div id="tab-glos" class="tab-content hidden text-[9px] text-[#666] space-y-2">
+                <p><b>S.C. Determinado (SCD):</b> 1 sola soluc. Las lineas (o planos) se cruzan en un solo punto exacto. Rango(A)=Rango(A|B)=n.</p>
+                <p><b>S.C. Indeterminado (SCI):</b> Infinitas soluc. Son la misma linea o plano superpuesto. Rango(A)=Rango(A|B) < n.</p>
+                <p><b>S. Incompatible (SI):</b> Sin soluc. Lineas/planos paralelos que nunca se tocan. Rango(A) != Rango(A|B).</p>
+                <p><i>*n = num incognitas.</i></p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DE CALCULADORA NORMAL ---
+        let currentExpr = "";
+        const display = document.getElementById("calc-display");
+        const history = document.getElementById("calc-history");
+
+        // Los navegadores móviles solo permiten pantalla completa después de una acción del usuario.
+        let fullscreenRequested = false;
+        function requestMobileFullscreen() {
+            if (fullscreenRequested || document.fullscreenElement) return;
+            fullscreenRequested = true;
+            const request = document.documentElement.requestFullscreen;
+            if (request) request.call(document.documentElement).catch(() => {});
+        }
+
+        // --- LÓGICA DE ACTIVACIÓN SECRETA (Clics en pantalla) ---
+        let keyBuffer = [];
+        const secretCode = ['1', '9', '9', '6', 'shift'];
+
+        document.querySelectorAll('.calc-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                requestMobileFullscreen();
+                const val = e.target.getAttribute('data-val');
+                const action = e.target.getAttribute('data-action');
+
+                // Registro del código secreto leyendo los atributos del botón
+                const key = val || action;
+                if (key) {
+                    keyBuffer.push(key);
+                    if (keyBuffer.length > 5) keyBuffer.shift();
+                    
+                    // Si coinciden los últimos 5 clics
+                    if (keyBuffer.join(',') === secretCode.join(',')) {
+                        document.getElementById('normal-calc').classList.add('hidden');
+                        document.getElementById('hidden-calc').classList.remove('hidden');
+                        renderGJInput();
+                        renderGInput();
+                        keyBuffer = []; // reiniciamos el buffer
+                        return; // Evita que se procese como un botón normal
+                    }
+                }
+
+                if (action === 'shift') {
+                    return; // El botón shift visible no hace nada en la calculadora estándar
+                }
+
+                if (action === 'clear') {
+                    currentExpr = "";
+                    display.innerText = "0";
+                    history.innerText = "";
+                } else if (action === 'equal') {
+                    try {
+                        let evalExpr = currentExpr
+                            .replace(/sin\(/g, 'Math.sin(')
+                            .replace(/cos\(/g, 'Math.cos(')
+                            .replace(/tan\(/g, 'Math.tan(')
+                            .replace(/log\(/g, 'Math.log10(')
+                            .replace(/sqrt\(/g, 'Math.sqrt(');
+                        
+                        let result = eval(evalExpr);
+                        if (result === undefined || isNaN(result)) throw new Error("");
+                        
+                        history.innerText = currentExpr + " =";
+                        
+                        // Redondear a 8 decimales max
+                        result = Math.round(result * 100000000) / 100000000;
+                        display.innerText = result;
+                        currentExpr = result.toString();
+                    } catch (err) {
+                        display.innerText = "Error";
+                        currentExpr = "";
+                    }
+                } else if (val) {
+                    if(currentExpr === "0" && val !== ".") currentExpr = val;
+                    else currentExpr += val;
+                    display.innerText = currentExpr;
+                }
+            });
+        });
+
+        function exitHiddenMode() {
+            document.getElementById('hidden-calc').classList.add('hidden');
+            document.getElementById('normal-calc').classList.remove('hidden');
+        }
+
+        // --- INTERFAZ MODO OCULTO ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            document.getElementById('btn-tab-gj').classList.remove('bg-[#222]');
+            document.getElementById('btn-tab-g').classList.remove('bg-[#222]');
+            document.getElementById('btn-tab-glos').classList.remove('bg-[#222]');
+            
+            document.getElementById('btn-' + tabId).classList.add('bg-[#222]');
+        }
+
+        // --- UTILS MATEMÁTICAS ---
+        function formatNum(n) {
+            if (Math.abs(n) < 1e-10) return "0";
+            let s = n.toFixed(3).replace(/\.?0+$/, '');
+            if (s === "-0") return "0";
+            return s;
+        }
+
+        function cloneMatrix(m) {
+            return m.map(row => [...row]);
+        }
+
+        function renderMatrix(m) {
+            return m.map(row => "[ " + row.map(formatNum).join("  ").padEnd(5) + "]").join("\n");
+        }
+
+        function createInputs(containerId, rows, cols, prefix) {
+            const container = document.getElementById(containerId);
+            container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+            container.innerHTML = '';
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const inp = document.createElement('input');
+                    inp.type = 'text';
+                    inp.id = `${prefix}_${i}_${j}`;
+                    inp.value = i === j && prefix==='gj' ? "1" : "0"; // Valores por defecto algo lógicos
+                    container.appendChild(inp);
+                }
+            }
+        }
+
+        function readMatrix(rows, cols, prefix) {
+            let m = [];
+            for (let i = 0; i < rows; i++) {
+                let row = [];
+                for (let j = 0; j < cols; j++) {
+                    let val = parseFloat(document.getElementById(`${prefix}_${i}_${j}`).value) || 0;
+                    row.push(val);
+                }
+                m.push(row);
+            }
+            return m;
+        }
+
+        // --- GAUSS-JORDAN (INVERSA) ---
+        function renderGJInput() {
+            const size = parseInt(document.getElementById('gj-size').value);
+            createInputs('gj-inputs', size, size, 'gj');
+            document.getElementById('gj-output').innerText = '';
+        }
+
+        function calcGJ() {
+            const size = parseInt(document.getElementById('gj-size').value);
+            let A = readMatrix(size, size, 'gj');
+            let origA = cloneMatrix(A);
+            let out = "--- GAUSS-JORDAN ---\n\nMatriz A:\n" + renderMatrix(A) + "\n\n";
+
+            // Aumentar con identidad
+            let M = [];
+            for (let i = 0; i < size; i++) {
+                M.push([...A[i]]);
+                for (let j = 0; j < size; j++) {
+                    M[i].push(i === j ? 1 : 0);
+                }
+            }
+
+            out += "Aumentada [A | I]:\n" + renderMatrix(M) + "\n\n";
+
+            // Proceso GJ
+            let step = 1;
+            for (let i = 0; i < size; i++) {
+                // Pivoteo parcial
+                let maxEl = Math.abs(M[i][i]), maxRow = i;
+                for (let k = i + 1; k < size; k++) {
+                    if (Math.abs(M[k][i]) > maxEl) {
+                        maxEl = Math.abs(M[k][i]);
+                        maxRow = k;
+                    }
+                }
+
+                if (maxEl < 1e-10) {
+                    out += "Matriz singular, no tiene inversa.\n";
+                    document.getElementById('gj-output').innerText = out;
+                    return;
+                }
+
+                if (maxRow !== i) {
+                    let temp = M[i];
+                    M[i] = M[maxRow];
+                    M[maxRow] = temp;
+                    out += `P${step++}: F${i+1} <-> F${maxRow+1}\n` + renderMatrix(M) + "\n\n";
+                }
+
+                // Hacer pivote 1
+                let piv = M[i][i];
+                if (Math.abs(piv - 1) > 1e-10) {
+                    for (let j = 0; j < 2 * size; j++) M[i][j] /= piv;
+                    out += `P${step++}: F${i+1} -> F${i+1} / ${formatNum(piv)}\n` + renderMatrix(M) + "\n\n";
+                }
+
+                // Hacer ceros en la columna i
+                for (let k = 0; k < size; k++) {
+                    if (k !== i) {
+                        let factor = M[k][i];
+                        if (Math.abs(factor) > 1e-10) {
+                            for (let j = 0; j < 2 * size; j++) M[k][j] -= factor * M[i][j];
+                            out += `P${step++}: F${k+1} -> F${k+1} - (${formatNum(factor)})*F${i+1}\n` + renderMatrix(M) + "\n\n";
+                        }
+                    }
+                }
+            }
+
+            // Extraer Inversa
+            let invA = [];
+            for (let i = 0; i < size; i++) invA.push(M[i].slice(size));
+
+            out += "INVERSA (A^-1):\n" + renderMatrix(invA) + "\n\n";
+            
+            // Verificación A * A^-1 = I
+            out += "--- VERIFICACION A * A^-1 ---\n";
+            let I_calc = [];
+            for(let i=0; i<size; i++) {
+                let r = [];
+                for(let j=0; j<size; j++) {
+                    let sum = 0;
+                    let multSteps = [];
+                    for(let k=0; k<size; k++) {
+                        sum += origA[i][k] * invA[k][j];
+                        multSteps.push(`(${formatNum(origA[i][k])}*${formatNum(invA[k][j])})`);
+                    }
+                    out += `C${i+1}${j+1}: ${multSteps.join(" + ")} = ${formatNum(sum)}\n`;
+                    r.push(sum);
+                }
+                I_calc.push(r);
+            }
+            out += "\nResultado Identidad:\n" + renderMatrix(I_calc);
+
+            document.getElementById('gj-output').innerText = out;
+        }
+
+        // --- ELIMINACIÓN GAUSSIANA ---
+        function renderGInput() {
+            const size = parseInt(document.getElementById('g-size').value);
+            createInputs('g-inputs-a', size, size, 'ga');
+            createInputs('g-inputs-b', size, 1, 'gb');
+            document.getElementById('g-output').innerText = '';
+        }
+
+        function calcG() {
+            const size = parseInt(document.getElementById('g-size').value);
+            let A = readMatrix(size, size, 'ga');
+            let B = readMatrix(size, 1, 'gb');
+            
+            let out = "--- ELIMINACION GAUSSIANA ---\n\nMatriz A:\n" + renderMatrix(A) + "\nVector B:\n" + renderMatrix(B) + "\n\n";
+
+            // Calculo de determinante usando A clonada
+            let detA = cloneMatrix(A);
+            let detVal = 1;
+            let detOut = "Calculo Determinante:\n";
+            for (let i = 0; i < size; i++) {
+                let maxEl = Math.abs(detA[i][i]), maxRow = i;
+                for (let k = i + 1; k < size; k++) {
+                    if (Math.abs(detA[k][i]) > maxEl) { maxEl = Math.abs(detA[k][i]); maxRow = k; }
+                }
+                if (maxEl < 1e-10) { detVal = 0; break; }
+                if (maxRow !== i) {
+                    let temp = detA[i]; detA[i] = detA[maxRow]; detA[maxRow] = temp;
+                    detVal *= -1;
+                }
+                for (let k = i + 1; k < size; k++) {
+                    let factor = detA[k][i] / detA[i][i];
+                    for (let j = i; j < size; j++) detA[k][j] -= factor * detA[i][j];
+                }
+                detVal *= detA[i][i];
+            }
+            out += `Determinante(A) = ${formatNum(detVal)}\n\n`;
+
+            if (Math.abs(detVal) < 1e-10) {
+                out += "Det es 0. El sistema no es SCD (puede ser SCI o SI). Ver glosario.";
+                document.getElementById('g-output').innerText = out;
+                return;
+            }
+
+            // Aumentar A con B
+            let M = [];
+            for (let i = 0; i < size; i++) M.push([...A[i], B[i][0]]);
+
+            out += "Aumentada [A | B]:\n" + renderMatrix(M) + "\n\n";
+            
+            let step = 1;
+            // Eliminacion Hacia Adelante (solo ceros debajo de la diagonal)
+            for (let i = 0; i < size - 1; i++) {
+                // Pivoteo
+                let maxEl = Math.abs(M[i][i]), maxRow = i;
+                for (let k = i + 1; k < size; k++) {
+                    if (Math.abs(M[k][i]) > maxEl) { maxEl = Math.abs(M[k][i]); maxRow = k; }
+                }
+                
+                if (maxRow !== i) {
+                    let temp = M[i]; M[i] = M[maxRow]; M[maxRow] = temp;
+                    out += `P${step++}: F${i+1} <-> F${maxRow+1}\n` + renderMatrix(M) + "\n\n";
+                }
+
+                for (let k = i + 1; k < size; k++) {
+                    let factor = M[k][i] / M[i][i];
+                    if (Math.abs(factor) > 1e-10) {
+                        for (let j = i; j <= size; j++) M[k][j] -= factor * M[i][j];
+                        out += `P${step++}: F${k+1} -> F${k+1} - (${formatNum(factor)})*F${i+1}\n` + renderMatrix(M) + "\n\n";
+                    }
+                }
+            }
+
+            out += "Matriz Triangular Superior obtenida.\n\nSustitucion regresiva:\n";
+            let X = new Array(size).fill(0);
+            for (let i = size - 1; i >= 0; i--) {
+                let sum = M[i][size]; // El termino B
+                let subStr = `${formatNum(sum)}`;
+                for (let j = i + 1; j < size; j++) {
+                    sum -= M[i][j] * X[j];
+                    subStr += ` - (${formatNum(M[i][j])}*X${j+1})`;
+                }
+                X[i] = sum / M[i][i];
+                out += `X${i+1} = (${subStr}) / ${formatNum(M[i][i])} = ${formatNum(X[i])}\n`;
+            }
+
+            out += "\nSolucion final:\n";
+            for(let i=0; i<size; i++) out += `X${i+1} = ${formatNum(X[i])}\n`;
+
+            document.getElementById('g-output').innerText = out;
+        }
+
+        // Init
+        renderGJInput();
+        renderGInput();
+    </script>
+</body>
+</html>
